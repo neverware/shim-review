@@ -42,7 +42,7 @@ Who is the primary contact for security updates, etc.
 Who is the secondary contact for security updates, etc.
 -------------------------------------------------------------------------------
 - Name: David Sayles
-- Position:
+- Position: director of software
 - Email address: dsayles@neverware.com
 - PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community:
 
