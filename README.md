@@ -79,5 +79,4 @@ Put info about what bootloader you're using, including which patches it includes
 -------------------------------------------------------------------------------
 Put info about what kernel you're using, including which patches it includes to enforce Secure Boot here:
 -------------------------------------------------------------------------------
-[your text here]
-
+Our kernel is based on v4.14. We have applied the secure boot patches from https://github.com/vathpela/linux/tree/secure-boot-4.14.
