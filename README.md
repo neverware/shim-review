@@ -74,7 +74,7 @@ Which files in this repo are the logs for your build?   This should include logs
 -------------------------------------------------------------------------------
 Put info about what bootloader you're using, including which patches it includes to enforce Secure Boot here:
 -------------------------------------------------------------------------------
-[your text here]
+GRUB2. We are using https://github.com/rhboot/grub2/tree/fedora-28 with a couple of ChromeOS patches applied: https://chromium.googlesource.com/chromiumos/overlays/chromiumos-overlay/+/4b5a6928cf7f351725139098c5faffd8fe64c3fe/sys-boot/grub/files/
 
 -------------------------------------------------------------------------------
 Put info about what kernel you're using, including which patches it includes to enforce Secure Boot here:
