@@ -18,32 +18,32 @@ Here's the template:
 -------------------------------------------------------------------------------
 What organization or people are asking to have this signed:
 -------------------------------------------------------------------------------
-[your text here]
+Neverware Inc. (https://www.neverware.com)
 
 -------------------------------------------------------------------------------
 What product or service is this for:
 -------------------------------------------------------------------------------
-[your text here]
+CloudReady
 
 -------------------------------------------------------------------------------
 What's the justification that this really does need to be signed for the whole world to be able to boot it:
 -------------------------------------------------------------------------------
-[your text here]
+CloudReady is a Linux distro; we'd like to encourage people to boot our OS with secure boot enabled.
 
 -------------------------------------------------------------------------------
 Who is the primary contact for security updates, etc.
 -------------------------------------------------------------------------------
-- Name:
-- Position:
-- Email address:
+- Name: Nicholas Bishop
+- Position: software developer
+- Email address: nbishop@neverware.com
 - PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community:
 
 -------------------------------------------------------------------------------
 Who is the secondary contact for security updates, etc.
 -------------------------------------------------------------------------------
-- Name:
+- Name: David Sayles
 - Position:
-- Email address:
+- Email address: dsayles@neverware.com
 - PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community:
 
 -------------------------------------------------------------------------------
