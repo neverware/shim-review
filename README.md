@@ -36,7 +36,7 @@ Who is the primary contact for security updates, etc.
 - Name: Nicholas Bishop
 - Position: software developer
 - Email address: nbishop@neverware.com
-- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community:
+- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: https://github.com/neverware/shim-review/blob/master/nbishop.key
 
 -------------------------------------------------------------------------------
 Who is the secondary contact for security updates, etc.
