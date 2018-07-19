@@ -44,7 +44,7 @@ Who is the secondary contact for security updates, etc.
 - Name: David Sayles
 - Position: director of software
 - Email address: dsayles@neverware.com
-- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community:
+- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: https://github.com/neverware/shim-review/blob/master/dsayles.key
 
 -------------------------------------------------------------------------------
 What upstream shim tag is this starting from:
