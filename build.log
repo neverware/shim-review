@@ -1,12 +1,12 @@
 sudo docker build --no-cache -t shim-build .
-Sending build context to Docker daemon 2.191 MB
+Sending build context to Docker daemon 103.4 kB
 Step 1/11 : FROM fedora:28
  ---> cc510acfcd70
 Step 2/11 : RUN dnf install -y     gcc     git     gnu-efi-devel     make
- ---> Running in 33040cb3254e
-Fedora 28 - x86_64 - Updates                    4.2 MB/s |  19 MB     00:04    
-Fedora 28 - x86_64                               14 MB/s |  60 MB     00:04    
-Last metadata expiration check: 0:00:07 ago on Thu Jul 19 20:06:34 2018.
+ ---> Running in 3bae15871d6c
+Fedora 28 - x86_64 - Updates                     12 MB/s |  23 MB     00:01    
+Fedora 28 - x86_64                               16 MB/s |  60 MB     00:03    
+Last metadata expiration check: 0:00:06 ago on Mon Aug 20 19:24:31 2018.
 Dependencies resolved.
 ================================================================================
  Package                  Arch     Version                      Repository
@@ -34,7 +34,7 @@ Installing dependencies:
  groff-base               x86_64   1.22.3-15.fc28               fedora    1.0 M
  guile                    x86_64   5:2.0.14-7.fc28              fedora    3.5 M
  isl                      x86_64   0.16.1-6.fc28                fedora    841 k
- kernel-headers           x86_64   4.17.6-200.fc28              updates   1.2 M
+ kernel-headers           x86_64   4.17.14-3.fc28               updates   1.1 M
  less                     x86_64   530-1.fc28                   fedora    163 k
  libatomic_ops            x86_64   7.6.2-3.fc28                 fedora     37 k
  libedit                  x86_64   3.1-23.20170329cvs.fc28      fedora    101 k
@@ -46,14 +46,14 @@ Installing dependencies:
  libtool-ltdl             x86_64   2.4.6-24.fc28                updates    57 k
  libxcrypt-devel          x86_64   4.0.0-5.fc28                 fedora     15 k
  ncurses                  x86_64   6.1-4.20180224.fc28          fedora    377 k
- openssh                  x86_64   7.7p1-5.fc28                 updates   483 k
- openssh-clients          x86_64   7.7p1-5.fc28                 updates   684 k
+ openssh                  x86_64   7.7p1-6.fc28                 updates   509 k
+ openssh-clients          x86_64   7.7p1-6.fc28                 updates   685 k
  perl-Carp                noarch   1.42-396.fc28                updates    29 k
  perl-Data-Dumper         x86_64   2.167-399.fc28               fedora     57 k
  perl-Digest              noarch   1.17-395.fc28                fedora     26 k
  perl-Digest-MD5          x86_64   2.55-396.fc28                fedora     36 k
  perl-Encode              x86_64   4:2.97-3.fc28                fedora    1.5 M
- perl-Errno               x86_64   1.28-412.fc28                updates    74 k
+ perl-Errno               x86_64   1.28-413.fc28                updates    74 k
  perl-Error               noarch   1:0.17025-2.fc28             fedora     45 k
  perl-Exporter            noarch   5.72-396.fc28                fedora     33 k
  perl-File-Path           noarch   2.15-2.fc28                  fedora     37 k
@@ -61,7 +61,7 @@ Installing dependencies:
  perl-Getopt-Long         noarch   1:2.50-4.fc28                fedora     62 k
  perl-Git                 noarch   2.17.1-3.fc28                updates    73 k
  perl-HTTP-Tiny           noarch   0.070-395.fc28               fedora     56 k
- perl-IO                  x86_64   1.38-412.fc28                updates   138 k
+ perl-IO                  x86_64   1.38-413.fc28                updates   140 k
  perl-IO-Socket-IP        noarch   0.39-5.fc28                  fedora     46 k
  perl-MIME-Base64         x86_64   3.15-396.fc28                fedora     29 k
  perl-Net-SSLeay          x86_64   1.85-1.fc28                  fedora    356 k
@@ -82,10 +82,10 @@ Installing dependencies:
  perl-URI                 noarch   1.73-2.fc28                  fedora    115 k
  perl-Unicode-Normalize   x86_64   1.25-396.fc28                fedora     81 k
  perl-constant            noarch   1.33-396.fc28                fedora     24 k
- perl-interpreter         x86_64   4:5.26.2-412.fc28            updates   6.2 M
+ perl-interpreter         x86_64   4:5.26.2-413.fc28            updates   6.3 M
  perl-libnet              noarch   3.11-3.fc28                  fedora    120 k
- perl-libs                x86_64   4:5.26.2-412.fc28            updates   1.5 M
- perl-macros              x86_64   4:5.26.2-412.fc28            updates    70 k
+ perl-libs                x86_64   4:5.26.2-413.fc28            updates   1.6 M
+ perl-macros              x86_64   4:5.26.2-413.fc28            updates    70 k
  perl-parent              noarch   1:0.236-395.fc28             fedora     19 k
  perl-podlators           noarch   4.11-1.fc28                  updates   117 k
  perl-threads             x86_64   1:2.21-2.fc28                fedora     60 k
@@ -104,95 +104,95 @@ Upgrade   1 Package
 
 Total download size: 69 M
 Downloading Packages:
-(1/80): gc-7.6.4-3.fc28.x86_64.rpm              1.2 MB/s | 108 kB     00:00    
-(2/80): libatomic_ops-7.6.2-3.fc28.x86_64.rpm   796 kB/s |  37 kB     00:00    
-(3/80): make-4.2.1-6.fc28.x86_64.rpm            3.3 MB/s | 497 kB     00:00    
-(4/80): guile-2.0.14-7.fc28.x86_64.rpm          3.4 MB/s | 3.5 MB     00:01    
-(5/80): isl-0.16.1-6.fc28.x86_64.rpm            3.0 MB/s | 841 kB     00:00    
-(6/80): libmpc-1.0.2-9.fc28.x86_64.rpm          610 kB/s |  58 kB     00:00    
-(7/80): git-2.17.1-3.fc28.x86_64.rpm            2.9 MB/s | 221 kB     00:00    
-(8/80): cpp-8.1.1-5.fc28.x86_64.rpm             7.2 MB/s |  10 MB     00:01    
-(9/80): git-core-doc-2.17.1-3.fc28.noarch.rpm   9.2 MB/s | 2.3 MB     00:00    
-(10/80): perl-Git-2.17.1-3.fc28.noarch.rpm      6.6 MB/s |  73 kB     00:00    
-(11/80): libsecret-0.18.6-1.fc28.x86_64.rpm     1.4 MB/s | 162 kB     00:00    
-(12/80): perl-Getopt-Long-2.50-4.fc28.noarch.rp 1.1 MB/s |  62 kB     00:00    
-(13/80): perl-PathTools-3.74-1.fc28.x86_64.rpm  1.5 MB/s |  89 kB     00:00    
-(14/80): git-core-2.17.1-3.fc28.x86_64.rpm      7.1 MB/s | 4.0 MB     00:00    
-(15/80): perl-TermReadKey-2.37-7.fc28.x86_64.rp 710 kB/s |  39 kB     00:00    
-(16/80): less-530-1.fc28.x86_64.rpm             2.1 MB/s | 163 kB     00:00    
-(17/80): perl-Error-0.17025-2.fc28.noarch.rpm   928 kB/s |  45 kB     00:00    
-(18/80): perl-Exporter-5.72-396.fc28.noarch.rpm 813 kB/s |  33 kB     00:00    
-(19/80): perl-Pod-Usage-1.69-395.fc28.noarch.rp 543 kB/s |  33 kB     00:00    
-(20/80): perl-Text-ParseWords-3.30-395.fc28.noa 313 kB/s |  17 kB     00:00    
-(21/80): perl-constant-1.33-396.fc28.noarch.rpm 798 kB/s |  24 kB     00:00    
-(22/80): perl-Scalar-List-Utils-1.49-2.fc28.x86 1.3 MB/s |  67 kB     00:00    
-(23/80): perl-Pod-Perldoc-3.28-396.fc28.noarch. 1.2 MB/s |  87 kB     00:00    
-(24/80): perl-HTTP-Tiny-0.070-395.fc28.noarch.r 963 kB/s |  56 kB     00:00    
-(25/80): groff-base-1.22.3-15.fc28.x86_64.rpm   3.9 MB/s | 1.0 MB     00:00    
-(26/80): perl-Pod-Simple-3.35-395.fc28.noarch.r 1.1 MB/s | 212 kB     00:00    
-(27/80): perl-parent-0.236-395.fc28.noarch.rpm  610 kB/s |  19 kB     00:00    
-(28/80): perl-MIME-Base64-3.15-396.fc28.x86_64. 798 kB/s |  29 kB     00:00    
-(29/80): perl-Socket-2.027-2.fc28.x86_64.rpm    1.1 MB/s |  58 kB     00:00    
-(30/80): perl-Pod-Escapes-1.07-395.fc28.noarch. 437 kB/s |  19 kB     00:00    
-(31/80): gnu-efi-devel-3.0.8-2.fc28.x86_64.rpm  7.3 MB/s | 110 kB     00:00    
-(32/80): perl-Text-Tabs+Wrap-2013.0523-395.fc28 762 kB/s |  23 kB     00:00    
-(33/80): gcc-8.1.1-5.fc28.x86_64.rpm            8.2 MB/s |  23 MB     00:02    
-(34/80): perl-File-Path-2.15-2.fc28.noarch.rpm  950 kB/s |  37 kB     00:00    
-(35/80): perl-Unicode-Normalize-1.25-396.fc28.x 1.6 MB/s |  81 kB     00:00    
-(36/80): perl-threads-2.21-2.fc28.x86_64.rpm    1.2 MB/s |  60 kB     00:00    
-(37/80): perl-libs-5.26.2-412.fc28.x86_64.rpm   3.5 MB/s | 1.5 MB     00:00    
-(38/80): perl-Errno-1.28-412.fc28.x86_64.rpm    7.5 MB/s |  74 kB     00:00    
-(39/80): perl-threads-shared-1.58-2.fc28.x86_64 1.1 MB/s |  46 kB     00:00    
-(40/80): perl-Carp-1.42-396.fc28.noarch.rpm     6.0 MB/s |  29 kB     00:00    
-(41/80): perl-podlators-4.11-1.fc28.noarch.rpm  8.3 MB/s | 117 kB     00:00    
-(42/80): perl-Term-ANSIColor-4.06-396.fc28.noar 1.1 MB/s |  45 kB     00:00    
-(43/80): perl-Term-Cap-1.17-395.fc28.noarch.rpm 322 kB/s |  22 kB     00:00    
-(44/80): perl-interpreter-5.26.2-412.fc28.x86_6  10 MB/s | 6.2 MB     00:00    
-(45/80): perl-File-Temp-0.230.600-1.fc28.noarch  10 MB/s |  62 kB     00:00    
-(46/80): perl-IO-1.38-412.fc28.x86_64.rpm        11 MB/s | 138 kB     00:00    
-(47/80): perl-Time-Local-1.280-1.fc28.noarch.rp 6.6 MB/s |  32 kB     00:00    
-(48/80): perl-Storable-3.11-2.fc28.x86_64.rpm    11 MB/s |  97 kB     00:00    
-(49/80): libtool-ltdl-2.4.6-24.fc28.x86_64.rpm  8.8 MB/s |  57 kB     00:00    
-(50/80): ncurses-6.1-4.20180224.fc28.x86_64.rpm 2.1 MB/s | 377 kB     00:00    
-(51/80): perl-macros-5.26.2-412.fc28.x86_64.rpm  12 MB/s |  70 kB     00:00    
-(52/80): gnu-efi-3.0.8-2.fc28.x86_64.rpm        9.9 MB/s |  71 kB     00:00    
-(53/80): libstdc++-8.1.1-5.fc28.x86_64.rpm       14 MB/s | 487 kB     00:00    
-(54/80): openssh-7.7p1-5.fc28.x86_64.rpm         15 MB/s | 483 kB     00:00    
-(55/80): openssh-clients-7.7p1-5.fc28.x86_64.rp  14 MB/s | 684 kB     00:00    
-(56/80): fipscheck-lib-1.5.0-4.fc28.x86_64.rpm  502 kB/s |  14 kB     00:00    
-(57/80): fipscheck-1.5.0-4.fc28.x86_64.rpm      594 kB/s |  26 kB     00:00    
-(58/80): libedit-3.1-23.20170329cvs.fc28.x86_64 1.5 MB/s | 101 kB     00:00    
-(59/80): emacs-filesystem-26.1-3.fc28.noarch.rp 8.7 MB/s |  68 kB     00:00    
-(60/80): perl-Encode-2.97-3.fc28.x86_64.rpm     4.8 MB/s | 1.5 MB     00:00    
-(61/80): libxcrypt-devel-4.0.0-5.fc28.x86_64.rp 744 kB/s |  15 kB     00:00    
-(62/80): glibc-headers-2.27-8.fc28.x86_64.rpm   3.1 MB/s | 454 kB     00:00    
-(63/80): libgomp-8.1.1-5.fc28.x86_64.rpm        9.4 MB/s | 207 kB     00:00    
-(64/80): pkgconf-pkg-config-1.4.2-1.fc28.x86_64 518 kB/s |  14 kB     00:00    
-(65/80): pkgconf-1.4.2-1.fc28.x86_64.rpm        778 kB/s |  37 kB     00:00    
-(66/80): glibc-devel-2.27-8.fc28.x86_64.rpm     3.1 MB/s | 1.0 MB     00:00    
-(67/80): pkgconf-m4-1.4.2-1.fc28.noarch.rpm     507 kB/s |  16 kB     00:00    
-(68/80): libpkgconf-1.4.2-1.fc28.x86_64.rpm     822 kB/s |  34 kB     00:00    
-(69/80): perl-Mozilla-CA-20160104-7.fc28.noarch 415 kB/s |  14 kB     00:00    
-(70/80): kernel-headers-4.17.6-200.fc28.x86_64. 9.6 MB/s | 1.2 MB     00:00    
-(71/80): perl-IO-Socket-IP-0.39-5.fc28.noarch.r 854 kB/s |  46 kB     00:00    
-(72/80): perl-IO-Socket-SSL-2.056-1.fc28.noarch 1.8 MB/s | 285 kB     00:00    
-(73/80): perl-URI-1.73-2.fc28.noarch.rpm        1.5 MB/s | 115 kB     00:00    
-(74/80): perl-Net-SSLeay-1.85-1.fc28.x86_64.rpm 2.0 MB/s | 356 kB     00:00    
-(75/80): perl-Data-Dumper-2.167-399.fc28.x86_64 986 kB/s |  57 kB     00:00    
-(76/80): perl-Digest-MD5-2.55-396.fc28.x86_64.r 825 kB/s |  36 kB     00:00    
-(77/80): perl-Digest-1.17-395.fc28.noarch.rpm   697 kB/s |  26 kB     00:00    
-(78/80): perl-libnet-3.11-3.fc28.noarch.rpm     1.4 MB/s | 120 kB     00:00    
-(79/80): libgcc-8.1.1-5.fc28.x86_64.rpm         1.9 MB/s |  95 kB     00:00    
-(80/80): binutils-2.29.1-23.fc28.x86_64.rpm     6.9 MB/s | 6.0 MB     00:00    
+(1/80): gc-7.6.4-3.fc28.x86_64.rpm              239 kB/s | 108 kB     00:00    
+(2/80): libatomic_ops-7.6.2-3.fc28.x86_64.rpm   575 kB/s |  37 kB     00:00    
+(3/80): make-4.2.1-6.fc28.x86_64.rpm            709 kB/s | 497 kB     00:00    
+(4/80): cpp-8.1.1-5.fc28.x86_64.rpm             6.5 MB/s |  10 MB     00:01    
+(5/80): gcc-8.1.1-5.fc28.x86_64.rpm              11 MB/s |  23 MB     00:01    
+(6/80): isl-0.16.1-6.fc28.x86_64.rpm            2.0 MB/s | 841 kB     00:00    
+(7/80): libmpc-1.0.2-9.fc28.x86_64.rpm          454 kB/s |  58 kB     00:00    
+(8/80): git-2.17.1-3.fc28.x86_64.rpm            6.7 MB/s | 221 kB     00:00    
+(9/80): git-core-doc-2.17.1-3.fc28.noarch.rpm    11 MB/s | 2.3 MB     00:00    
+(10/80): perl-Git-2.17.1-3.fc28.noarch.rpm      6.5 MB/s |  73 kB     00:00    
+(11/80): libsecret-0.18.6-1.fc28.x86_64.rpm     2.5 MB/s | 162 kB     00:00    
+(12/80): perl-Getopt-Long-2.50-4.fc28.noarch.rp 963 kB/s |  62 kB     00:00    
+(13/80): perl-PathTools-3.74-1.fc28.x86_64.rpm  1.4 MB/s |  89 kB     00:00    
+(14/80): perl-TermReadKey-2.37-7.fc28.x86_64.rp 624 kB/s |  39 kB     00:00    
+(15/80): less-530-1.fc28.x86_64.rpm             2.4 MB/s | 163 kB     00:00    
+(16/80): perl-Error-0.17025-2.fc28.noarch.rpm   718 kB/s |  45 kB     00:00    
+(17/80): git-core-2.17.1-3.fc28.x86_64.rpm      5.8 MB/s | 4.0 MB     00:00    
+(18/80): perl-Exporter-5.72-396.fc28.noarch.rpm 299 kB/s |  33 kB     00:00    
+(19/80): perl-Pod-Usage-1.69-395.fc28.noarch.rp 301 kB/s |  33 kB     00:00    
+(20/80): perl-Text-ParseWords-3.30-395.fc28.noa 225 kB/s |  17 kB     00:00    
+(21/80): perl-constant-1.33-396.fc28.noarch.rpm 321 kB/s |  24 kB     00:00    
+(22/80): perl-Scalar-List-Utils-1.49-2.fc28.x86 603 kB/s |  67 kB     00:00    
+(23/80): perl-Pod-Perldoc-3.28-396.fc28.noarch. 502 kB/s |  87 kB     00:00    
+(24/80): perl-HTTP-Tiny-0.070-395.fc28.noarch.r 759 kB/s |  56 kB     00:00    
+(25/80): groff-base-1.22.3-15.fc28.x86_64.rpm   3.8 MB/s | 1.0 MB     00:00    
+(26/80): perl-parent-0.236-395.fc28.noarch.rpm  294 kB/s |  19 kB     00:00    
+(27/80): perl-Pod-Simple-3.35-395.fc28.noarch.r 1.1 MB/s | 212 kB     00:00    
+(28/80): perl-MIME-Base64-3.15-396.fc28.x86_64. 470 kB/s |  29 kB     00:00    
+(29/80): perl-Pod-Escapes-1.07-395.fc28.noarch. 307 kB/s |  19 kB     00:00    
+(30/80): perl-Socket-2.027-2.fc28.x86_64.rpm    545 kB/s |  58 kB     00:00    
+(31/80): perl-Text-Tabs+Wrap-2013.0523-395.fc28 330 kB/s |  23 kB     00:00    
+(32/80): gnu-efi-devel-3.0.8-2.fc28.x86_64.rpm  2.5 MB/s | 110 kB     00:00    
+(33/80): perl-libs-5.26.2-413.fc28.x86_64.rpm   4.5 MB/s | 1.6 MB     00:00    
+(34/80): perl-File-Path-2.15-2.fc28.noarch.rpm  576 kB/s |  37 kB     00:00    
+(35/80): perl-Unicode-Normalize-1.25-396.fc28.x 1.2 MB/s |  81 kB     00:00    
+(36/80): perl-threads-2.21-2.fc28.x86_64.rpm    887 kB/s |  60 kB     00:00    
+(37/80): perl-threads-shared-1.58-2.fc28.x86_64 733 kB/s |  46 kB     00:00    
+(38/80): perl-Errno-1.28-413.fc28.x86_64.rpm    3.4 MB/s |  74 kB     00:00    
+(39/80): perl-Carp-1.42-396.fc28.noarch.rpm     2.7 MB/s |  29 kB     00:00    
+(40/80): perl-podlators-4.11-1.fc28.noarch.rpm  5.6 MB/s | 117 kB     00:00    
+(41/80): perl-Term-ANSIColor-4.06-396.fc28.noar 712 kB/s |  45 kB     00:00    
+(42/80): perl-interpreter-5.26.2-413.fc28.x86_6 7.8 MB/s | 6.3 MB     00:00    
+(43/80): perl-Term-Cap-1.17-395.fc28.noarch.rpm 170 kB/s |  22 kB     00:00    
+(44/80): ncurses-6.1-4.20180224.fc28.x86_64.rpm 1.5 MB/s | 377 kB     00:00    
+(45/80): perl-File-Temp-0.230.600-1.fc28.noarch 1.0 MB/s |  62 kB     00:00    
+(46/80): perl-Encode-2.97-3.fc28.x86_64.rpm     5.7 MB/s | 1.5 MB     00:00    
+(47/80): perl-IO-1.38-413.fc28.x86_64.rpm       4.4 MB/s | 140 kB     00:00    
+(48/80): perl-Time-Local-1.280-1.fc28.noarch.rp 1.1 MB/s |  32 kB     00:00    
+(49/80): perl-Storable-3.11-2.fc28.x86_64.rpm   3.2 MB/s |  97 kB     00:00    
+(50/80): libtool-ltdl-2.4.6-24.fc28.x86_64.rpm  1.8 MB/s |  57 kB     00:00    
+(51/80): perl-macros-5.26.2-413.fc28.x86_64.rpm 2.4 MB/s |  70 kB     00:00    
+(52/80): gnu-efi-3.0.8-2.fc28.x86_64.rpm        3.1 MB/s |  71 kB     00:00    
+(53/80): libstdc++-8.1.1-5.fc28.x86_64.rpm      6.3 MB/s | 487 kB     00:00    
+(54/80): openssh-clients-7.7p1-6.fc28.x86_64.rp  17 MB/s | 685 kB     00:00    
+(55/80): openssh-7.7p1-6.fc28.x86_64.rpm        5.7 MB/s | 509 kB     00:00    
+(56/80): fipscheck-lib-1.5.0-4.fc28.x86_64.rpm  225 kB/s |  14 kB     00:00    
+(57/80): libedit-3.1-23.20170329cvs.fc28.x86_64 1.2 MB/s | 101 kB     00:00    
+(58/80): fipscheck-1.5.0-4.fc28.x86_64.rpm      312 kB/s |  26 kB     00:00    
+(59/80): emacs-filesystem-26.1-3.fc28.noarch.rp 5.7 MB/s |  68 kB     00:00    
+(60/80): guile-2.0.14-7.fc28.x86_64.rpm         630 kB/s | 3.5 MB     00:05    
+(61/80): libxcrypt-devel-4.0.0-5.fc28.x86_64.rp 236 kB/s |  15 kB     00:00    
+(62/80): binutils-2.29.1-23.fc28.x86_64.rpm      16 MB/s | 6.0 MB     00:00    
+(63/80): libgomp-8.1.1-5.fc28.x86_64.rpm        3.7 MB/s | 207 kB     00:00    
+(64/80): glibc-headers-2.27-8.fc28.x86_64.rpm   1.8 MB/s | 454 kB     00:00    
+(65/80): pkgconf-pkg-config-1.4.2-1.fc28.x86_64 224 kB/s |  14 kB     00:00    
+(66/80): pkgconf-1.4.2-1.fc28.x86_64.rpm        581 kB/s |  37 kB     00:00    
+(67/80): pkgconf-m4-1.4.2-1.fc28.noarch.rpm     255 kB/s |  16 kB     00:00    
+(68/80): libpkgconf-1.4.2-1.fc28.x86_64.rpm     530 kB/s |  34 kB     00:00    
+(69/80): perl-Mozilla-CA-20160104-7.fc28.noarch 222 kB/s |  14 kB     00:00    
+(70/80): kernel-headers-4.17.14-3.fc28.x86_64.r 6.2 MB/s | 1.1 MB     00:00    
+(71/80): perl-IO-Socket-SSL-2.056-1.fc28.noarch 2.4 MB/s | 285 kB     00:00    
+(72/80): perl-IO-Socket-IP-0.39-5.fc28.noarch.r 251 kB/s |  46 kB     00:00    
+(73/80): perl-Net-SSLeay-1.85-1.fc28.x86_64.rpm 2.7 MB/s | 356 kB     00:00    
+(74/80): perl-Data-Dumper-2.167-399.fc28.x86_64 793 kB/s |  57 kB     00:00    
+(75/80): perl-libnet-3.11-3.fc28.noarch.rpm     1.1 MB/s | 120 kB     00:00    
+(76/80): perl-Digest-MD5-2.55-396.fc28.x86_64.r 564 kB/s |  36 kB     00:00    
+(77/80): perl-URI-1.73-2.fc28.noarch.rpm        462 kB/s | 115 kB     00:00    
+(78/80): libgcc-8.1.1-5.fc28.x86_64.rpm         1.6 MB/s |  95 kB     00:00    
+(79/80): perl-Digest-1.17-395.fc28.noarch.rpm   406 kB/s |  26 kB     00:00    
+(80/80): glibc-devel-2.27-8.fc28.x86_64.rpm     625 kB/s | 1.0 MB     00:01    
 --------------------------------------------------------------------------------
-Total                                            13 MB/s |  69 MB     00:05     
+Total                                           8.7 MB/s |  69 MB     00:07     
 Running transaction check
 Transaction check succeeded.
 Running transaction test
 Transaction test succeeded.
 Running transaction
   Preparing        :                                                        1/1 
-  Installing       : perl-libs-4:5.26.2-412.fc28.x86_64                    1/81 
+  Installing       : perl-libs-4:5.26.2-413.fc28.x86_64                    1/81 
   Installing       : perl-Carp-1.42-396.fc28.noarch                        2/81 
   Installing       : perl-Exporter-5.72-396.fc28.noarch                    3/81 
   Installing       : perl-Scalar-List-Utils-3:1.49-2.fc28.x86_64           4/81 
@@ -209,10 +209,10 @@ Running transaction
   Installing       : cpp-8.1.1-5.fc28.x86_64                              11/81 
   Running scriptlet: cpp-8.1.1-5.fc28.x86_64                              11/81 
   Installing       : groff-base-1.22.3-15.fc28.x86_64                     12/81 
-  Running scriptlet: openssh-7.7p1-5.fc28.x86_64                          13/81 
-  Installing       : openssh-7.7p1-5.fc28.x86_64                          13/81 
+  Running scriptlet: openssh-7.7p1-6.fc28.x86_64                          13/81 
+  Installing       : openssh-7.7p1-6.fc28.x86_64                          13/81 
   Installing       : perl-Term-ANSIColor-4.06-396.fc28.noarch             14/81 
-  Installing       : perl-macros-4:5.26.2-412.fc28.x86_64                 15/81 
+  Installing       : perl-macros-4:5.26.2-413.fc28.x86_64                 15/81 
   Installing       : perl-constant-1.33-396.fc28.noarch                   16/81 
   Installing       : perl-parent-1:0.236-395.fc28.noarch                  17/81 
   Installing       : perl-Socket-4:2.027-2.fc28.x86_64                    18/81 
@@ -221,10 +221,10 @@ Running transaction
   Installing       : perl-Unicode-Normalize-1.25-396.fc28.x86_64          21/81 
   Installing       : perl-threads-shared-1.58-2.fc28.x86_64               22/81 
   Installing       : perl-threads-1:2.21-2.fc28.x86_64                    23/81 
-  Installing       : perl-Errno-1.28-412.fc28.x86_64                      24/81 
+  Installing       : perl-Errno-1.28-413.fc28.x86_64                      24/81 
   Installing       : perl-PathTools-3.74-1.fc28.x86_64                    25/81 
-  Installing       : perl-interpreter-4:5.26.2-412.fc28.x86_64            26/81 
-  Installing       : perl-IO-1.38-412.fc28.x86_64                         27/81 
+  Installing       : perl-interpreter-4:5.26.2-413.fc28.x86_64            26/81 
+  Installing       : perl-IO-1.38-413.fc28.x86_64                         27/81 
   Installing       : perl-MIME-Base64-3.15-396.fc28.x86_64                28/81 
   Installing       : perl-Time-Local-1:1.280-1.fc28.noarch                29/81 
   Installing       : perl-HTTP-Tiny-0.070-395.fc28.noarch                 30/81 
@@ -239,7 +239,7 @@ Running transaction
   Installing       : perl-Error-1:0.17025-2.fc28.noarch                   39/81 
   Installing       : perl-Pod-Escapes-1:1.07-395.fc28.noarch              40/81 
   Installing       : perl-Data-Dumper-2.167-399.fc28.x86_64               41/81 
-  Installing       : kernel-headers-4.17.6-200.fc28.x86_64                42/81 
+  Installing       : kernel-headers-4.17.14-3.fc28.x86_64                 42/81 
   Running scriptlet: glibc-headers-2.27-8.fc28.x86_64                     43/81 
   Installing       : glibc-headers-2.27-8.fc28.x86_64                     43/81 
   Installing       : libpkgconf-1.4.2-1.fc28.x86_64                       44/81 
@@ -259,7 +259,7 @@ install-info: No such file or directory for /usr/share/info/gprof.info.gz
 install-info: No such file or directory for /usr/share/info/ld.info.gz
   Installing       : emacs-filesystem-1:26.1-3.fc28.noarch                52/81 
   Installing       : libedit-3.1-23.20170329cvs.fc28.x86_64               53/81 
-  Installing       : openssh-clients-7.7p1-5.fc28.x86_64                  54/81 
+  Installing       : openssh-clients-7.7p1-6.fc28.x86_64                  54/81 
   Installing       : gnu-efi-1:3.0.8-2.fc28.x86_64                        55/81 
   Installing       : libtool-ltdl-2.4.6-24.fc28.x86_64                    56/81 
   Running scriptlet: libtool-ltdl-2.4.6-24.fc28.x86_64                    56/81 
@@ -328,13 +328,13 @@ install-info: No such file or directory for /usr/share/info/ld.info.gz
   Verifying        : perl-Pod-Escapes-1:1.07-395.fc28.noarch              31/81 
   Verifying        : perl-Text-Tabs+Wrap-2013.0523-395.fc28.noarch        32/81 
   Verifying        : gnu-efi-devel-1:3.0.8-2.fc28.x86_64                  33/81 
-  Verifying        : perl-interpreter-4:5.26.2-412.fc28.x86_64            34/81 
-  Verifying        : perl-libs-4:5.26.2-412.fc28.x86_64                   35/81 
+  Verifying        : perl-interpreter-4:5.26.2-413.fc28.x86_64            34/81 
+  Verifying        : perl-libs-4:5.26.2-413.fc28.x86_64                   35/81 
   Verifying        : perl-File-Path-2.15-2.fc28.noarch                    36/81 
   Verifying        : perl-Unicode-Normalize-1.25-396.fc28.x86_64          37/81 
   Verifying        : perl-threads-1:2.21-2.fc28.x86_64                    38/81 
   Verifying        : perl-threads-shared-1.58-2.fc28.x86_64               39/81 
-  Verifying        : perl-Errno-1.28-412.fc28.x86_64                      40/81 
+  Verifying        : perl-Errno-1.28-413.fc28.x86_64                      40/81 
   Verifying        : perl-Carp-1.42-396.fc28.noarch                       41/81 
   Verifying        : perl-podlators-4.11-1.fc28.noarch                    42/81 
   Verifying        : perl-Term-ANSIColor-4.06-396.fc28.noarch             43/81 
@@ -342,15 +342,15 @@ install-info: No such file or directory for /usr/share/info/ld.info.gz
   Verifying        : ncurses-6.1-4.20180224.fc28.x86_64                   45/81 
   Verifying        : perl-Encode-4:2.97-3.fc28.x86_64                     46/81 
   Verifying        : perl-File-Temp-0.230.600-1.fc28.noarch               47/81 
-  Verifying        : perl-IO-1.38-412.fc28.x86_64                         48/81 
+  Verifying        : perl-IO-1.38-413.fc28.x86_64                         48/81 
   Verifying        : perl-Time-Local-1:1.280-1.fc28.noarch                49/81 
   Verifying        : perl-Storable-1:3.11-2.fc28.x86_64                   50/81 
   Verifying        : libtool-ltdl-2.4.6-24.fc28.x86_64                    51/81 
   Verifying        : libstdc++-8.1.1-5.fc28.x86_64                        52/81 
-  Verifying        : perl-macros-4:5.26.2-412.fc28.x86_64                 53/81 
+  Verifying        : perl-macros-4:5.26.2-413.fc28.x86_64                 53/81 
   Verifying        : gnu-efi-1:3.0.8-2.fc28.x86_64                        54/81 
-  Verifying        : openssh-clients-7.7p1-5.fc28.x86_64                  55/81 
-  Verifying        : openssh-7.7p1-5.fc28.x86_64                          56/81 
+  Verifying        : openssh-clients-7.7p1-6.fc28.x86_64                  55/81 
+  Verifying        : openssh-7.7p1-6.fc28.x86_64                          56/81 
   Verifying        : fipscheck-lib-1.5.0-4.fc28.x86_64                    57/81 
   Verifying        : libedit-3.1-23.20170329cvs.fc28.x86_64               58/81 
   Verifying        : fipscheck-1.5.0-4.fc28.x86_64                        59/81 
@@ -364,7 +364,7 @@ install-info: No such file or directory for /usr/share/info/ld.info.gz
   Verifying        : pkgconf-1.4.2-1.fc28.x86_64                          67/81 
   Verifying        : pkgconf-m4-1.4.2-1.fc28.noarch                       68/81 
   Verifying        : libpkgconf-1.4.2-1.fc28.x86_64                       69/81 
-  Verifying        : kernel-headers-4.17.6-200.fc28.x86_64                70/81 
+  Verifying        : kernel-headers-4.17.14-3.fc28.x86_64                 70/81 
   Verifying        : perl-Mozilla-CA-20160104-7.fc28.noarch               71/81 
   Verifying        : perl-IO-Socket-SSL-2.056-1.fc28.noarch               72/81 
   Verifying        : perl-IO-Socket-IP-0.39-5.fc28.noarch                 73/81 
@@ -398,7 +398,7 @@ Installed:
   groff-base.x86_64 1.22.3-15.fc28                                              
   guile.x86_64 5:2.0.14-7.fc28                                                  
   isl.x86_64 0.16.1-6.fc28                                                      
-  kernel-headers.x86_64 4.17.6-200.fc28                                         
+  kernel-headers.x86_64 4.17.14-3.fc28                                          
   less.x86_64 530-1.fc28                                                        
   libatomic_ops.x86_64 7.6.2-3.fc28                                             
   libedit.x86_64 3.1-23.20170329cvs.fc28                                        
@@ -410,14 +410,14 @@ Installed:
   libtool-ltdl.x86_64 2.4.6-24.fc28                                             
   libxcrypt-devel.x86_64 4.0.0-5.fc28                                           
   ncurses.x86_64 6.1-4.20180224.fc28                                            
-  openssh.x86_64 7.7p1-5.fc28                                                   
-  openssh-clients.x86_64 7.7p1-5.fc28                                           
+  openssh.x86_64 7.7p1-6.fc28                                                   
+  openssh-clients.x86_64 7.7p1-6.fc28                                           
   perl-Carp.noarch 1.42-396.fc28                                                
   perl-Data-Dumper.x86_64 2.167-399.fc28                                        
   perl-Digest.noarch 1.17-395.fc28                                              
   perl-Digest-MD5.x86_64 2.55-396.fc28                                          
   perl-Encode.x86_64 4:2.97-3.fc28                                              
-  perl-Errno.x86_64 1.28-412.fc28                                               
+  perl-Errno.x86_64 1.28-413.fc28                                               
   perl-Error.noarch 1:0.17025-2.fc28                                            
   perl-Exporter.noarch 5.72-396.fc28                                            
   perl-File-Path.noarch 2.15-2.fc28                                             
@@ -425,7 +425,7 @@ Installed:
   perl-Getopt-Long.noarch 1:2.50-4.fc28                                         
   perl-Git.noarch 2.17.1-3.fc28                                                 
   perl-HTTP-Tiny.noarch 0.070-395.fc28                                          
-  perl-IO.x86_64 1.38-412.fc28                                                  
+  perl-IO.x86_64 1.38-413.fc28                                                  
   perl-IO-Socket-IP.noarch 0.39-5.fc28                                          
   perl-MIME-Base64.x86_64 3.15-396.fc28                                         
   perl-Net-SSLeay.x86_64 1.85-1.fc28                                            
@@ -446,10 +446,10 @@ Installed:
   perl-URI.noarch 1.73-2.fc28                                                   
   perl-Unicode-Normalize.x86_64 1.25-396.fc28                                   
   perl-constant.noarch 1.33-396.fc28                                            
-  perl-interpreter.x86_64 4:5.26.2-412.fc28                                     
+  perl-interpreter.x86_64 4:5.26.2-413.fc28                                     
   perl-libnet.noarch 3.11-3.fc28                                                
-  perl-libs.x86_64 4:5.26.2-412.fc28                                            
-  perl-macros.x86_64 4:5.26.2-412.fc28                                          
+  perl-libs.x86_64 4:5.26.2-413.fc28                                            
+  perl-macros.x86_64 4:5.26.2-413.fc28                                          
   perl-parent.noarch 1:0.236-395.fc28                                           
   perl-podlators.noarch 4.11-1.fc28                                             
   perl-threads.x86_64 1:2.21-2.fc28                                             
@@ -462,10 +462,10 @@ Upgraded:
   libgcc.x86_64 8.1.1-5.fc28                                                    
 
 Complete!
- ---> fa42aa99f94b
-Removing intermediate container 33040cb3254e
+ ---> b5f884187f97
+Removing intermediate container 3bae15871d6c
 Step 3/11 : RUN git clone --branch 15 https://github.com/rhboot/shim.git /build/shim
- ---> Running in e0c6a10cb4d1
+ ---> Running in 0cce93fa16d4
 [91mCloning into '/build/shim'...
 [0m[91mNote: checking out '51413d1deb0df0debdf1d208723131ff0e36d3a3'.
 
@@ -478,20 +478,20 @@ do so (now or later) by using -b with the checkout command again. Example:
 
   git checkout -b <new-branch-name>
 
-[0m ---> 742fd49b0ff0
-Removing intermediate container e0c6a10cb4d1
+[0m ---> 21749c39b960
+Removing intermediate container 0cce93fa16d4
 Step 4/11 : WORKDIR /build/shim
- ---> 18af2b622eb3
-Removing intermediate container 80bccf25b1ec
+ ---> 60307739caf9
+Removing intermediate container 3404c8c7f0d0
 Step 5/11 : ADD neverware.cer .
- ---> 8a109b23f1ce
-Removing intermediate container 670bfc2edfea
+ ---> c4bb5af00260
+Removing intermediate container 066f53b70401
 Step 6/11 : RUN mkdir build-x64 build-ia32
- ---> Running in b95f874845f5
- ---> 1fa09d9ce39d
-Removing intermediate container b95f874845f5
+ ---> Running in 78d4a64c002f
+ ---> c1606849fa68
+Removing intermediate container 78d4a64c002f
 Step 7/11 : RUN make -C build-x64 ARCH=x86_64 VENDOR_CERT_FILE=../neverware.cer     TOPDIR=.. -f ../Makefile
- ---> Running in c816a4071ec1
+ ---> Running in 285993cfd8a4
 make: Entering directory '/build/shim/build-x64'
 sed	-e "s,@@VERSION@@,15," \
 	-e "s,@@UNAME@@,Linux x86_64 x86_64 x86_64 GNU/Linux," \
@@ -556,7 +556,7 @@ In file included from /build/shim/Cryptlib/OpenSSL/../Include/OpenSslSupport.h:2
 /build/shim/Cryptlib/OpenSSL/../Library/BaseLib.h:8:8: note: expected 'CHAR8 *' {aka 'unsigned char *'} but argument is of type 'char *'
  CHAR8 *AsciiStrCpy(CHAR8 *Destination, CHAR8 *Source);
         ^~~~~~~~~~~
-In file included from /build/shim/Cryptlib/OpenSSL/../Include/stdio.h:15,
+[0m[91mIn file included from /build/shim/Cryptlib/OpenSSL/../Include/stdio.h:15,
                  from /build/shim/Cryptlib/OpenSSL/crypto/mem.c:59:
 /build/shim/Cryptlib/OpenSSL/crypto/mem.c:363:17: warning: passing argument 2 of 'AsciiStrCpy' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
      strcpy(ret, str);
@@ -715,7 +715,7 @@ gcc -ggdb -O0 -I/build/shim/Cryptlib/OpenSSL -I/build/shim/Cryptlib/OpenSSL/.. -
 /build/shim/Cryptlib/OpenSSL/../Include/OpenSslSupport.h:374:64: note: in definition of macro 'strncpy'
  #define strncpy(strDest,strSource,count)  AsciiStrnCpy(strDest,strSource,(UINTN)count)
                                                                 ^~~~~~~~~
-[0m[91mIn file included from /build/shim/Cryptlib/OpenSSL/../Include/OpenSslSupport.h:21,
+In file included from /build/shim/Cryptlib/OpenSSL/../Include/OpenSslSupport.h:21,
                  from /build/shim/Cryptlib/OpenSSL/../Include/stdio.h:15,
                  from /build/shim/Cryptlib/OpenSSL/crypto/bio/bss_log.c:65:
 /build/shim/Cryptlib/OpenSSL/../Library/BaseLib.h:6:7: note: expected 'char *' but argument is of type 'const char *'
@@ -1056,10 +1056,10 @@ objcopy -j .text -j .sdata -j .data -j .data.ident \
 	-j .vendor_cert \
 	--target efi-app-x86_64 fbx64.so fbx64.efi
 make: Leaving directory '/build/shim/build-x64'
- ---> 24165a816a73
-Removing intermediate container c816a4071ec1
+ ---> 5e70763bd3b8
+Removing intermediate container 285993cfd8a4
 Step 8/11 : RUN make -C build-ia32 ARCH=ia32 VENDOR_CERT_FILE=../neverware.cer     TOPDIR=.. -f ../Makefile
- ---> Running in 0dbd82781783
+ ---> Running in 8cc9f2aef7ef
 make: Entering directory '/build/shim/build-ia32'
 sed	-e "s,@@VERSION@@,15," \
 	-e "s,@@UNAME@@,Linux x86_64 x86_64 x86_64 GNU/Linux," \
@@ -1624,18 +1624,18 @@ objcopy -j .text -j .sdata -j .data -j .data.ident \
 	-j .vendor_cert \
 	--target efi-app-ia32 fbia32.so fbia32.efi
 make: Leaving directory '/build/shim/build-ia32'
- ---> 3713b07f8e33
-Removing intermediate container 0dbd82781783
+ ---> 3e4264193bc6
+Removing intermediate container 8cc9f2aef7ef
 Step 9/11 : RUN mkdir /build/install
- ---> Running in b7d886e7bb9d
- ---> 9a5562666ba4
-Removing intermediate container b7d886e7bb9d
+ ---> Running in e8c1b9757351
+ ---> 3e07174bd8df
+Removing intermediate container e8c1b9757351
 Step 10/11 : RUN cp build-x64/shimx64.efi /build/install
- ---> Running in 591c60e15ebb
- ---> 2c3ffcc4aef6
-Removing intermediate container 591c60e15ebb
+ ---> Running in f4488c78e0e4
+ ---> 91ffefabd9a0
+Removing intermediate container f4488c78e0e4
 Step 11/11 : RUN cp build-ia32/shimia32.efi /build/install
- ---> Running in 5dab26fd70fe
- ---> d6e12a5d5983
-Removing intermediate container 5dab26fd70fe
-Successfully built d6e12a5d5983
+ ---> Running in 323abd3f8027
+ ---> 97755134fc7c
+Removing intermediate container 323abd3f8027
+Successfully built 97755134fc7c
