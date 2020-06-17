@@ -41,10 +41,10 @@ Who is the primary contact for security updates, etc.
 -------------------------------------------------------------------------------
 Who is the secondary contact for security updates, etc.
 -------------------------------------------------------------------------------
-- Name: David Sayles
-- Position: director of software
-- Email address: dsayles@neverware.com
-- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: https://github.com/neverware/shim-review/blob/master/dsayles.key
+- Name: Paul Nardini
+- Position: Director of Engineering
+- Email address: pnardini@neverware.com
+- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: https://github.com/neverware/shim-review/blob/master/pnardini.key
 
 -------------------------------------------------------------------------------
 What upstream shim tag is this starting from:
@@ -64,7 +64,7 @@ None
 -------------------------------------------------------------------------------
 What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as close as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
 -------------------------------------------------------------------------------
-This repo contains the Dockerfile we use to build shim: https://github.com/neverware/shim-build/tree/v2
+This repo contains the Dockerfile we use to build shim: https://github.com/neverware/shim-build/tree/v3
 
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
@@ -72,11 +72,7 @@ Which files in this repo are the logs for your build?   This should include logs
 [build.log](build.log)
 
 -------------------------------------------------------------------------------
-Put info about what bootloader you're using, including which patches it includes to enforce Secure Boot here:
+Add any additional information you think we may need to validate this shim
 -------------------------------------------------------------------------------
-GRUB2. We are using https://github.com/rhboot/grub2/tree/fedora-28 with a couple of ChromeOS patches applied: https://chromium.googlesource.com/chromiumos/overlays/chromiumos-overlay/+/4b5a6928cf7f351725139098c5faffd8fe64c3fe/sys-boot/grub/files/
+This shim build is unchanged from our last submission and only updates the embedded EV code signing certificate.
 
--------------------------------------------------------------------------------
-Put info about what kernel you're using, including which patches it includes to enforce Secure Boot here:
--------------------------------------------------------------------------------
-Our kernel is based on v4.14. We have applied the secure boot patches from https://github.com/vathpela/linux/tree/secure-boot-4.14.
