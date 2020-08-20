@@ -1,12 +1,12 @@
 sudo docker build --no-cache -t shim-build .
-Sending build context to Docker daemon  73.73kB
-Step 1/11 : FROM fedora:28
+Sending build context to Docker daemon  3.102MB
+Step 1/13 : FROM fedora:28
  ---> 4c5b21baa7a0
-Step 2/11 : RUN dnf install -y     gcc     git     gnu-efi-devel     make
- ---> Running in 0556a6dbf42f
-Fedora 28 - x86_64 - Updates                     18 MB/s |  30 MB     00:01    
-Fedora 28 - x86_64                               39 MB/s |  60 MB     00:01    
-Last metadata expiration check: 0:00:05 ago on Mon Jun 15 17:52:27 2020.
+Step 2/13 : RUN dnf install -y     gcc     git     gnu-efi-devel     make     patch
+ ---> Running in 426bd1b5fc1e
+Fedora 28 - x86_64 - Updates                     33 MB/s |  30 MB     00:00    
+Fedora 28 - x86_64                               25 MB/s |  60 MB     00:02    
+Last metadata expiration check: 0:00:06 ago on Thu Aug 20 22:11:25 2020.
 Dependencies resolved.
 ================================================================================
  Package                  Arch     Version                      Repository
@@ -17,6 +17,7 @@ Installing:
  git                      x86_64   2.17.2-2.fc28                updates   221 k
  gnu-efi-devel            x86_64   1:3.0.8-2.fc28               updates   110 k
  make                     x86_64   1:4.2.1-6.fc28               fedora    497 k
+ patch                    x86_64   2.7.6-8.fc28                 updates   137 k
 Upgrading:
  glibc                    x86_64   2.27-38.fc28                 updates   3.6 M
  glibc-common             x86_64   2.27-38.fc28                 updates   773 k
@@ -99,302 +100,306 @@ Installing weak dependencies:
 
 Transaction Summary
 ================================================================================
-Install  74 Packages
+Install  75 Packages
 Upgrade   6 Packages
 
 Total download size: 74 M
 Downloading Packages:
-(1/80): gc-7.6.4-3.fc28.x86_64.rpm              1.6 MB/s | 108 kB     00:00    
-(2/80): make-4.2.1-6.fc28.x86_64.rpm            5.5 MB/s | 497 kB     00:00    
-(3/80): libatomic_ops-7.6.2-3.fc28.x86_64.rpm   1.6 MB/s |  37 kB     00:00    
-(4/80): guile-2.0.14-7.fc28.x86_64.rpm           17 MB/s | 3.5 MB     00:00    
-(5/80): isl-0.16.1-6.fc28.x86_64.rpm             16 MB/s | 841 kB     00:00    
-(6/80): libmpc-1.0.2-9.fc28.x86_64.rpm          4.6 MB/s |  58 kB     00:00    
-(7/80): git-2.17.2-2.fc28.x86_64.rpm            9.9 MB/s | 221 kB     00:00    
-(8/80): git-core-2.17.2-2.fc28.x86_64.rpm        12 MB/s | 4.0 MB     00:00    
-(9/80): cpp-8.3.1-2.fc28.x86_64.rpm              15 MB/s | 9.8 MB     00:00    
-(10/80): perl-Git-2.17.2-2.fc28.noarch.rpm      143 kB/s |  73 kB     00:00    
-(11/80): git-core-doc-2.17.2-2.fc28.noarch.rpm  3.6 MB/s | 2.3 MB     00:00    
-(12/80): libsecret-0.18.6-1.fc28.x86_64.rpm     5.9 MB/s | 162 kB     00:00    
-(13/80): perl-Getopt-Long-2.50-4.fc28.noarch.rp 3.1 MB/s |  62 kB     00:00    
-(14/80): perl-TermReadKey-2.37-7.fc28.x86_64.rp 3.4 MB/s |  39 kB     00:00    
-(15/80): perl-Error-0.17025-2.fc28.noarch.rpm   3.7 MB/s |  45 kB     00:00    
-(16/80): less-530-1.fc28.x86_64.rpm             7.3 MB/s | 163 kB     00:00    
-(17/80): perl-Exporter-5.72-396.fc28.noarch.rpm 2.1 MB/s |  33 kB     00:00    
-(18/80): perl-Pod-Usage-1.69-395.fc28.noarch.rp 2.6 MB/s |  33 kB     00:00    
-(19/80): perl-Text-ParseWords-3.30-395.fc28.noa 1.3 MB/s |  17 kB     00:00    
-(20/80): perl-constant-1.33-396.fc28.noarch.rpm 2.3 MB/s |  24 kB     00:00    
-(21/80): perl-Scalar-List-Utils-1.49-2.fc28.x86 2.7 MB/s |  67 kB     00:00    
-(22/80): gnu-efi-devel-3.0.8-2.fc28.x86_64.rpm  2.1 MB/s | 110 kB     00:00    
-(23/80): glibc-headers-2.27-38.fc28.x86_64.rpm   16 MB/s | 462 kB     00:00    
-(24/80): glibc-devel-2.27-38.fc28.x86_64.rpm     15 MB/s | 1.0 MB     00:00    
-(25/80): libxcrypt-devel-4.4.6-1.fc28.x86_64.rp 2.9 MB/s |  35 kB     00:00    
-(26/80): gcc-8.3.1-2.fc28.x86_64.rpm             16 MB/s |  23 MB     00:01    
-(27/80): perl-Carp-1.42-396.fc28.noarch.rpm     363 kB/s |  29 kB     00:00    
-(28/80): perl-Text-Tabs+Wrap-2013.0523-395.fc28 2.0 MB/s |  23 kB     00:00    
-(29/80): perl-parent-0.236-395.fc28.noarch.rpm  1.7 MB/s |  19 kB     00:00    
-(30/80): perl-threads-2.21-2.fc28.x86_64.rpm    4.9 MB/s |  60 kB     00:00    
-(31/80): perl-PathTools-3.75-1.fc28.x86_64.rpm  6.2 MB/s |  89 kB     00:00    
-(32/80): perl-Errno-1.28-418.fc28.x86_64.rpm    5.3 MB/s |  76 kB     00:00    
-(33/80): perl-Pod-Perldoc-3.28.01-1.fc28.noarch 5.7 MB/s |  87 kB     00:00    
-(34/80): perl-libs-5.26.3-418.fc28.x86_64.rpm    17 MB/s | 1.6 MB     00:00    
-(35/80): perl-Pod-Simple-3.35-395.fc28.noarch.r 8.5 MB/s | 212 kB     00:00    
-(36/80): perl-Pod-Escapes-1.07-395.fc28.noarch. 2.0 MB/s |  19 kB     00:00    
-(37/80): groff-base-1.22.3-15.fc28.x86_64.rpm    18 MB/s | 1.0 MB     00:00    
-(38/80): perl-podlators-4.11-1.fc28.noarch.rpm  8.7 MB/s | 117 kB     00:00    
-(39/80): perl-Term-ANSIColor-4.06-396.fc28.noar 3.1 MB/s |  45 kB     00:00    
-(40/80): perl-Term-Cap-1.17-395.fc28.noarch.rpm 1.7 MB/s |  22 kB     00:00    
-(41/80): perl-MIME-Base64-3.15-397.fc28.x86_64. 2.9 MB/s |  30 kB     00:00    
-(42/80): perl-Storable-3.15-1.fc28.x86_64.rpm   7.8 MB/s |  97 kB     00:00    
-(43/80): libtool-ltdl-2.4.6-24.fc28.x86_64.rpm  4.6 MB/s |  57 kB     00:00    
-(44/80): perl-interpreter-5.26.3-418.fc28.x86_6 7.9 MB/s | 6.3 MB     00:00    
-(45/80): libstdc++-8.3.1-2.fc28.x86_64.rpm      912 kB/s | 496 kB     00:00    
-(46/80): perl-Encode-2.97-3.fc28.x86_64.rpm     2.5 MB/s | 1.5 MB     00:00    
-(47/80): perl-File-Path-2.16-1.fc28.noarch.rpm  2.3 MB/s |  37 kB     00:00    
-(48/80): perl-IO-1.38-418.fc28.x86_64.rpm       6.2 MB/s | 141 kB     00:00    
-(49/80): perl-macros-5.26.3-418.fc28.x86_64.rpm 5.1 MB/s |  72 kB     00:00    
-(50/80): perl-threads-shared-1.59-1.fc28.x86_64 3.3 MB/s |  47 kB     00:00    
-(51/80): perl-File-Temp-0.230.600-1.fc28.noarch 2.8 MB/s |  62 kB     00:00    
-(52/80): perl-Unicode-Normalize-1.25-397.fc28.x 1.7 MB/s |  81 kB     00:00    
-(53/80): perl-HTTP-Tiny-0.076-1.fc28.noarch.rpm 4.9 MB/s |  57 kB     00:00    
-(54/80): perl-Socket-2.029-1.fc28.x86_64.rpm    3.0 MB/s |  58 kB     00:00    
-(55/80): perl-Time-Local-1.280-1.fc28.noarch.rp 1.4 MB/s |  32 kB     00:00    
-(56/80): gnu-efi-3.0.8-2.fc28.x86_64.rpm        1.6 MB/s |  71 kB     00:00    
-(57/80): openssh-clients-7.8p1-4.fc28.x86_64.rp  12 MB/s | 653 kB     00:00    
-(58/80): kernel-headers-5.0.16-100.fc28.x86_64.  16 MB/s | 1.2 MB     00:00    
-(59/80): openssh-7.8p1-4.fc28.x86_64.rpm         11 MB/s | 502 kB     00:00    
-(60/80): fipscheck-lib-1.5.0-4.fc28.x86_64.rpm  1.0 MB/s |  14 kB     00:00    
-(61/80): fipscheck-1.5.0-4.fc28.x86_64.rpm      1.6 MB/s |  26 kB     00:00    
-(62/80): emacs-filesystem-26.1-3.fc28.noarch.rp 4.1 MB/s |  68 kB     00:00    
-(63/80): libedit-3.1-23.20170329cvs.fc28.x86_64 3.4 MB/s | 101 kB     00:00    
-(64/80): libgomp-8.3.1-2.fc28.x86_64.rpm         11 MB/s | 215 kB     00:00    
-(65/80): perl-Mozilla-CA-20160104-7.fc28.noarch 1.2 MB/s |  14 kB     00:00    
-(66/80): perl-IO-Socket-IP-0.39-5.fc28.noarch.r 3.3 MB/s |  46 kB     00:00    
-(67/80): perl-IO-Socket-SSL-2.066-1.fc28.noarch 9.7 MB/s | 298 kB     00:00    
-(68/80): perl-Net-SSLeay-1.85-1.fc28.x86_64.rpm  16 MB/s | 356 kB     00:00    
-(69/80): perl-URI-1.73-2.fc28.noarch.rpm        6.7 MB/s | 115 kB     00:00    
-(70/80): perl-Data-Dumper-2.167-399.fc28.x86_64 4.3 MB/s |  57 kB     00:00    
-(71/80): perl-libnet-3.11-3.fc28.noarch.rpm     8.7 MB/s | 120 kB     00:00    
-(72/80): perl-Digest-MD5-2.55-397.fc28.x86_64.r 2.6 MB/s |  36 kB     00:00    
-(73/80): perl-Digest-1.17-395.fc28.noarch.rpm   1.8 MB/s |  26 kB     00:00    
-(74/80): libgcc-8.3.1-2.fc28.x86_64.rpm         7.3 MB/s | 103 kB     00:00    
-(75/80): glibc-common-2.27-38.fc28.x86_64.rpm    17 MB/s | 773 kB     00:00    
-(76/80): glibc-minimal-langpack-2.27-38.fc28.x8 3.3 MB/s |  40 kB     00:00    
-(77/80): glibc-langpack-en-2.27-38.fc28.x86_64.  19 MB/s | 811 kB     00:00    
-(78/80): libxcrypt-4.4.6-1.fc28.x86_64.rpm      7.8 MB/s | 122 kB     00:00    
-(79/80): binutils-2.29.1-23.fc28.x86_64.rpm      22 MB/s | 6.0 MB     00:00    
-(80/80): glibc-2.27-38.fc28.x86_64.rpm           19 MB/s | 3.6 MB     00:00    
+(1/81): gc-7.6.4-3.fc28.x86_64.rpm              1.5 MB/s | 108 kB     00:00    
+(2/81): make-4.2.1-6.fc28.x86_64.rpm            5.4 MB/s | 497 kB     00:00    
+(3/81): libatomic_ops-7.6.2-3.fc28.x86_64.rpm   1.6 MB/s |  37 kB     00:00    
+(4/81): guile-2.0.14-7.fc28.x86_64.rpm           12 MB/s | 3.5 MB     00:00    
+(5/81): isl-0.16.1-6.fc28.x86_64.rpm             15 MB/s | 841 kB     00:00    
+(6/81): libmpc-1.0.2-9.fc28.x86_64.rpm          4.2 MB/s |  58 kB     00:00    
+(7/81): git-2.17.2-2.fc28.x86_64.rpm            7.8 MB/s | 221 kB     00:00    
+(8/81): git-core-2.17.2-2.fc28.x86_64.rpm        19 MB/s | 4.0 MB     00:00    
+(9/81): cpp-8.3.1-2.fc28.x86_64.rpm              19 MB/s | 9.8 MB     00:00    
+(10/81): perl-Git-2.17.2-2.fc28.noarch.rpm      5.4 MB/s |  73 kB     00:00    
+(11/81): libsecret-0.18.6-1.fc28.x86_64.rpm     9.3 MB/s | 162 kB     00:00    
+(12/81): perl-Getopt-Long-2.50-4.fc28.noarch.rp 3.1 MB/s |  62 kB     00:00    
+(13/81): perl-TermReadKey-2.37-7.fc28.x86_64.rp 2.6 MB/s |  39 kB     00:00    
+(14/81): git-core-doc-2.17.2-2.fc28.noarch.rpm   18 MB/s | 2.3 MB     00:00    
+(15/81): less-530-1.fc28.x86_64.rpm             6.0 MB/s | 163 kB     00:00    
+(16/81): perl-Error-0.17025-2.fc28.noarch.rpm   2.7 MB/s |  45 kB     00:00    
+(17/81): perl-Exporter-5.72-396.fc28.noarch.rpm 2.4 MB/s |  33 kB     00:00    
+(18/81): perl-Pod-Usage-1.69-395.fc28.noarch.rp 2.8 MB/s |  33 kB     00:00    
+(19/81): perl-Text-ParseWords-3.30-395.fc28.noa 1.2 MB/s |  17 kB     00:00    
+(20/81): perl-constant-1.33-396.fc28.noarch.rpm 1.8 MB/s |  24 kB     00:00    
+(21/81): perl-Scalar-List-Utils-1.49-2.fc28.x86 5.1 MB/s |  67 kB     00:00    
+(22/81): gnu-efi-devel-3.0.8-2.fc28.x86_64.rpm  8.8 MB/s | 110 kB     00:00    
+(23/81): patch-2.7.6-8.fc28.x86_64.rpm          8.9 MB/s | 137 kB     00:00    
+(24/81): glibc-headers-2.27-38.fc28.x86_64.rpm   17 MB/s | 462 kB     00:00    
+(25/81): libxcrypt-devel-4.4.6-1.fc28.x86_64.rp 2.1 MB/s |  35 kB     00:00    
+(26/81): glibc-devel-2.27-38.fc28.x86_64.rpm     17 MB/s | 1.0 MB     00:00    
+(27/81): perl-Carp-1.42-396.fc28.noarch.rpm     2.7 MB/s |  29 kB     00:00    
+(28/81): perl-libs-5.26.3-418.fc28.x86_64.rpm    19 MB/s | 1.6 MB     00:00    
+(29/81): perl-Text-Tabs+Wrap-2013.0523-395.fc28 1.8 MB/s |  23 kB     00:00    
+(30/81): perl-parent-0.236-395.fc28.noarch.rpm  1.8 MB/s |  19 kB     00:00    
+(31/81): perl-threads-2.21-2.fc28.x86_64.rpm    4.5 MB/s |  60 kB     00:00    
+(32/81): perl-PathTools-3.75-1.fc28.x86_64.rpm  6.7 MB/s |  89 kB     00:00    
+(33/81): perl-Errno-1.28-418.fc28.x86_64.rpm    5.0 MB/s |  76 kB     00:00    
+(34/81): perl-Pod-Perldoc-3.28.01-1.fc28.noarch 6.6 MB/s |  87 kB     00:00    
+(35/81): groff-base-1.22.3-15.fc28.x86_64.rpm    16 MB/s | 1.0 MB     00:00    
+(36/81): perl-Pod-Simple-3.35-395.fc28.noarch.r  12 MB/s | 212 kB     00:00    
+(37/81): perl-Pod-Escapes-1.07-395.fc28.noarch. 1.7 MB/s |  19 kB     00:00    
+(38/81): perl-podlators-4.11-1.fc28.noarch.rpm  9.4 MB/s | 117 kB     00:00    
+(39/81): perl-interpreter-5.26.3-418.fc28.x86_6  21 MB/s | 6.3 MB     00:00    
+(40/81): perl-Term-ANSIColor-4.06-396.fc28.noar 1.4 MB/s |  45 kB     00:00    
+(41/81): perl-Term-Cap-1.17-395.fc28.noarch.rpm 1.6 MB/s |  22 kB     00:00    
+(42/81): perl-MIME-Base64-3.15-397.fc28.x86_64. 2.0 MB/s |  30 kB     00:00    
+(43/81): perl-Storable-3.15-1.fc28.x86_64.rpm   7.7 MB/s |  97 kB     00:00    
+(44/81): libtool-ltdl-2.4.6-24.fc28.x86_64.rpm  4.1 MB/s |  57 kB     00:00    
+(45/81): perl-Encode-2.97-3.fc28.x86_64.rpm      18 MB/s | 1.5 MB     00:00    
+(46/81): libstdc++-8.3.1-2.fc28.x86_64.rpm       14 MB/s | 496 kB     00:00    
+(47/81): perl-File-Path-2.16-1.fc28.noarch.rpm  3.1 MB/s |  37 kB     00:00    
+(48/81): perl-IO-1.38-418.fc28.x86_64.rpm        10 MB/s | 141 kB     00:00    
+(49/81): perl-Unicode-Normalize-1.25-397.fc28.x 5.6 MB/s |  81 kB     00:00    
+(50/81): perl-macros-5.26.3-418.fc28.x86_64.rpm 5.6 MB/s |  72 kB     00:00    
+(51/81): perl-threads-shared-1.59-1.fc28.x86_64 3.3 MB/s |  47 kB     00:00    
+(52/81): perl-File-Temp-0.230.600-1.fc28.noarch 4.6 MB/s |  62 kB     00:00    
+(53/81): perl-HTTP-Tiny-0.076-1.fc28.noarch.rpm 4.4 MB/s |  57 kB     00:00    
+(54/81): perl-Socket-2.029-1.fc28.x86_64.rpm    4.9 MB/s |  58 kB     00:00    
+(55/81): perl-Time-Local-1.280-1.fc28.noarch.rp 2.5 MB/s |  32 kB     00:00    
+(56/81): gnu-efi-3.0.8-2.fc28.x86_64.rpm        5.2 MB/s |  71 kB     00:00    
+(57/81): openssh-clients-7.8p1-4.fc28.x86_64.rp  16 MB/s | 653 kB     00:00    
+(58/81): kernel-headers-5.0.16-100.fc28.x86_64.  20 MB/s | 1.2 MB     00:00    
+(59/81): fipscheck-lib-1.5.0-4.fc28.x86_64.rpm  1.4 MB/s |  14 kB     00:00    
+(60/81): openssh-7.8p1-4.fc28.x86_64.rpm         17 MB/s | 502 kB     00:00    
+(61/81): libedit-3.1-23.20170329cvs.fc28.x86_64 7.9 MB/s | 101 kB     00:00    
+(62/81): fipscheck-1.5.0-4.fc28.x86_64.rpm      2.3 MB/s |  26 kB     00:00    
+(63/81): emacs-filesystem-26.1-3.fc28.noarch.rp 5.1 MB/s |  68 kB     00:00    
+(64/81): libgomp-8.3.1-2.fc28.x86_64.rpm         12 MB/s | 215 kB     00:00    
+(65/81): perl-Mozilla-CA-20160104-7.fc28.noarch 1.4 MB/s |  14 kB     00:00    
+(66/81): perl-IO-Socket-SSL-2.066-1.fc28.noarch  12 MB/s | 298 kB     00:00    
+(67/81): perl-IO-Socket-IP-0.39-5.fc28.noarch.r 4.1 MB/s |  46 kB     00:00    
+(68/81): perl-Net-SSLeay-1.85-1.fc28.x86_64.rpm  11 MB/s | 356 kB     00:00    
+(69/81): perl-URI-1.73-2.fc28.noarch.rpm        7.2 MB/s | 115 kB     00:00    
+(70/81): perl-Data-Dumper-2.167-399.fc28.x86_64 4.0 MB/s |  57 kB     00:00    
+(71/81): perl-libnet-3.11-3.fc28.noarch.rpm     7.4 MB/s | 120 kB     00:00    
+(72/81): perl-Digest-MD5-2.55-397.fc28.x86_64.r 2.8 MB/s |  36 kB     00:00    
+(73/81): perl-Digest-1.17-395.fc28.noarch.rpm   2.1 MB/s |  26 kB     00:00    
+(74/81): libgcc-8.3.1-2.fc28.x86_64.rpm         6.3 MB/s | 103 kB     00:00    
+(75/81): gcc-8.3.1-2.fc28.x86_64.rpm             14 MB/s |  23 MB     00:01    
+(76/81): binutils-2.29.1-23.fc28.x86_64.rpm      18 MB/s | 6.0 MB     00:00    
+(77/81): glibc-minimal-langpack-2.27-38.fc28.x8 2.9 MB/s |  40 kB     00:00    
+(78/81): glibc-2.27-38.fc28.x86_64.rpm           20 MB/s | 3.6 MB     00:00    
+(79/81): glibc-common-2.27-38.fc28.x86_64.rpm    11 MB/s | 773 kB     00:00    
+(80/81): libxcrypt-4.4.6-1.fc28.x86_64.rpm      7.5 MB/s | 122 kB     00:00    
+(81/81): glibc-langpack-en-2.27-38.fc28.x86_64.  19 MB/s | 811 kB     00:00    
 --------------------------------------------------------------------------------
-Total                                            25 MB/s |  74 MB     00:02     
+Total                                            20 MB/s |  74 MB     00:03     
 Running transaction check
 Transaction check succeeded.
 Running transaction test
 Transaction test succeeded.
 Running transaction
   Preparing        :                                                        1/1 
-  Upgrading        : glibc-common-2.27-38.fc28.x86_64                      1/86 
-  Upgrading        : glibc-minimal-langpack-2.27-38.fc28.x86_64            2/86 
-  Upgrading        : glibc-langpack-en-2.27-38.fc28.x86_64                 3/86 
-  Running scriptlet: glibc-2.27-38.fc28.x86_64                             4/86 
-  Upgrading        : glibc-2.27-38.fc28.x86_64                             4/86 
-  Running scriptlet: glibc-2.27-38.fc28.x86_64                             4/86 
-  Upgrading        : libxcrypt-4.4.6-1.fc28.x86_64                         5/86 
-  Installing       : perl-Carp-1.42-396.fc28.noarch                        6/86 
-  Installing       : perl-libs-4:5.26.3-418.fc28.x86_64                    7/86 
-  Installing       : perl-Exporter-5.72-396.fc28.noarch                    8/86 
-  Installing       : perl-Scalar-List-Utils-3:1.49-2.fc28.x86_64           9/86 
-  Upgrading        : libgcc-8.3.1-2.fc28.x86_64                           10/86 
-  Running scriptlet: libgcc-8.3.1-2.fc28.x86_64                           10/86 
-  Installing       : fipscheck-1.5.0-4.fc28.x86_64                        11/86 
-  Installing       : fipscheck-lib-1.5.0-4.fc28.x86_64                    12/86 
-  Running scriptlet: fipscheck-lib-1.5.0-4.fc28.x86_64                    12/86 
-  Installing       : libstdc++-8.3.1-2.fc28.x86_64                        13/86 
-  Running scriptlet: libstdc++-8.3.1-2.fc28.x86_64                        13/86 
-  Installing       : perl-Text-ParseWords-3.30-395.fc28.noarch            14/86 
-  Installing       : libmpc-1.0.2-9.fc28.x86_64                           15/86 
-  Running scriptlet: libmpc-1.0.2-9.fc28.x86_64                           15/86 
-  Installing       : cpp-8.3.1-2.fc28.x86_64                              16/86 
-  Running scriptlet: cpp-8.3.1-2.fc28.x86_64                              16/86 
-  Installing       : groff-base-1.22.3-15.fc28.x86_64                     17/86 
-  Running scriptlet: openssh-7.8p1-4.fc28.x86_64                          18/86 
-  Installing       : openssh-7.8p1-4.fc28.x86_64                          18/86 
-  Installing       : perl-Term-ANSIColor-4.06-396.fc28.noarch             19/86 
-  Installing       : perl-macros-4:5.26.3-418.fc28.x86_64                 20/86 
-  Installing       : perl-constant-1.33-396.fc28.noarch                   21/86 
-  Installing       : perl-Text-Tabs+Wrap-2013.0523-395.fc28.noarch        22/86 
-  Installing       : perl-parent-1:0.236-395.fc28.noarch                  23/86 
-  Installing       : perl-threads-1:2.21-2.fc28.x86_64                    24/86 
-  Installing       : perl-PathTools-3.75-1.fc28.x86_64                    25/86 
-  Installing       : perl-Errno-1.28-418.fc28.x86_64                      26/86 
-  Installing       : perl-File-Path-2.16-1.fc28.noarch                    27/86 
-  Installing       : perl-Unicode-Normalize-1.25-397.fc28.x86_64          28/86 
-  Installing       : perl-threads-shared-1.59-1.fc28.x86_64               29/86 
-  Installing       : perl-interpreter-4:5.26.3-418.fc28.x86_64            30/86 
-  Installing       : perl-Socket-4:2.029-1.fc28.x86_64                    31/86 
-  Installing       : perl-IO-1.38-418.fc28.x86_64                         32/86 
-  Installing       : perl-MIME-Base64-3.15-397.fc28.x86_64                33/86 
-  Installing       : perl-IO-Socket-IP-0.39-5.fc28.noarch                 34/86 
-  Installing       : perl-Time-Local-1:1.280-1.fc28.noarch                35/86 
-  Installing       : perl-File-Temp-0.230.600-1.fc28.noarch               36/86 
-  Installing       : perl-Net-SSLeay-1.85-1.fc28.x86_64                   37/86 
-  Installing       : perl-Digest-1.17-395.fc28.noarch                     38/86 
-  Installing       : perl-Digest-MD5-2.55-397.fc28.x86_64                 39/86 
-  Installing       : perl-Storable-1:3.15-1.fc28.x86_64                   40/86 
-  Installing       : perl-TermReadKey-2.37-7.fc28.x86_64                  41/86 
-  Installing       : perl-Error-1:0.17025-2.fc28.noarch                   42/86 
-  Installing       : perl-Pod-Escapes-1:1.07-395.fc28.noarch              43/86 
-  Installing       : perl-Term-Cap-1.17-395.fc28.noarch                   44/86 
-  Installing       : perl-Data-Dumper-2.167-399.fc28.x86_64               45/86 
-  Installing       : perl-Mozilla-CA-20160104-7.fc28.noarch               46/86 
-  Installing       : perl-Pod-Simple-1:3.35-395.fc28.noarch               47/86 
-  Installing       : perl-podlators-4.11-1.fc28.noarch                    48/86 
-  Installing       : perl-Pod-Usage-4:1.69-395.fc28.noarch                49/86 
-  Installing       : perl-Getopt-Long-1:2.50-4.fc28.noarch                50/86 
-  Installing       : perl-Encode-4:2.97-3.fc28.x86_64                     51/86 
-  Installing       : perl-Pod-Perldoc-3.28.01-1.fc28.noarch               52/86 
-  Installing       : perl-HTTP-Tiny-0.076-1.fc28.noarch                   53/86 
-  Installing       : perl-libnet-3.11-3.fc28.noarch                       54/86 
-  Installing       : perl-URI-1.73-2.fc28.noarch                          55/86 
-  Installing       : perl-IO-Socket-SSL-2.066-1.fc28.noarch               56/86 
-  Installing       : libatomic_ops-7.6.2-3.fc28.x86_64                    57/86 
-  Installing       : gc-7.6.4-3.fc28.x86_64                               58/86 
-  Installing       : isl-0.16.1-6.fc28.x86_64                             59/86 
-  Running scriptlet: isl-0.16.1-6.fc28.x86_64                             59/86 
-  Installing       : libsecret-0.18.6-1.fc28.x86_64                       60/86 
-  Installing       : less-530-1.fc28.x86_64                               61/86 
-  Installing       : libtool-ltdl-2.4.6-24.fc28.x86_64                    62/86 
-  Running scriptlet: libtool-ltdl-2.4.6-24.fc28.x86_64                    62/86 
-  Installing       : guile-5:2.0.14-7.fc28.x86_64                         63/86 
-  Running scriptlet: guile-5:2.0.14-7.fc28.x86_64                         63/86 
-  Installing       : libedit-3.1-23.20170329cvs.fc28.x86_64               64/86 
-  Installing       : openssh-clients-7.8p1-4.fc28.x86_64                  65/86 
-  Installing       : git-core-2.17.2-2.fc28.x86_64                        66/86 
-  Installing       : git-core-doc-2.17.2-2.fc28.noarch                    67/86 
-  Installing       : binutils-2.29.1-23.fc28.x86_64                       68/86 
-  Running scriptlet: binutils-2.29.1-23.fc28.x86_64                       68/86 
+  Upgrading        : glibc-common-2.27-38.fc28.x86_64                      1/87 
+  Upgrading        : glibc-minimal-langpack-2.27-38.fc28.x86_64            2/87 
+  Upgrading        : glibc-langpack-en-2.27-38.fc28.x86_64                 3/87 
+  Running scriptlet: glibc-2.27-38.fc28.x86_64                             4/87 
+  Upgrading        : glibc-2.27-38.fc28.x86_64                             4/87 
+  Running scriptlet: glibc-2.27-38.fc28.x86_64                             4/87 
+  Upgrading        : libxcrypt-4.4.6-1.fc28.x86_64                         5/87 
+  Installing       : perl-Carp-1.42-396.fc28.noarch                        6/87 
+  Installing       : perl-libs-4:5.26.3-418.fc28.x86_64                    7/87 
+  Installing       : perl-Exporter-5.72-396.fc28.noarch                    8/87 
+  Installing       : perl-Scalar-List-Utils-3:1.49-2.fc28.x86_64           9/87 
+  Upgrading        : libgcc-8.3.1-2.fc28.x86_64                           10/87 
+  Running scriptlet: libgcc-8.3.1-2.fc28.x86_64                           10/87 
+  Installing       : fipscheck-1.5.0-4.fc28.x86_64                        11/87 
+  Installing       : fipscheck-lib-1.5.0-4.fc28.x86_64                    12/87 
+  Running scriptlet: fipscheck-lib-1.5.0-4.fc28.x86_64                    12/87 
+  Installing       : libstdc++-8.3.1-2.fc28.x86_64                        13/87 
+  Running scriptlet: libstdc++-8.3.1-2.fc28.x86_64                        13/87 
+  Installing       : perl-Text-ParseWords-3.30-395.fc28.noarch            14/87 
+  Installing       : libmpc-1.0.2-9.fc28.x86_64                           15/87 
+  Running scriptlet: libmpc-1.0.2-9.fc28.x86_64                           15/87 
+  Installing       : cpp-8.3.1-2.fc28.x86_64                              16/87 
+  Running scriptlet: cpp-8.3.1-2.fc28.x86_64                              16/87 
+  Installing       : groff-base-1.22.3-15.fc28.x86_64                     17/87 
+  Running scriptlet: openssh-7.8p1-4.fc28.x86_64                          18/87 
+  Installing       : openssh-7.8p1-4.fc28.x86_64                          18/87 
+  Installing       : perl-Term-ANSIColor-4.06-396.fc28.noarch             19/87 
+  Installing       : perl-macros-4:5.26.3-418.fc28.x86_64                 20/87 
+  Installing       : perl-constant-1.33-396.fc28.noarch                   21/87 
+  Installing       : perl-Text-Tabs+Wrap-2013.0523-395.fc28.noarch        22/87 
+  Installing       : perl-parent-1:0.236-395.fc28.noarch                  23/87 
+  Installing       : perl-threads-1:2.21-2.fc28.x86_64                    24/87 
+  Installing       : perl-PathTools-3.75-1.fc28.x86_64                    25/87 
+  Installing       : perl-Errno-1.28-418.fc28.x86_64                      26/87 
+  Installing       : perl-File-Path-2.16-1.fc28.noarch                    27/87 
+  Installing       : perl-Unicode-Normalize-1.25-397.fc28.x86_64          28/87 
+  Installing       : perl-threads-shared-1.59-1.fc28.x86_64               29/87 
+  Installing       : perl-interpreter-4:5.26.3-418.fc28.x86_64            30/87 
+  Installing       : perl-Socket-4:2.029-1.fc28.x86_64                    31/87 
+  Installing       : perl-IO-1.38-418.fc28.x86_64                         32/87 
+  Installing       : perl-MIME-Base64-3.15-397.fc28.x86_64                33/87 
+  Installing       : perl-IO-Socket-IP-0.39-5.fc28.noarch                 34/87 
+  Installing       : perl-Time-Local-1:1.280-1.fc28.noarch                35/87 
+  Installing       : perl-File-Temp-0.230.600-1.fc28.noarch               36/87 
+  Installing       : perl-Net-SSLeay-1.85-1.fc28.x86_64                   37/87 
+  Installing       : perl-Digest-1.17-395.fc28.noarch                     38/87 
+  Installing       : perl-Digest-MD5-2.55-397.fc28.x86_64                 39/87 
+  Installing       : perl-Storable-1:3.15-1.fc28.x86_64                   40/87 
+  Installing       : perl-TermReadKey-2.37-7.fc28.x86_64                  41/87 
+  Installing       : perl-Error-1:0.17025-2.fc28.noarch                   42/87 
+  Installing       : perl-Pod-Escapes-1:1.07-395.fc28.noarch              43/87 
+  Installing       : perl-Term-Cap-1.17-395.fc28.noarch                   44/87 
+  Installing       : perl-Data-Dumper-2.167-399.fc28.x86_64               45/87 
+  Installing       : perl-Mozilla-CA-20160104-7.fc28.noarch               46/87 
+  Installing       : perl-Pod-Simple-1:3.35-395.fc28.noarch               47/87 
+  Installing       : perl-podlators-4.11-1.fc28.noarch                    48/87 
+  Installing       : perl-Pod-Usage-4:1.69-395.fc28.noarch                49/87 
+  Installing       : perl-Getopt-Long-1:2.50-4.fc28.noarch                50/87 
+  Installing       : perl-Encode-4:2.97-3.fc28.x86_64                     51/87 
+  Installing       : perl-Pod-Perldoc-3.28.01-1.fc28.noarch               52/87 
+  Installing       : perl-HTTP-Tiny-0.076-1.fc28.noarch                   53/87 
+  Installing       : perl-libnet-3.11-3.fc28.noarch                       54/87 
+  Installing       : perl-URI-1.73-2.fc28.noarch                          55/87 
+  Installing       : perl-IO-Socket-SSL-2.066-1.fc28.noarch               56/87 
+  Installing       : libatomic_ops-7.6.2-3.fc28.x86_64                    57/87 
+  Installing       : gc-7.6.4-3.fc28.x86_64                               58/87 
+  Installing       : isl-0.16.1-6.fc28.x86_64                             59/87 
+  Running scriptlet: isl-0.16.1-6.fc28.x86_64                             59/87 
+  Installing       : libsecret-0.18.6-1.fc28.x86_64                       60/87 
+  Installing       : less-530-1.fc28.x86_64                               61/87 
+  Installing       : libtool-ltdl-2.4.6-24.fc28.x86_64                    62/87 
+  Running scriptlet: libtool-ltdl-2.4.6-24.fc28.x86_64                    62/87 
+  Installing       : guile-5:2.0.14-7.fc28.x86_64                         63/87 
+  Running scriptlet: guile-5:2.0.14-7.fc28.x86_64                         63/87 
+  Installing       : libedit-3.1-23.20170329cvs.fc28.x86_64               64/87 
+  Installing       : openssh-clients-7.8p1-4.fc28.x86_64                  65/87 
+  Installing       : git-core-2.17.2-2.fc28.x86_64                        66/87 
+  Installing       : git-core-doc-2.17.2-2.fc28.noarch                    67/87 
+  Installing       : binutils-2.29.1-23.fc28.x86_64                       68/87 
+  Running scriptlet: binutils-2.29.1-23.fc28.x86_64                       68/87 
 install-info: No such file or directory for /usr/share/info/as.info.gz
 install-info: No such file or directory for /usr/share/info/binutils.info.gz
 install-info: No such file or directory for /usr/share/info/gprof.info.gz
 install-info: No such file or directory for /usr/share/info/ld.info.gz
-  Installing       : libgomp-8.3.1-2.fc28.x86_64                          69/86 
-  Running scriptlet: libgomp-8.3.1-2.fc28.x86_64                          69/86 
-  Installing       : emacs-filesystem-1:26.1-3.fc28.noarch                70/86 
-  Installing       : perl-Git-2.17.2-2.fc28.noarch                        71/86 
-  Installing       : git-2.17.2-2.fc28.x86_64                             72/86 
-  Installing       : kernel-headers-5.0.16-100.fc28.x86_64                73/86 
-  Running scriptlet: glibc-headers-2.27-38.fc28.x86_64                    74/86 
-  Installing       : glibc-headers-2.27-38.fc28.x86_64                    74/86 
-  Installing       : libxcrypt-devel-4.4.6-1.fc28.x86_64                  75/86 
-  Installing       : glibc-devel-2.27-38.fc28.x86_64                      76/86 
-  Running scriptlet: glibc-devel-2.27-38.fc28.x86_64                      76/86 
-  Installing       : gnu-efi-1:3.0.8-2.fc28.x86_64                        77/86 
-  Installing       : gnu-efi-devel-1:3.0.8-2.fc28.x86_64                  78/86 
-  Installing       : gcc-8.3.1-2.fc28.x86_64                              79/86 
-  Running scriptlet: gcc-8.3.1-2.fc28.x86_64                              79/86 
-  Installing       : make-1:4.2.1-6.fc28.x86_64                           80/86 
-  Running scriptlet: make-1:4.2.1-6.fc28.x86_64                           80/86 
-  Cleanup          : libxcrypt-4.4.0-2.fc28.x86_64                        81/86 
-  Cleanup          : glibc-langpack-en-2.27-32.fc28.x86_64                82/86 
-  Cleanup          : glibc-2.27-32.fc28.x86_64                            83/86 
-  Cleanup          : glibc-minimal-langpack-2.27-32.fc28.x86_64           84/86 
-  Cleanup          : glibc-common-2.27-32.fc28.x86_64                     85/86 
-  Cleanup          : libgcc-8.2.1-5.fc28.x86_64                           86/86 
-  Running scriptlet: libgcc-8.2.1-5.fc28.x86_64                           86/86 
-  Running scriptlet: guile-5:2.0.14-7.fc28.x86_64                         86/86 
-  Running scriptlet: libgcc-8.2.1-5.fc28.x86_64                           86/86 
-  Running scriptlet: glibc-common-2.27-38.fc28.x86_64                     86/86 
-  Verifying        : make-1:4.2.1-6.fc28.x86_64                            1/86 
-  Verifying        : gc-7.6.4-3.fc28.x86_64                                2/86 
-  Verifying        : guile-5:2.0.14-7.fc28.x86_64                          3/86 
-  Verifying        : libatomic_ops-7.6.2-3.fc28.x86_64                     4/86 
-  Verifying        : gcc-8.3.1-2.fc28.x86_64                               5/86 
-  Verifying        : cpp-8.3.1-2.fc28.x86_64                               6/86 
-  Verifying        : isl-0.16.1-6.fc28.x86_64                              7/86 
-  Verifying        : libmpc-1.0.2-9.fc28.x86_64                            8/86 
-  Verifying        : git-2.17.2-2.fc28.x86_64                              9/86 
-  Verifying        : git-core-2.17.2-2.fc28.x86_64                        10/86 
-  Verifying        : git-core-doc-2.17.2-2.fc28.noarch                    11/86 
-  Verifying        : perl-Git-2.17.2-2.fc28.noarch                        12/86 
-  Verifying        : libsecret-0.18.6-1.fc28.x86_64                       13/86 
-  Verifying        : perl-Getopt-Long-1:2.50-4.fc28.noarch                14/86 
-  Verifying        : perl-TermReadKey-2.37-7.fc28.x86_64                  15/86 
-  Verifying        : less-530-1.fc28.x86_64                               16/86 
-  Verifying        : perl-Error-1:0.17025-2.fc28.noarch                   17/86 
-  Verifying        : perl-Exporter-5.72-396.fc28.noarch                   18/86 
-  Verifying        : perl-Pod-Usage-4:1.69-395.fc28.noarch                19/86 
-  Verifying        : perl-Text-ParseWords-3.30-395.fc28.noarch            20/86 
-  Verifying        : perl-constant-1.33-396.fc28.noarch                   21/86 
-  Verifying        : perl-Scalar-List-Utils-3:1.49-2.fc28.x86_64          22/86 
-  Verifying        : gnu-efi-devel-1:3.0.8-2.fc28.x86_64                  23/86 
-  Verifying        : glibc-devel-2.27-38.fc28.x86_64                      24/86 
-  Verifying        : glibc-headers-2.27-38.fc28.x86_64                    25/86 
-  Verifying        : libxcrypt-devel-4.4.6-1.fc28.x86_64                  26/86 
-  Verifying        : perl-Carp-1.42-396.fc28.noarch                       27/86 
-  Verifying        : perl-interpreter-4:5.26.3-418.fc28.x86_64            28/86 
-  Verifying        : perl-libs-4:5.26.3-418.fc28.x86_64                   29/86 
-  Verifying        : perl-Text-Tabs+Wrap-2013.0523-395.fc28.noarch        30/86 
-  Verifying        : perl-parent-1:0.236-395.fc28.noarch                  31/86 
-  Verifying        : perl-threads-1:2.21-2.fc28.x86_64                    32/86 
-  Verifying        : perl-PathTools-3.75-1.fc28.x86_64                    33/86 
-  Verifying        : perl-Errno-1.28-418.fc28.x86_64                      34/86 
-  Verifying        : perl-Pod-Perldoc-3.28.01-1.fc28.noarch               35/86 
-  Verifying        : groff-base-1.22.3-15.fc28.x86_64                     36/86 
-  Verifying        : perl-Pod-Simple-1:3.35-395.fc28.noarch               37/86 
-  Verifying        : perl-Pod-Escapes-1:1.07-395.fc28.noarch              38/86 
-  Verifying        : perl-podlators-4.11-1.fc28.noarch                    39/86 
-  Verifying        : perl-Term-ANSIColor-4.06-396.fc28.noarch             40/86 
-  Verifying        : perl-Term-Cap-1.17-395.fc28.noarch                   41/86 
-  Verifying        : perl-Encode-4:2.97-3.fc28.x86_64                     42/86 
-  Verifying        : perl-MIME-Base64-3.15-397.fc28.x86_64                43/86 
-  Verifying        : perl-Storable-1:3.15-1.fc28.x86_64                   44/86 
-  Verifying        : libtool-ltdl-2.4.6-24.fc28.x86_64                    45/86 
-  Verifying        : libstdc++-8.3.1-2.fc28.x86_64                        46/86 
-  Verifying        : perl-File-Path-2.16-1.fc28.noarch                    47/86 
-  Verifying        : perl-IO-1.38-418.fc28.x86_64                         48/86 
-  Verifying        : perl-Unicode-Normalize-1.25-397.fc28.x86_64          49/86 
-  Verifying        : perl-macros-4:5.26.3-418.fc28.x86_64                 50/86 
-  Verifying        : perl-threads-shared-1.59-1.fc28.x86_64               51/86 
-  Verifying        : perl-File-Temp-0.230.600-1.fc28.noarch               52/86 
-  Verifying        : perl-HTTP-Tiny-0.076-1.fc28.noarch                   53/86 
-  Verifying        : perl-Socket-4:2.029-1.fc28.x86_64                    54/86 
-  Verifying        : perl-Time-Local-1:1.280-1.fc28.noarch                55/86 
-  Verifying        : gnu-efi-1:3.0.8-2.fc28.x86_64                        56/86 
-  Verifying        : kernel-headers-5.0.16-100.fc28.x86_64                57/86 
-  Verifying        : openssh-clients-7.8p1-4.fc28.x86_64                  58/86 
-  Verifying        : openssh-7.8p1-4.fc28.x86_64                          59/86 
-  Verifying        : fipscheck-lib-1.5.0-4.fc28.x86_64                    60/86 
-  Verifying        : libedit-3.1-23.20170329cvs.fc28.x86_64               61/86 
-  Verifying        : fipscheck-1.5.0-4.fc28.x86_64                        62/86 
-  Verifying        : emacs-filesystem-1:26.1-3.fc28.noarch                63/86 
-  Verifying        : binutils-2.29.1-23.fc28.x86_64                       64/86 
-  Verifying        : libgomp-8.3.1-2.fc28.x86_64                          65/86 
-  Verifying        : perl-Mozilla-CA-20160104-7.fc28.noarch               66/86 
-  Verifying        : perl-IO-Socket-SSL-2.066-1.fc28.noarch               67/86 
-  Verifying        : perl-IO-Socket-IP-0.39-5.fc28.noarch                 68/86 
-  Verifying        : perl-Net-SSLeay-1.85-1.fc28.x86_64                   69/86 
-  Verifying        : perl-URI-1.73-2.fc28.noarch                          70/86 
-  Verifying        : perl-Data-Dumper-2.167-399.fc28.x86_64               71/86 
-  Verifying        : perl-libnet-3.11-3.fc28.noarch                       72/86 
-  Verifying        : perl-Digest-MD5-2.55-397.fc28.x86_64                 73/86 
-  Verifying        : perl-Digest-1.17-395.fc28.noarch                     74/86 
-  Verifying        : libgcc-8.3.1-2.fc28.x86_64                           75/86 
-  Verifying        : glibc-2.27-38.fc28.x86_64                            76/86 
-  Verifying        : glibc-common-2.27-38.fc28.x86_64                     77/86 
-  Verifying        : glibc-minimal-langpack-2.27-38.fc28.x86_64           78/86 
-  Verifying        : glibc-langpack-en-2.27-38.fc28.x86_64                79/86 
-  Verifying        : libxcrypt-4.4.6-1.fc28.x86_64                        80/86 
-  Verifying        : glibc-2.27-32.fc28.x86_64                            81/86 
-  Verifying        : glibc-common-2.27-32.fc28.x86_64                     82/86 
-  Verifying        : glibc-langpack-en-2.27-32.fc28.x86_64                83/86 
-  Verifying        : libgcc-8.2.1-5.fc28.x86_64                           84/86 
-  Verifying        : libxcrypt-4.4.0-2.fc28.x86_64                        85/86 
-  Verifying        : glibc-minimal-langpack-2.27-32.fc28.x86_64           86/86 
+  Installing       : libgomp-8.3.1-2.fc28.x86_64                          69/87 
+  Running scriptlet: libgomp-8.3.1-2.fc28.x86_64                          69/87 
+  Installing       : emacs-filesystem-1:26.1-3.fc28.noarch                70/87 
+  Installing       : perl-Git-2.17.2-2.fc28.noarch                        71/87 
+  Installing       : git-2.17.2-2.fc28.x86_64                             72/87 
+  Installing       : kernel-headers-5.0.16-100.fc28.x86_64                73/87 
+  Running scriptlet: glibc-headers-2.27-38.fc28.x86_64                    74/87 
+  Installing       : glibc-headers-2.27-38.fc28.x86_64                    74/87 
+  Installing       : libxcrypt-devel-4.4.6-1.fc28.x86_64                  75/87 
+  Installing       : glibc-devel-2.27-38.fc28.x86_64                      76/87 
+  Running scriptlet: glibc-devel-2.27-38.fc28.x86_64                      76/87 
+  Installing       : gnu-efi-1:3.0.8-2.fc28.x86_64                        77/87 
+  Installing       : gnu-efi-devel-1:3.0.8-2.fc28.x86_64                  78/87 
+  Installing       : gcc-8.3.1-2.fc28.x86_64                              79/87 
+  Running scriptlet: gcc-8.3.1-2.fc28.x86_64                              79/87 
+  Installing       : make-1:4.2.1-6.fc28.x86_64                           80/87 
+  Running scriptlet: make-1:4.2.1-6.fc28.x86_64                           80/87 
+  Installing       : patch-2.7.6-8.fc28.x86_64                            81/87 
+  Cleanup          : libxcrypt-4.4.0-2.fc28.x86_64                        82/87 
+  Cleanup          : glibc-langpack-en-2.27-32.fc28.x86_64                83/87 
+  Cleanup          : glibc-2.27-32.fc28.x86_64                            84/87 
+  Cleanup          : glibc-minimal-langpack-2.27-32.fc28.x86_64           85/87 
+  Cleanup          : glibc-common-2.27-32.fc28.x86_64                     86/87 
+  Cleanup          : libgcc-8.2.1-5.fc28.x86_64                           87/87 
+  Running scriptlet: libgcc-8.2.1-5.fc28.x86_64                           87/87 
+  Running scriptlet: guile-5:2.0.14-7.fc28.x86_64                         87/87 
+  Running scriptlet: libgcc-8.2.1-5.fc28.x86_64                           87/87 
+  Running scriptlet: glibc-common-2.27-38.fc28.x86_64                     87/87 
+  Verifying        : make-1:4.2.1-6.fc28.x86_64                            1/87 
+  Verifying        : gc-7.6.4-3.fc28.x86_64                                2/87 
+  Verifying        : guile-5:2.0.14-7.fc28.x86_64                          3/87 
+  Verifying        : libatomic_ops-7.6.2-3.fc28.x86_64                     4/87 
+  Verifying        : gcc-8.3.1-2.fc28.x86_64                               5/87 
+  Verifying        : cpp-8.3.1-2.fc28.x86_64                               6/87 
+  Verifying        : isl-0.16.1-6.fc28.x86_64                              7/87 
+  Verifying        : libmpc-1.0.2-9.fc28.x86_64                            8/87 
+  Verifying        : git-2.17.2-2.fc28.x86_64                              9/87 
+  Verifying        : git-core-2.17.2-2.fc28.x86_64                        10/87 
+  Verifying        : git-core-doc-2.17.2-2.fc28.noarch                    11/87 
+  Verifying        : perl-Git-2.17.2-2.fc28.noarch                        12/87 
+  Verifying        : libsecret-0.18.6-1.fc28.x86_64                       13/87 
+  Verifying        : perl-Getopt-Long-1:2.50-4.fc28.noarch                14/87 
+  Verifying        : perl-TermReadKey-2.37-7.fc28.x86_64                  15/87 
+  Verifying        : less-530-1.fc28.x86_64                               16/87 
+  Verifying        : perl-Error-1:0.17025-2.fc28.noarch                   17/87 
+  Verifying        : perl-Exporter-5.72-396.fc28.noarch                   18/87 
+  Verifying        : perl-Pod-Usage-4:1.69-395.fc28.noarch                19/87 
+  Verifying        : perl-Text-ParseWords-3.30-395.fc28.noarch            20/87 
+  Verifying        : perl-constant-1.33-396.fc28.noarch                   21/87 
+  Verifying        : perl-Scalar-List-Utils-3:1.49-2.fc28.x86_64          22/87 
+  Verifying        : gnu-efi-devel-1:3.0.8-2.fc28.x86_64                  23/87 
+  Verifying        : patch-2.7.6-8.fc28.x86_64                            24/87 
+  Verifying        : glibc-devel-2.27-38.fc28.x86_64                      25/87 
+  Verifying        : glibc-headers-2.27-38.fc28.x86_64                    26/87 
+  Verifying        : libxcrypt-devel-4.4.6-1.fc28.x86_64                  27/87 
+  Verifying        : perl-Carp-1.42-396.fc28.noarch                       28/87 
+  Verifying        : perl-interpreter-4:5.26.3-418.fc28.x86_64            29/87 
+  Verifying        : perl-libs-4:5.26.3-418.fc28.x86_64                   30/87 
+  Verifying        : perl-Text-Tabs+Wrap-2013.0523-395.fc28.noarch        31/87 
+  Verifying        : perl-parent-1:0.236-395.fc28.noarch                  32/87 
+  Verifying        : perl-threads-1:2.21-2.fc28.x86_64                    33/87 
+  Verifying        : perl-PathTools-3.75-1.fc28.x86_64                    34/87 
+  Verifying        : perl-Errno-1.28-418.fc28.x86_64                      35/87 
+  Verifying        : perl-Pod-Perldoc-3.28.01-1.fc28.noarch               36/87 
+  Verifying        : groff-base-1.22.3-15.fc28.x86_64                     37/87 
+  Verifying        : perl-Pod-Simple-1:3.35-395.fc28.noarch               38/87 
+  Verifying        : perl-Pod-Escapes-1:1.07-395.fc28.noarch              39/87 
+  Verifying        : perl-podlators-4.11-1.fc28.noarch                    40/87 
+  Verifying        : perl-Term-ANSIColor-4.06-396.fc28.noarch             41/87 
+  Verifying        : perl-Term-Cap-1.17-395.fc28.noarch                   42/87 
+  Verifying        : perl-Encode-4:2.97-3.fc28.x86_64                     43/87 
+  Verifying        : perl-MIME-Base64-3.15-397.fc28.x86_64                44/87 
+  Verifying        : perl-Storable-1:3.15-1.fc28.x86_64                   45/87 
+  Verifying        : libtool-ltdl-2.4.6-24.fc28.x86_64                    46/87 
+  Verifying        : libstdc++-8.3.1-2.fc28.x86_64                        47/87 
+  Verifying        : perl-File-Path-2.16-1.fc28.noarch                    48/87 
+  Verifying        : perl-IO-1.38-418.fc28.x86_64                         49/87 
+  Verifying        : perl-Unicode-Normalize-1.25-397.fc28.x86_64          50/87 
+  Verifying        : perl-macros-4:5.26.3-418.fc28.x86_64                 51/87 
+  Verifying        : perl-threads-shared-1.59-1.fc28.x86_64               52/87 
+  Verifying        : perl-File-Temp-0.230.600-1.fc28.noarch               53/87 
+  Verifying        : perl-HTTP-Tiny-0.076-1.fc28.noarch                   54/87 
+  Verifying        : perl-Socket-4:2.029-1.fc28.x86_64                    55/87 
+  Verifying        : perl-Time-Local-1:1.280-1.fc28.noarch                56/87 
+  Verifying        : gnu-efi-1:3.0.8-2.fc28.x86_64                        57/87 
+  Verifying        : kernel-headers-5.0.16-100.fc28.x86_64                58/87 
+  Verifying        : openssh-clients-7.8p1-4.fc28.x86_64                  59/87 
+  Verifying        : openssh-7.8p1-4.fc28.x86_64                          60/87 
+  Verifying        : fipscheck-lib-1.5.0-4.fc28.x86_64                    61/87 
+  Verifying        : libedit-3.1-23.20170329cvs.fc28.x86_64               62/87 
+  Verifying        : fipscheck-1.5.0-4.fc28.x86_64                        63/87 
+  Verifying        : emacs-filesystem-1:26.1-3.fc28.noarch                64/87 
+  Verifying        : binutils-2.29.1-23.fc28.x86_64                       65/87 
+  Verifying        : libgomp-8.3.1-2.fc28.x86_64                          66/87 
+  Verifying        : perl-Mozilla-CA-20160104-7.fc28.noarch               67/87 
+  Verifying        : perl-IO-Socket-SSL-2.066-1.fc28.noarch               68/87 
+  Verifying        : perl-IO-Socket-IP-0.39-5.fc28.noarch                 69/87 
+  Verifying        : perl-Net-SSLeay-1.85-1.fc28.x86_64                   70/87 
+  Verifying        : perl-URI-1.73-2.fc28.noarch                          71/87 
+  Verifying        : perl-Data-Dumper-2.167-399.fc28.x86_64               72/87 
+  Verifying        : perl-libnet-3.11-3.fc28.noarch                       73/87 
+  Verifying        : perl-Digest-MD5-2.55-397.fc28.x86_64                 74/87 
+  Verifying        : perl-Digest-1.17-395.fc28.noarch                     75/87 
+  Verifying        : libgcc-8.3.1-2.fc28.x86_64                           76/87 
+  Verifying        : glibc-2.27-38.fc28.x86_64                            77/87 
+  Verifying        : glibc-common-2.27-38.fc28.x86_64                     78/87 
+  Verifying        : glibc-minimal-langpack-2.27-38.fc28.x86_64           79/87 
+  Verifying        : glibc-langpack-en-2.27-38.fc28.x86_64                80/87 
+  Verifying        : libxcrypt-4.4.6-1.fc28.x86_64                        81/87 
+  Verifying        : glibc-2.27-32.fc28.x86_64                            82/87 
+  Verifying        : glibc-common-2.27-32.fc28.x86_64                     83/87 
+  Verifying        : glibc-langpack-en-2.27-32.fc28.x86_64                84/87 
+  Verifying        : libgcc-8.2.1-5.fc28.x86_64                           85/87 
+  Verifying        : libxcrypt-4.4.0-2.fc28.x86_64                        86/87 
+  Verifying        : glibc-minimal-langpack-2.27-32.fc28.x86_64           87/87 
 
 Installed:
   gcc.x86_64 8.3.1-2.fc28                                                       
   git.x86_64 2.17.2-2.fc28                                                      
   gnu-efi-devel.x86_64 1:3.0.8-2.fc28                                           
   make.x86_64 1:4.2.1-6.fc28                                                    
+  patch.x86_64 2.7.6-8.fc28                                                     
   perl-IO-Socket-SSL.noarch 2.066-1.fc28                                        
   perl-Mozilla-CA.noarch 20160104-7.fc28                                        
   binutils.x86_64 2.29.1-23.fc28                                                
@@ -475,12 +480,12 @@ Upgraded:
   libxcrypt.x86_64 4.4.6-1.fc28                                                 
 
 Complete!
-Removing intermediate container 0556a6dbf42f
- ---> 7548a70b3990
-Step 3/11 : RUN git clone --branch 15 https://github.com/rhboot/shim.git /build/shim
- ---> Running in fa1dfe93770c
+Removing intermediate container 426bd1b5fc1e
+ ---> f5f0fe5d3aa1
+Step 3/13 : RUN git clone --branch shim-15.1 https://github.com/rhboot/shim.git /build/shim
+ ---> Running in 33bfffd2d34a
 [91mCloning into '/build/shim'...
-[0m[91mNote: checking out '51413d1deb0df0debdf1d208723131ff0e36d3a3'.
+[0m[91mNote: checking out '936942795d6c2fbccb84d5f5b17a3f328737242a'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -491,20 +496,27 @@ do so (now or later) by using -b with the checkout command again. Example:
 
   git checkout -b <new-branch-name>
 
-[0mRemoving intermediate container fa1dfe93770c
- ---> bf09cd17e6f4
-Step 4/11 : WORKDIR /build/shim
- ---> Running in 022a05c2cb89
-Removing intermediate container 022a05c2cb89
- ---> 47d2e33ce7f3
-Step 5/11 : ADD neverware.cer .
- ---> 94cd904ae1ca
-Step 6/11 : RUN mkdir build-x64 build-ia32
- ---> Running in af7406b940e3
-Removing intermediate container af7406b940e3
- ---> d974202bf633
-Step 7/11 : RUN make -C build-x64 ARCH=x86_64 VENDOR_CERT_FILE=../neverware.cer     TOPDIR=.. -f ../Makefile
- ---> Running in d6c62b8eba96
+[0mRemoving intermediate container 33bfffd2d34a
+ ---> 20aa776e8de5
+Step 4/13 : WORKDIR /build/shim
+ ---> Running in eb405fc8ccac
+Removing intermediate container eb405fc8ccac
+ ---> e8d79ed59c74
+Step 5/13 : ADD build-fix.patch .
+ ---> 0df7216642ec
+Step 6/13 : RUN patch -p1 -i build-fix.patch
+ ---> Running in 170d41059fdd
+patching file mok.c
+Removing intermediate container 170d41059fdd
+ ---> de19067f1bcf
+Step 7/13 : ADD neverware.cer .
+ ---> 1f26c4a87891
+Step 8/13 : RUN mkdir build-x64 build-ia32
+ ---> Running in 40c3a77bec3d
+Removing intermediate container 40c3a77bec3d
+ ---> 65635d318a49
+Step 9/13 : RUN make -C build-x64 ARCH=x86_64 VENDOR_CERT_FILE=../neverware.cer     TOPDIR=.. -f ../Makefile
+ ---> Running in c67b36ce6b98
 make: Entering directory '/build/shim/build-x64'
 sed	-e "s,@@VERSION@@,15," \
 	-e "s,@@UNAME@@,Linux x86_64 x86_64 x86_64 GNU/Linux," \
@@ -557,19 +569,19 @@ gcc -ggdb -O0 -I/build/shim/Cryptlib/OpenSSL -I/build/shim/Cryptlib/OpenSSL/.. -
 [91mIn file included from /build/shim/Cryptlib/OpenSSL/../Include/stdio.h:15,
                  from /build/shim/Cryptlib/OpenSSL/crypto/mem.c:59:
 /build/shim/Cryptlib/OpenSSL/crypto/mem.c: In function 'CRYPTO_strdup':
-/build/shim/Cryptlib/OpenSSL/crypto/mem.c:363:12: warning: pointer targets in passing argument 1 of 'AsciiStrCpy' differ in signedness [-Wpointer-sign]
+[0m[91m/build/shim/Cryptlib/OpenSSL/crypto/mem.c:363:12: warning: pointer targets in passing argument 1 of 'AsciiStrCpy' differ in signedness [-Wpointer-sign]
      strcpy(ret, str);
             ^~~
 /build/shim/Cryptlib/OpenSSL/../Include/OpenSslSupport.h:373:55: note: in definition of macro 'strcpy'
  #define strcpy(strDest,strSource)         AsciiStrCpy(strDest,strSource)
                                                        ^~~~~~~
-In file included from /build/shim/Cryptlib/OpenSSL/../Include/OpenSslSupport.h:21,
+[0m[91mIn file included from /build/shim/Cryptlib/OpenSSL/../Include/OpenSslSupport.h:21,
                  from /build/shim/Cryptlib/OpenSSL/../Include/stdio.h:15,
                  from /build/shim/Cryptlib/OpenSSL/crypto/mem.c:59:
 /build/shim/Cryptlib/OpenSSL/../Library/BaseLib.h:8:8: note: expected 'CHAR8 *' {aka 'unsigned char *'} but argument is of type 'char *'
  CHAR8 *AsciiStrCpy(CHAR8 *Destination, CHAR8 *Source);
         ^~~~~~~~~~~
-In file included from /build/shim/Cryptlib/OpenSSL/../Include/stdio.h:15,
+[0m[91mIn file included from /build/shim/Cryptlib/OpenSSL/../Include/stdio.h:15,
                  from /build/shim/Cryptlib/OpenSSL/crypto/mem.c:59:
 /build/shim/Cryptlib/OpenSSL/crypto/mem.c:363:17: warning: passing argument 2 of 'AsciiStrCpy' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
      strcpy(ret, str);
@@ -722,13 +734,13 @@ gcc -ggdb -O0 -I/build/shim/Cryptlib/OpenSSL -I/build/shim/Cryptlib/OpenSSL/.. -
 [91mIn file included from /build/shim/Cryptlib/OpenSSL/../Include/stdio.h:15,
                  from /build/shim/Cryptlib/OpenSSL/crypto/bio/bss_log.c:65:
 /build/shim/Cryptlib/OpenSSL/crypto/bio/bss_log.c: In function 'slg_write':
-[0m[91m/build/shim/Cryptlib/OpenSSL/crypto/bio/bss_log.c:245:18: warning: passing argument 2 of 'AsciiStrnCpy' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+/build/shim/Cryptlib/OpenSSL/crypto/bio/bss_log.c:245:18: warning: passing argument 2 of 'AsciiStrnCpy' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
      strncpy(buf, in, inl);
                   ^~
 /build/shim/Cryptlib/OpenSSL/../Include/OpenSslSupport.h:374:64: note: in definition of macro 'strncpy'
  #define strncpy(strDest,strSource,count)  AsciiStrnCpy(strDest,strSource,(UINTN)count)
                                                                 ^~~~~~~~~
-[0m[91mIn file included from /build/shim/Cryptlib/OpenSSL/../Include/OpenSslSupport.h:21,
+In file included from /build/shim/Cryptlib/OpenSSL/../Include/OpenSslSupport.h:21,
                  from /build/shim/Cryptlib/OpenSSL/../Include/stdio.h:15,
                  from /build/shim/Cryptlib/OpenSSL/crypto/bio/bss_log.c:65:
 /build/shim/Cryptlib/OpenSSL/../Library/BaseLib.h:6:7: note: expected 'char *' but argument is of type 'const char *'
@@ -873,7 +885,7 @@ gcc -ggdb -O0 -I/build/shim/Cryptlib/OpenSSL -I/build/shim/Cryptlib/OpenSSL/.. -
 gcc -ggdb -O0 -I/build/shim/Cryptlib/OpenSSL -I/build/shim/Cryptlib/OpenSSL/.. -I/build/shim/Cryptlib/OpenSSL/../Include/ -I/build/shim/Cryptlib/OpenSSL/crypto -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -nostdinc -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-redhat-linux/8/include -Wall -I/build/shim/Cryptlib/OpenSSL/../Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/build/shim/Cryptlib/OpenSSL/crypto/asn1 -I/build/shim/Cryptlib/OpenSSL/crypto/evp -I/build/shim/Cryptlib/OpenSSL/crypto/modes -I/build/shim/Cryptlib/OpenSSL/crypto/include -DL_ENDIAN -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE -DOPENSSL_SMALL_FOOTPRINT -DPEDANTIC -mno-mmx -mno-sse -mno-red-zone -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -UNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64   -c -o crypto/asn1/f_enum.o /build/shim/Cryptlib/OpenSSL/crypto/asn1/f_enum.c
 gcc -ggdb -O0 -I/build/shim/Cryptlib/OpenSSL -I/build/shim/Cryptlib/OpenSSL/.. -I/build/shim/Cryptlib/OpenSSL/../Include/ -I/build/shim/Cryptlib/OpenSSL/crypto -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -nostdinc -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-redhat-linux/8/include -Wall -I/build/shim/Cryptlib/OpenSSL/../Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/build/shim/Cryptlib/OpenSSL/crypto/asn1 -I/build/shim/Cryptlib/OpenSSL/crypto/evp -I/build/shim/Cryptlib/OpenSSL/crypto/modes -I/build/shim/Cryptlib/OpenSSL/crypto/include -DL_ENDIAN -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE -DOPENSSL_SMALL_FOOTPRINT -DPEDANTIC -mno-mmx -mno-sse -mno-red-zone -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -UNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64   -c -o crypto/asn1/x_pkey.o /build/shim/Cryptlib/OpenSSL/crypto/asn1/x_pkey.c
 [91m/build/shim/Cryptlib/OpenSSL/crypto/asn1/x_pkey.c: In function 'X509_PKEY_new':
-[0m[91m/build/shim/Cryptlib/OpenSSL/crypto/asn1/x_pkey.c:107:14: warning: variable 'c' set but not used [-Wunused-but-set-variable]
+/build/shim/Cryptlib/OpenSSL/crypto/asn1/x_pkey.c:107:14: warning: variable 'c' set but not used [-Wunused-but-set-variable]
      ASN1_CTX c;
               ^
 [0mgcc -ggdb -O0 -I/build/shim/Cryptlib/OpenSSL -I/build/shim/Cryptlib/OpenSSL/.. -I/build/shim/Cryptlib/OpenSSL/../Include/ -I/build/shim/Cryptlib/OpenSSL/crypto -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -nostdinc -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-redhat-linux/8/include -Wall -I/build/shim/Cryptlib/OpenSSL/../Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/build/shim/Cryptlib/OpenSSL/crypto/asn1 -I/build/shim/Cryptlib/OpenSSL/crypto/evp -I/build/shim/Cryptlib/OpenSSL/crypto/modes -I/build/shim/Cryptlib/OpenSSL/crypto/include -DL_ENDIAN -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE -DOPENSSL_SMALL_FOOTPRINT -DPEDANTIC -mno-mmx -mno-sse -mno-red-zone -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -UNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64   -c -o crypto/asn1/a_bool.o /build/shim/Cryptlib/OpenSSL/crypto/asn1/a_bool.c
@@ -1026,12 +1038,17 @@ gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wal
 ar rcs lib.a simple_file.o guid.o console.o execute.o configtable.o shell.o variables.o security_policy.o
 make[1]: Leaving directory '/build/shim/build-x64/lib'
 ld -o shimx64.so --hash-style=sysv -nostdlib -znocombreloc -T /build/shim/elf_x86_64_efi.lds -shared -Bsymbolic -L/usr/lib64/gnuefi -L/usr/lib64 -LCryptlib -LCryptlib/OpenSSL /usr/lib64/gnuefi/crt0-efi-x86_64.o --build-id=sha1  --no-undefined shim.o mok.o netboot.o cert.o replacements.o tpm.o version.o errlog.o Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a lib/lib.a -lefi -lgnuefi --start-group Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a --end-group /usr/lib/gcc/x86_64-redhat-linux/8/libgcc.a
-objcopy -j .text -j .sdata -j .data -j .data.ident \
+objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .vendor_cert \
 	--target efi-app-x86_64 shimx64.so shimx64.efi
-objcopy -j .text -j .sdata -j .data \
+# I am tired of wasting my time fighting binutils timestamp code.
+dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=shimx64.efi
+[91m4+0 records in
+4+0 records out
+4 bytes copied, 3.9344e-05 s, 102 kB/s
+[0mobjcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .debug_info -j .debug_abbrev -j .debug_aranges \
@@ -1042,7 +1059,7 @@ gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wal
 gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-redhat-linux/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/build/shim/Cryptlib -I/build/shim/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/build/shim/include -iquote /build/shim -iquote /build/shim/build-x64 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15/\"" -DVENDOR_CERT_FILE=\"../neverware.cer\"   -c -o PasswordCrypt.o /build/shim/PasswordCrypt.c
 gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-redhat-linux/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/build/shim/Cryptlib -I/build/shim/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/build/shim/include -iquote /build/shim -iquote /build/shim/build-x64 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15/\"" -DVENDOR_CERT_FILE=\"../neverware.cer\"   -c -o crypt_blowfish.o /build/shim/crypt_blowfish.c
 ld -o mmx64.so --hash-style=sysv -nostdlib -znocombreloc -T /build/shim/elf_x86_64_efi.lds -shared -Bsymbolic -L/usr/lib64/gnuefi -L/usr/lib64 -LCryptlib -LCryptlib/OpenSSL /usr/lib64/gnuefi/crt0-efi-x86_64.o --build-id=sha1  --no-undefined MokManager.o PasswordCrypt.o crypt_blowfish.o Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a lib/lib.a -lefi -lgnuefi --start-group Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a --end-group /usr/lib/gcc/x86_64-redhat-linux/8/libgcc.a lib/lib.a
-objcopy -j .text -j .sdata -j .data \
+objcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .debug_info -j .debug_abbrev -j .debug_aranges \
@@ -1051,28 +1068,38 @@ objcopy -j .text -j .sdata -j .data \
 	mmx64.so mmx64.efi.debug
 gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-redhat-linux/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/build/shim/Cryptlib -I/build/shim/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/build/shim/include -iquote /build/shim -iquote /build/shim/build-x64 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15/\"" -DVENDOR_CERT_FILE=\"../neverware.cer\"   -c -o fallback.o /build/shim/fallback.c
 ld -o fbx64.so --hash-style=sysv -nostdlib -znocombreloc -T /build/shim/elf_x86_64_efi.lds -shared -Bsymbolic -L/usr/lib64/gnuefi -L/usr/lib64 -LCryptlib -LCryptlib/OpenSSL /usr/lib64/gnuefi/crt0-efi-x86_64.o --build-id=sha1  --no-undefined fallback.o tpm.o errlog.o Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a lib/lib.a -lefi -lgnuefi --start-group Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a --end-group /usr/lib/gcc/x86_64-redhat-linux/8/libgcc.a
-objcopy -j .text -j .sdata -j .data \
+objcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .debug_info -j .debug_abbrev -j .debug_aranges \
 	-j .debug_line -j .debug_str -j .debug_ranges \
 	-j .note.gnu.build-id \
 	fbx64.so fbx64.efi.debug
-objcopy -j .text -j .sdata -j .data -j .data.ident \
+objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .vendor_cert \
 	--target efi-app-x86_64 mmx64.so mmx64.efi
-objcopy -j .text -j .sdata -j .data -j .data.ident \
+# I am tired of wasting my time fighting binutils timestamp code.
+dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=mmx64.efi
+[91m4+0 records in
+4+0 records out
+[0m[91m4 bytes copied, 6.1588e-05 s, 64.9 kB/s[0m[91m
+[0mobjcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .vendor_cert \
 	--target efi-app-x86_64 fbx64.so fbx64.efi
-make: Leaving directory '/build/shim/build-x64'
-Removing intermediate container d6c62b8eba96
- ---> 9a1bc34559e7
-Step 8/11 : RUN make -C build-ia32 ARCH=ia32 VENDOR_CERT_FILE=../neverware.cer     TOPDIR=.. -f ../Makefile
- ---> Running in cac6712cdb68
+# I am tired of wasting my time fighting binutils timestamp code.
+dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=fbx64.efi
+[91m4+0 records in
+4+0 records out
+[0m[91m4 bytes copied, 6.0181e-05 s, 66.5 kB/s[0m[91m
+[0mmake: Leaving directory '/build/shim/build-x64'
+Removing intermediate container c67b36ce6b98
+ ---> e1b7284dd389
+Step 10/13 : RUN make -C build-ia32 ARCH=ia32 VENDOR_CERT_FILE=../neverware.cer     TOPDIR=.. -f ../Makefile
+ ---> Running in 4c1f8b75bc78
 make: Entering directory '/build/shim/build-ia32'
 sed	-e "s,@@VERSION@@,15," \
 	-e "s,@@UNAME@@,Linux x86_64 x86_64 x86_64 GNU/Linux," \
@@ -1594,12 +1621,17 @@ gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wal
 ar rcs lib.a simple_file.o guid.o console.o execute.o configtable.o shell.o variables.o security_policy.o
 make[1]: Leaving directory '/build/shim/build-ia32/lib'
 ld -o shimia32.so --hash-style=sysv -nostdlib -znocombreloc -T /build/shim/elf_ia32_efi.lds -shared -Bsymbolic -L/usr/lib/gnuefi -L/usr/lib -LCryptlib -LCryptlib/OpenSSL /usr/lib/gnuefi/crt0-efi-ia32.o --build-id=sha1  --no-undefined shim.o mok.o netboot.o cert.o replacements.o tpm.o version.o errlog.o Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a lib/lib.a -lefi -lgnuefi --start-group Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a --end-group /usr/lib/gcc/x86_64-redhat-linux/8/libgcc.a
-objcopy -j .text -j .sdata -j .data -j .data.ident \
+objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .vendor_cert \
 	--target efi-app-ia32 shimia32.so shimia32.efi
-objcopy -j .text -j .sdata -j .data \
+# I am tired of wasting my time fighting binutils timestamp code.
+dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=shimia32.efi
+[91m4+0 records in
+4+0 records out
+4 bytes copied, 2.3094e-05 s, 173 kB/s
+[0mobjcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .debug_info -j .debug_abbrev -j .debug_aranges \
@@ -1610,7 +1642,7 @@ gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wal
 gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-redhat-linux/8/include "-DDEFAULT_LOADER=L\"\\\\grubia32.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubia32.efi\"" -nostdinc -I/build/shim/Cryptlib -I/build/shim/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I/build/shim/include -iquote /build/shim -iquote /build/shim/build-ia32 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m32 -DMDE_CPU_IA32 -DPAGE_SIZE=4096 "-DEFI_ARCH=L\"ia32\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/ia32-15/\"" -DVENDOR_CERT_FILE=\"../neverware.cer\"   -c -o PasswordCrypt.o /build/shim/PasswordCrypt.c
 gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-redhat-linux/8/include "-DDEFAULT_LOADER=L\"\\\\grubia32.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubia32.efi\"" -nostdinc -I/build/shim/Cryptlib -I/build/shim/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I/build/shim/include -iquote /build/shim -iquote /build/shim/build-ia32 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m32 -DMDE_CPU_IA32 -DPAGE_SIZE=4096 "-DEFI_ARCH=L\"ia32\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/ia32-15/\"" -DVENDOR_CERT_FILE=\"../neverware.cer\"   -c -o crypt_blowfish.o /build/shim/crypt_blowfish.c
 ld -o mmia32.so --hash-style=sysv -nostdlib -znocombreloc -T /build/shim/elf_ia32_efi.lds -shared -Bsymbolic -L/usr/lib/gnuefi -L/usr/lib -LCryptlib -LCryptlib/OpenSSL /usr/lib/gnuefi/crt0-efi-ia32.o --build-id=sha1  --no-undefined MokManager.o PasswordCrypt.o crypt_blowfish.o Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a lib/lib.a -lefi -lgnuefi --start-group Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a --end-group /usr/lib/gcc/x86_64-redhat-linux/8/libgcc.a lib/lib.a
-objcopy -j .text -j .sdata -j .data \
+objcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .debug_info -j .debug_abbrev -j .debug_aranges \
@@ -1619,37 +1651,47 @@ objcopy -j .text -j .sdata -j .data \
 	mmia32.so mmia32.efi.debug
 gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-redhat-linux/8/include "-DDEFAULT_LOADER=L\"\\\\grubia32.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubia32.efi\"" -nostdinc -I/build/shim/Cryptlib -I/build/shim/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/ia32 -I/usr/include/efi/protocol -I/build/shim/include -iquote /build/shim -iquote /build/shim/build-ia32 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m32 -DMDE_CPU_IA32 -DPAGE_SIZE=4096 "-DEFI_ARCH=L\"ia32\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/ia32-15/\"" -DVENDOR_CERT_FILE=\"../neverware.cer\"   -c -o fallback.o /build/shim/fallback.c
 ld -o fbia32.so --hash-style=sysv -nostdlib -znocombreloc -T /build/shim/elf_ia32_efi.lds -shared -Bsymbolic -L/usr/lib/gnuefi -L/usr/lib -LCryptlib -LCryptlib/OpenSSL /usr/lib/gnuefi/crt0-efi-ia32.o --build-id=sha1  --no-undefined fallback.o tpm.o errlog.o Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a lib/lib.a -lefi -lgnuefi --start-group Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a --end-group /usr/lib/gcc/x86_64-redhat-linux/8/libgcc.a
-objcopy -j .text -j .sdata -j .data \
+objcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .debug_info -j .debug_abbrev -j .debug_aranges \
 	-j .debug_line -j .debug_str -j .debug_ranges \
 	-j .note.gnu.build-id \
 	fbia32.so fbia32.efi.debug
-objcopy -j .text -j .sdata -j .data -j .data.ident \
+objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .vendor_cert \
 	--target efi-app-ia32 mmia32.so mmia32.efi
-objcopy -j .text -j .sdata -j .data -j .data.ident \
+# I am tired of wasting my time fighting binutils timestamp code.
+dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=mmia32.efi
+[91m4+0 records in
+4+0 records out
+4 bytes copied, 2.7452e-05 s, 146 kB/s
+[0mobjcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
 	-j .vendor_cert \
 	--target efi-app-ia32 fbia32.so fbia32.efi
-make: Leaving directory '/build/shim/build-ia32'
-Removing intermediate container cac6712cdb68
- ---> 3704edb57c91
-Step 9/11 : RUN mkdir /build/install
- ---> Running in 50c3b7a6299f
-Removing intermediate container 50c3b7a6299f
- ---> fe412b7a6e47
-Step 10/11 : RUN cp build-x64/shimx64.efi /build/install
- ---> Running in 4e8b51d5075c
-Removing intermediate container 4e8b51d5075c
- ---> 73532538dc00
-Step 11/11 : RUN cp build-ia32/shimia32.efi /build/install
- ---> Running in c33b24ccf6da
-Removing intermediate container c33b24ccf6da
- ---> af2e2abbafc8
-Successfully built af2e2abbafc8
+# I am tired of wasting my time fighting binutils timestamp code.
+dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=fbia32.efi
+[91m4+0 records in
+4+0 records out
+4 bytes copied, 2.8263e-05 s, 142 kB/s
+[0mmake: Leaving directory '/build/shim/build-ia32'
+Removing intermediate container 4c1f8b75bc78
+ ---> 2cf78a55767c
+Step 11/13 : RUN mkdir /build/install
+ ---> Running in 017bb8ca0e75
+Removing intermediate container 017bb8ca0e75
+ ---> 42a96dfc1d7e
+Step 12/13 : RUN cp build-x64/shimx64.efi /build/install
+ ---> Running in e09e913910be
+Removing intermediate container e09e913910be
+ ---> b2c22a5b0b9b
+Step 13/13 : RUN cp build-ia32/shimia32.efi /build/install
+ ---> Running in 54fdded358fd
+Removing intermediate container 54fdded358fd
+ ---> 90b631fba503
+Successfully built 90b631fba503
 Successfully tagged shim-build:latest
