@@ -60,7 +60,7 @@ https://github.com/rhboot/shim/tree/shim-15.1
 What patches are being applied and why:
 -------------------------------------------------------------------------------
 A patch for a missing '{' in mok.c is applied to the shim-15.1 code base, as the build fails without it:
-https://github.com/neverware/shim-build/blob/master/build-fix.patch
+https://github.com/neverware/shim-build/blob/v4/build-fix.patch
 
 
 -------------------------------------------------------------------------------
