@@ -49,22 +49,24 @@ Who is the secondary contact for security updates, etc.
 -------------------------------------------------------------------------------
 What upstream shim tag is this starting from:
 -------------------------------------------------------------------------------
-https://github.com/rhboot/shim/tree/15
+https://github.com/rhboot/shim/tree/shim-15.1
 
 -------------------------------------------------------------------------------
 URL for a repo that contains the exact code which was built to get this binary:
 -------------------------------------------------------------------------------
-https://github.com/rhboot/shim/tree/15
+https://github.com/rhboot/shim/tree/shim-15.1
 
 -------------------------------------------------------------------------------
 What patches are being applied and why:
 -------------------------------------------------------------------------------
-None
+A patch for a missing '{' in mok.c is applied to the shim-15.1 code base, as the build fails without it:
+https://github.com/neverware/shim-build/blob/master/build-fix.patch
+
 
 -------------------------------------------------------------------------------
 What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as close as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
 -------------------------------------------------------------------------------
-This repo contains the Dockerfile we use to build shim: https://github.com/neverware/shim-build/tree/v3
+This repo contains the Dockerfile we use to build shim: https://github.com/neverware/shim-build/tree/v4
 
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
@@ -74,5 +76,5 @@ Which files in this repo are the logs for your build?   This should include logs
 -------------------------------------------------------------------------------
 Add any additional information you think we may need to validate this shim
 -------------------------------------------------------------------------------
-This shim build is unchanged from our last submission and only updates the embedded EV code signing certificate.
+Our shim-15.1 build is largely upstream's 15.1 with our new public certificate embedded.  This build has been tested with our new grub, which is now up-to-date with fedora-33.
 
