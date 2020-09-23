@@ -62,22 +62,6 @@ What patches are being applied and why:
 A patch for a missing '{' in mok.c is applied to the shim-15.1 code base, as the build fails without it:
 https://github.com/neverware/shim-build/blob/v4/build-fix.patch
 
-
--------------------------------------------------------------------------------
-What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as close as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
--------------------------------------------------------------------------------
-This repo contains the Dockerfile we use to build shim: https://github.com/neverware/shim-build/tree/v4
-
--------------------------------------------------------------------------------
-Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
--------------------------------------------------------------------------------
-[build.log](build.log)
-
--------------------------------------------------------------------------------
-Add any additional information you think we may need to validate this shim
--------------------------------------------------------------------------------
-Our shim-15.1 build is largely upstream's 15.1 with our new public certificate embedded.  This build has been tested with our new grub, which is now up-to-date with fedora-33.
-
 -------------------------------------------------------------------------------
 If bootloader, shim loading is, grub2: is CVE-2020-10713 fixed ?
 -------------------------------------------------------------------------------
@@ -111,4 +95,22 @@ please provide exact binaries for which hashes are created via file sharing serv
 available in public with anonymous access for verification
 -------------------------------------------------------------------------------
 We do not use this functionality.
+
+
+-------------------------------------------------------------------------------
+What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as close as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
+-------------------------------------------------------------------------------
+This repo contains the Dockerfile we use to build shim: https://github.com/neverware/shim-build/tree/v4
+
+-------------------------------------------------------------------------------
+Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
+-------------------------------------------------------------------------------
+[build.log](build.log)
+
+-------------------------------------------------------------------------------
+Add any additional information you think we may need to validate this shim
+-------------------------------------------------------------------------------
+Our shim-15.1 build is largely upstream's 15.1 with our new public certificate embedded.  This build has been tested with our new grub, which is now up-to-date with fedora-33.
+
+
 
