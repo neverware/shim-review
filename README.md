@@ -138,9 +138,9 @@ All shim binaries can be built using our Dockerfile and instructions in the READ
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
 -------------------------------------------------------------------------------
-build.log
+[build.log](build.log)
 
 -------------------------------------------------------------------------------
 Add any additional information you think we may need to validate this shim
 -------------------------------------------------------------------------------
-We made our last shim submission as Neverware.
+We made our last shim submissions as Neverware.  See https://github.com/rhboot/shim-review/issues/27 and https://github.com/rhboot/shim-review/issues/106.
