@@ -4,12 +4,14 @@ This repo is for review of requests for signing shim.  To create a request for r
 - edit the template below
 - add the shim.efi to be signed
 - add build logs
+- add any additional binaries/certificates/SHA256 hashes that may be needed
 - commit all of that
 - tag it with a tag of the form "myorg-shim-arch-YYYYMMDD"
 - push that to github
-- file an issue at https://github.com/rhboot/shim-review/issues with a link to your tag
+- file an issue at https://github.com/rhboot/shim-review/issues with a link to your branch
+- approval is ready when you have accepted tag
 
-Note that we really only have experience with using grub2 on Linux, so asking
+Note that we really only have experience with using GRUB2 on Linux, so asking
 us to endorse anything else for signing is going to require some convincing on
 your part.
 
@@ -18,64 +20,86 @@ Here's the template:
 -------------------------------------------------------------------------------
 What organization or people are asking to have this signed:
 -------------------------------------------------------------------------------
-Neverware Inc. (https://www.neverware.com)
+Google
 
 -------------------------------------------------------------------------------
 What product or service is this for:
 -------------------------------------------------------------------------------
-CloudReady
+CloudReady 
 
 -------------------------------------------------------------------------------
 What's the justification that this really does need to be signed for the whole world to be able to boot it:
 -------------------------------------------------------------------------------
-CloudReady is a Linux distro; we'd like to encourage people to boot our OS with secure boot enabled.
+CloudReady is a Linux distribution, forked from Chromium OS.  We want to enable (and encourage) our user base to boot our OS with secure boot enabled.
 
 -------------------------------------------------------------------------------
 Who is the primary contact for security updates, etc.
 -------------------------------------------------------------------------------
 - Name: Nicholas Bishop
-- Position: software developer
-- Email address: nbishop@neverware.com
-- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: https://github.com/neverware/shim-review/blob/master/nbishop.key
+- Position: Software Engineer
+- Email address: nicholasbishop@google.com
+- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the Linux community: https://github.com/neverware/shim-review/blob/master/nbishop.key
 
 -------------------------------------------------------------------------------
 Who is the secondary contact for security updates, etc.
 -------------------------------------------------------------------------------
 - Name: Paul Nardini
-- Position: Director of Engineering
-- Email address: pnardini@neverware.com
-- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: https://github.com/neverware/shim-review/blob/master/pnardini.key
+- Position: Engineering Manager
+- Email address: nardini@google.com
+- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the Linux community: https://github.com/neverware/shim-review/blob/master/pnardini.key
 
 -------------------------------------------------------------------------------
-What upstream shim tag is this starting from:
+Please create your shim binaries starting with the 15.4 shim release tar file:
+https://github.com/rhboot/shim/releases/download/15.4/shim-15.4.tar.bz2
+
+This matches https://github.com/rhboot/shim/releases/tag/15.4 and contains
+the appropriate gnu-efi source.
 -------------------------------------------------------------------------------
-https://github.com/rhboot/shim/tree/shim-15.1
+We can confirm that all of our shim binaries are built from the referenced tarball.
 
 -------------------------------------------------------------------------------
 URL for a repo that contains the exact code which was built to get this binary:
 -------------------------------------------------------------------------------
-https://github.com/rhboot/shim/tree/shim-15.1
+https://github.com/rhboot/shim/tree/15.4
 
 -------------------------------------------------------------------------------
 What patches are being applied and why:
 -------------------------------------------------------------------------------
-A patch for a missing '{' in mok.c is applied to the shim-15.1 code base, as the build fails without it:
-https://github.com/neverware/shim-build/blob/v4/build-fix.patch
+No shim patches are applied.
 
 -------------------------------------------------------------------------------
-If bootloader, shim loading is, grub2: is CVE-2020-10713 fixed ?
+If bootloader, shim loading is, GRUB2: is CVE-2020-14372, CVE-2020-25632,
+ CVE-2020-25647, CVE-2020-27749, CVE-2020-27779, CVE-2021-20225, CVE-2021-20233,
+ CVE-2020-10713, CVE-2020-14308, CVE-2020-14309, CVE-2020-14310, CVE-2020-14311,
+ CVE-2020-15705, and if you are shipping the shim_lock module CVE-2021-3418
 -------------------------------------------------------------------------------
-Yes.
+All of the referenced CVEs are fixed in our GRUB2 fork.
 
 -------------------------------------------------------------------------------
-If bootloader, shim loading is, grub2, and previous shims were trusting affected
-by CVE-2020-10713 grub2:
+What exact implementation of Secureboot in GRUB2 ( if this is your bootloader ) you have ?
+* Upstream GRUB2 shim_lock verifier or * Downstream RHEL/Fedora/Debian/Canonical like implementation ?
+-------------------------------------------------------------------------------
+Downstream RHEL/Fedora/Debian/Canonical like implementation
+
+-------------------------------------------------------------------------------
+If bootloader, shim loading is, GRUB2, and previous shims were trusting affected
+by CVE-2020-14372, CVE-2020-25632, CVE-2020-25647, CVE-2020-27749,
+  CVE-2020-27779, CVE-2021-20225, CVE-2021-20233, CVE-2020-10713,
+  CVE-2020-14308, CVE-2020-14309, CVE-2020-14310, CVE-2020-14311, CVE-2020-15705,
+  and if you were shipping the shim_lock module CVE-2021-3418
+  ( July 2020 grub2 CVE list + March 2021 grub2 CVE list )
+  grub2:
 * were old shims hashes provided to Microsoft for verification
   and to be added to future DBX update ?
-* Does your new chain of trust disallow booting old, affected by CVE-2020-10713,
+* Does your new chain of trust disallow booting old, affected by CVE-2020-14372,
+  CVE-2020-25632, CVE-2020-25647, CVE-2020-27749,
+  CVE-2020-27779, CVE-2021-20225, CVE-2021-20233, CVE-2020-10713,
+  CVE-2020-14308, CVE-2020-14309, CVE-2020-14310, CVE-2020-14311, CVE-2020-15705,
+  and if you were shipping the shim_lock module CVE-2021-3418
+  ( July 2020 grub2 CVE list + March 2021 grub2 CVE list )
   grub2 builds ?
 -------------------------------------------------------------------------------
-1) Yes, our old hashes have been sent to Microsoft for verification via email to ueficamanualreview@microsoft.com.
+1) Yes, our old vulnerable hashes have been sent to Microsoft for verification via email to ueficamanualreview@microsoft.com.
 2) Our new chain of trust will utilize our new EV Code Signing certificate for the first time, which expires in 2022.  All vulnerable versions of grub that we have released to date have been signed with our old now-expired certificate (exp. 09/02/2020), so they will not be allowed to boot in our new chain of trust.
 
 -------------------------------------------------------------------------------
@@ -90,17 +114,26 @@ upstream commit 75b0cea7bf307f362057cc778efe89af4c615354 applied ?
 
 -------------------------------------------------------------------------------
 If you use vendor_db functionality of providing multiple certificates and/or
-hashes please briefly describe your certificate setup. If there are whitelisted hashes
+hashes please briefly describe your certificate setup. If there are allow-listed hashes
 please provide exact binaries for which hashes are created via file sharing service,
 available in public with anonymous access for verification
 -------------------------------------------------------------------------------
 We do not use this functionality.
 
+-------------------------------------------------------------------------------
+If you are re-using a previously used (CA) certificate, you will need
+to add the hashes of the previous GRUB2 binaries to vendor_dbx in shim
+in order to prevent GRUB2 from being able to chainload those older GRUB2
+binaries. If you are changing to a new (CA) certificate, this does not
+apply. Please describe your strategy.
+-------------------------------------------------------------------------------
+We are changing to a new certificate.
 
 -------------------------------------------------------------------------------
 What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as close as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
+If the shim binaries can't be reproduced using the provided Dockerfile, please explain why that's the case and the differences would be.
 -------------------------------------------------------------------------------
-This repo contains the Dockerfile we use to build shim: https://github.com/neverware/shim-build/tree/v4
+All shim binaries can be built using our Dockerfile and instructions in the README.md of https://github.com/neverware/shim-build/tree/v5
 
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
@@ -110,7 +143,4 @@ Which files in this repo are the logs for your build?   This should include logs
 -------------------------------------------------------------------------------
 Add any additional information you think we may need to validate this shim
 -------------------------------------------------------------------------------
-Our shim-15.1 build is largely upstream's 15.1 with our new public certificate embedded.  This build has been tested with our new grub, which is now up-to-date with fedora-33.
-
-
-
+We made our last shim submissions as Neverware.  See https://github.com/rhboot/shim-review/issues/27 and https://github.com/rhboot/shim-review/issues/106.
