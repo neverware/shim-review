@@ -65,7 +65,12 @@ https://github.com/rhboot/shim/tree/15.4
 -------------------------------------------------------------------------------
 What patches are being applied and why:
 -------------------------------------------------------------------------------
-No shim patches are applied.
+We are applying the following patches to fix critical regressions that have been identified in shim 15.4:
+
+https://github.com/rhboot/shim/pull/364
+https://github.com/rhboot/shim/pull/362
+https://github.com/rhboot/shim/pull/357
+https://github.com/rhboot/shim/pull/361
 
 -------------------------------------------------------------------------------
 If bootloader, shim loading is, GRUB2: is CVE-2020-14372, CVE-2020-25632,
