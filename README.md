@@ -65,7 +65,12 @@ https://github.com/rhboot/shim/tree/15.4
 -------------------------------------------------------------------------------
 What patches are being applied and why:
 -------------------------------------------------------------------------------
-No shim patches are applied.
+We are applying the following patches to fix critical regressions that have been identified in shim 15.4:
+
+https://github.com/rhboot/shim/pull/364
+https://github.com/rhboot/shim/pull/362
+https://github.com/rhboot/shim/pull/357
+https://github.com/rhboot/shim/pull/361
 
 -------------------------------------------------------------------------------
 If bootloader, shim loading is, GRUB2: is CVE-2020-14372, CVE-2020-25632,
@@ -133,7 +138,7 @@ We are changing to a new certificate.
 What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as close as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
 If the shim binaries can't be reproduced using the provided Dockerfile, please explain why that's the case and the differences would be.
 -------------------------------------------------------------------------------
-All shim binaries can be built using our Dockerfile and instructions in the README.md of https://github.com/neverware/shim-build/tree/v5
+All shim binaries can be built using our Dockerfile and instructions in the README.md of https://github.com/neverware/shim-build/tree/v6
 
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.

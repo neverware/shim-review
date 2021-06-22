@@ -1,55 +1,53 @@
 sudo docker build --no-cache -t shim-build .
-Sending build context to Docker daemon  83.46kB
+Sending build context to Docker daemon  139.8kB
 
-Step 1/15 : FROM fedora:33
-33: Pulling from library/fedora
-588cf1704268: Pulling fs layer
-588cf1704268: Verifying Checksum
-588cf1704268: Download complete
-588cf1704268: Pull complete
-Digest: sha256:5404c1f9b87f10d8be6c955dba1bebef8b5302549bea23554df7df20802faba6
-Status: Downloaded newer image for fedora:33
+Step 1/23 : FROM fedora:33
  ---> 26056ca25aff
-Step 2/15 : RUN dnf install -y     bzip2     gcc     git     gnu-efi-devel     make     patch     wget
- ---> Running in d0ce019ed35d
-Fedora 33 openh264 (From Cisco) - x86_64        6.5 kB/s | 2.5 kB     00:00    
-Fedora Modular 33 - x86_64                      2.3 MB/s | 3.3 MB     00:01    
-Fedora Modular 33 - x86_64 - Updates            7.4 MB/s | 3.1 MB     00:00    
-Fedora 33 - x86_64 - Updates                     17 MB/s |  26 MB     00:01    
-Fedora 33 - x86_64                               25 MB/s |  72 MB     00:02    
+Step 2/23 : RUN dnf install -y     bzip2     gcc     git     gnu-efi-devel     make     patch     wget
+ ---> Running in 4862b63b46c0
+Fedora 33 openh264 (From Cisco) - x86_64        7.1 kB/s | 2.5 kB     00:00    
+Fedora Modular 33 - x86_64                      5.7 MB/s | 3.3 MB     00:00    
+Fedora Modular 33 - x86_64 - Updates            2.6 MB/s | 3.1 MB     00:01    
+Fedora 33 - x86_64 - Updates                     10 MB/s |  27 MB     00:02    
+Fedora 33 - x86_64                               21 MB/s |  72 MB     00:03    
 Dependencies resolved.
 ================================================================================
  Package                     Arch    Version                     Repo      Size
 ================================================================================
 Installing:
  bzip2                       x86_64  1.0.8-4.fc33                fedora    52 k
- gcc                         x86_64  10.2.1-9.fc33               updates   30 M
- git                         x86_64  2.30.2-1.fc33               updates  121 k
+ gcc                         x86_64  10.3.1-1.fc33               updates   30 M
+ git                         x86_64  2.31.1-3.fc33               updates  122 k
  gnu-efi-devel               noarch  1:3.0.11-5.fc33             fedora   130 k
  make                        x86_64  1:4.3-2.fc33                fedora   539 k
  patch                       x86_64  2.7.6-13.fc33               fedora   129 k
  wget                        x86_64  1.21.1-2.fc33               updates  819 k
 Upgrading:
- libxcrypt                   x86_64  4.4.19-1.fc33               updates  118 k
+ glibc                       x86_64  2.32-6.fc33                 updates  3.6 M
+ glibc-common                x86_64  2.32-6.fc33                 updates  1.8 M
+ glibc-minimal-langpack      x86_64  2.32-6.fc33                 updates   83 k
+ libgcc                      x86_64  10.3.1-1.fc33               updates  106 k
+ libgomp                     x86_64  10.3.1-1.fc33               updates  267 k
+ libxcrypt                   x86_64  4.4.20-2.fc33               updates  119 k
 Installing dependencies:
  binutils                    x86_64  2.35-18.fc33                updates  5.4 M
  binutils-gold               x86_64  2.35-18.fc33                updates  774 k
- cpp                         x86_64  10.2.1-9.fc33               updates  9.4 M
+ cpp                         x86_64  10.3.1-1.fc33               updates  9.4 M
  ed                          x86_64  1.14.2-9.fc33               fedora    75 k
  elfutils-debuginfod-client  x86_64  0.183-1.fc33                updates   34 k
- emacs-filesystem            noarch  1:27.2-1.fc33               updates  8.0 k
+ emacs-filesystem            noarch  1:27.2-2.fc33               updates  8.1 k
  gc                          x86_64  8.0.4-4.fc33                fedora   104 k
- git-core                    x86_64  2.30.2-1.fc33               updates  3.7 M
- git-core-doc                noarch  2.30.2-1.fc33               updates  2.3 M
- glibc-devel                 x86_64  2.32-4.fc33                 updates  1.0 M
- glibc-headers-x86           noarch  2.32-4.fc33                 updates  482 k
+ git-core                    x86_64  2.31.1-3.fc33               updates  3.6 M
+ git-core-doc                noarch  2.31.1-3.fc33               updates  2.3 M
+ glibc-devel                 x86_64  2.32-6.fc33                 updates  1.0 M
+ glibc-headers-x86           noarch  2.32-6.fc33                 updates  483 k
  gnu-efi                     x86_64  1:3.0.11-5.fc33             fedora    69 k
  gnu-efi-compat              x86_64  1:3.0.11-5.fc33             fedora    10 k
  groff-base                  x86_64  1.22.4-4.fc33               updates  1.1 M
  guile22                     x86_64  2.2.7-1.fc33                updates  6.5 M
  info                        x86_64  6.7-8.fc33                  fedora   228 k
  isl                         x86_64  0.16.1-12.fc33              fedora   876 k
- kernel-headers              x86_64  5.11.14-200.fc33            updates  1.2 M
+ kernel-headers              x86_64  5.12.5-200.fc33             updates  1.2 M
  less                        x86_64  551-4.fc33                  fedora   154 k
  libcbor                     x86_64  0.5.0-7.fc33                fedora    46 k
  libedit                     x86_64  3.1-33.20191231cvs.fc33     fedora   106 k
@@ -57,7 +55,7 @@ Installing dependencies:
  libmpc                      x86_64  1.1.0-9.fc33                fedora    59 k
  libpkgconf                  x86_64  1.7.3-5.fc33                updates   36 k
  libtool-ltdl                x86_64  2.4.6-36.fc33               fedora    36 k
- libxcrypt-devel             x86_64  4.4.19-1.fc33               updates   29 k
+ libxcrypt-devel             x86_64  4.4.20-2.fc33               updates   29 k
  ncurses                     x86_64  6.2-3.20200222.fc33         fedora   395 k
  openssh                     x86_64  8.4p1-5.fc33                updates  419 k
  openssh-clients             x86_64  8.4p1-5.fc33                updates  611 k
@@ -82,7 +80,7 @@ Installing dependencies:
  perl-FileHandle             noarch  2.03-469.fc33               updates   26 k
  perl-Getopt-Long            noarch  1:2.52-1.fc33               fedora    60 k
  perl-Getopt-Std             noarch  1.12-469.fc33               updates   26 k
- perl-Git                    noarch  2.30.2-1.fc33               updates   43 k
+ perl-Git                    noarch  2.31.1-3.fc33               updates   44 k
  perl-HTTP-Tiny              noarch  0.076-457.fc33              fedora    55 k
  perl-IO                     x86_64  1.43-469.fc33               updates   98 k
  perl-IPC-Open3              noarch  1.21-469.fc33               updates   34 k
@@ -135,361 +133,391 @@ Installing weak dependencies:
 Transaction Summary
 ================================================================================
 Install  105 Packages
-Upgrade    1 Package
+Upgrade    6 Packages
 
-Total download size: 74 M
+Total download size: 80 M
 Downloading Packages:
-(1/106): binutils-gold-2.35-18.fc33.x86_64.rpm  6.3 MB/s | 774 kB     00:00    
-(2/106): binutils-2.35-18.fc33.x86_64.rpm        27 MB/s | 5.4 MB     00:00    
-(3/106): elfutils-debuginfod-client-0.183-1.fc3 453 kB/s |  34 kB     00:00    
-(4/106): emacs-filesystem-27.2-1.fc33.noarch.rp 630 kB/s | 8.0 kB     00:00    
-(5/106): git-2.30.2-1.fc33.x86_64.rpm           5.5 MB/s | 121 kB     00:00    
-(6/106): cpp-10.2.1-9.fc33.x86_64.rpm            26 MB/s | 9.4 MB     00:00    
-(7/106): git-core-2.30.2-1.fc33.x86_64.rpm       19 MB/s | 3.7 MB     00:00    
-(8/106): glibc-devel-2.32-4.fc33.x86_64.rpm      11 MB/s | 1.0 MB     00:00    
-(9/106): git-core-doc-2.30.2-1.fc33.noarch.rpm   12 MB/s | 2.3 MB     00:00    
-(10/106): glibc-headers-x86-2.32-4.fc33.noarch. 5.9 MB/s | 482 kB     00:00    
-(11/106): groff-base-1.22.4-4.fc33.x86_64.rpm   9.4 MB/s | 1.1 MB     00:00    
-(12/106): gcc-10.2.1-9.fc33.x86_64.rpm           49 MB/s |  30 MB     00:00    
-(13/106): kernel-headers-5.11.14-200.fc33.x86_6 8.2 MB/s | 1.2 MB     00:00    
-(14/106): libpkgconf-1.7.3-5.fc33.x86_64.rpm    1.6 MB/s |  36 kB     00:00    
-(15/106): mkpasswd-5.5.9-1.fc33.x86_64.rpm      1.9 MB/s |  41 kB     00:00    
-(16/106): libxcrypt-devel-4.4.19-1.fc33.x86_64. 805 kB/s |  29 kB     00:00    
-(17/106): openssh-8.4p1-5.fc33.x86_64.rpm       5.3 MB/s | 419 kB     00:00    
-(18/106): openssh-clients-8.4p1-5.fc33.x86_64.r 4.6 MB/s | 611 kB     00:00    
-(19/106): perl-AutoLoader-5.74-469.fc33.noarch. 449 kB/s |  32 kB     00:00    
-(20/106): perl-B-1.80-469.fc33.x86_64.rpm       7.9 MB/s | 192 kB     00:00    
-(21/106): perl-Class-Struct-0.66-469.fc33.noarc 2.4 MB/s |  33 kB     00:00    
-(22/106): perl-Digest-1.19-1.fc33.noarch.rpm    1.6 MB/s |  26 kB     00:00    
-(23/106): perl-Digest-MD5-2.58-1.fc33.x86_64.rp 2.1 MB/s |  36 kB     00:00    
-(24/106): perl-DynaLoader-1.47-469.fc33.x86_64. 1.9 MB/s |  40 kB     00:00    
-(25/106): perl-Errno-1.30-469.fc33.x86_64.rpm   2.1 MB/s |  26 kB     00:00    
-(26/106): perl-Fcntl-1.13-469.fc33.x86_64.rpm   1.6 MB/s |  32 kB     00:00    
-(27/106): perl-Encode-3.08-458.fc33.x86_64.rpm   11 MB/s | 1.7 MB     00:00    
-(28/106): perl-File-Basename-2.85-469.fc33.noar 233 kB/s |  28 kB     00:00    
-(29/106): perl-File-Find-1.37-469.fc33.noarch.r 1.5 MB/s |  36 kB     00:00    
-(30/106): perl-File-Path-2.18-1.fc33.noarch.rpm 1.7 MB/s |  36 kB     00:00    
-(31/106): perl-File-Temp-0.231.100-1.fc33.noarc 3.7 MB/s |  60 kB     00:00    
-(32/106): perl-FileHandle-2.03-469.fc33.noarch. 2.0 MB/s |  26 kB     00:00    
-(33/106): perl-File-stat-1.09-469.fc33.noarch.r 1.1 MB/s |  28 kB     00:00    
-(34/106): perl-Getopt-Std-1.12-469.fc33.noarch. 2.1 MB/s |  26 kB     00:00    
-(35/106): perl-Git-2.30.2-1.fc33.noarch.rpm     3.3 MB/s |  43 kB     00:00    
-(36/106): perl-IO-1.43-469.fc33.x86_64.rpm      5.4 MB/s |  98 kB     00:00    
-(37/106): perl-IPC-Open3-1.21-469.fc33.noarch.r 1.8 MB/s |  34 kB     00:00    
-(38/106): perl-NDBM_File-1.15-469.fc33.x86_64.r 1.6 MB/s |  33 kB     00:00    
-(39/106): perl-POSIX-1.94-469.fc33.x86_64.rpm   4.8 MB/s | 110 kB     00:00    
-(40/106): perl-PathTools-3.78-458.fc33.x86_64.r 3.5 MB/s |  85 kB     00:00    
-(41/106): perl-Pod-Usage-2.01-1.fc33.noarch.rpm 1.7 MB/s |  41 kB     00:00    
-(42/106): perl-Pod-Simple-3.42-1.fc33.noarch.rp 4.2 MB/s | 216 kB     00:00    
-(43/106): perl-SelectSaver-1.02-469.fc33.noarch 927 kB/s |  23 kB     00:00    
-(44/106): perl-Socket-2.031-1.fc33.x86_64.rpm   1.8 MB/s |  56 kB     00:00    
-(45/106): perl-Symbol-1.08-469.fc33.noarch.rpm  1.3 MB/s |  25 kB     00:00    
-(46/106): perl-base-2.27-469.fc33.noarch.rpm    735 kB/s |  27 kB     00:00    
-(47/106): perl-if-0.60.800-469.fc33.noarch.rpm  625 kB/s |  25 kB     00:00    
-(48/106): perl-interpreter-5.32.1-469.fc33.x86_ 1.0 MB/s |  83 kB     00:00    
-(49/106): perl-lib-0.65-469.fc33.x86_64.rpm     327 kB/s |  26 kB     00:00    
-(50/106): perl-libs-5.32.1-469.fc33.x86_64.rpm   34 MB/s | 2.1 MB     00:00    
-(51/106): perl-libnet-3.13-1.fc33.noarch.rpm    1.7 MB/s | 126 kB     00:00    
-(52/106): perl-macros-5.32.1-469.fc33.noarch.rp 1.7 MB/s |  22 kB     00:00    
-(53/106): perl-mro-1.23-469.fc33.x86_64.rpm     3.1 MB/s |  39 kB     00:00    
-(54/106): perl-overload-1.31-469.fc33.noarch.rp 2.5 MB/s |  57 kB     00:00    
-(55/106): perl-overloading-0.02-469.fc33.noarch 1.0 MB/s |  24 kB     00:00    
-(56/106): perl-subs-1.03-469.fc33.noarch.rpm    1.6 MB/s |  23 kB     00:00    
-(57/106): perl-vars-1.05-469.fc33.noarch.rpm    1.0 MB/s |  24 kB     00:00    
-(58/106): pkgconf-m4-1.7.3-5.fc33.noarch.rpm    1.5 MB/s |  14 kB     00:00    
-(59/106): pkgconf-1.7.3-5.fc33.x86_64.rpm       1.4 MB/s |  41 kB     00:00    
-(60/106): pkgconf-pkg-config-1.7.3-5.fc33.x86_6 482 kB/s |  10 kB     00:00    
-(61/106): whois-nls-5.5.9-1.fc33.noarch.rpm     2.4 MB/s |  33 kB     00:00    
-(62/106): wget-1.21.1-2.fc33.x86_64.rpm          14 MB/s | 819 kB     00:00    
-(63/106): guile22-2.2.7-1.fc33.x86_64.rpm       5.5 MB/s | 6.5 MB     00:01    
-(64/106): ed-1.14.2-9.fc33.x86_64.rpm           470 kB/s |  75 kB     00:00    
-(65/106): bzip2-1.0.8-4.fc33.x86_64.rpm         264 kB/s |  52 kB     00:00    
-(66/106): gnu-efi-compat-3.0.11-5.fc33.x86_64.r 301 kB/s |  10 kB     00:00    
-(67/106): gnu-efi-3.0.11-5.fc33.x86_64.rpm      1.0 MB/s |  69 kB     00:00    
-(68/106): gc-8.0.4-4.fc33.x86_64.rpm            627 kB/s | 104 kB     00:00    
-(69/106): gnu-efi-devel-3.0.11-5.fc33.noarch.rp 1.9 MB/s | 130 kB     00:00    
-(70/106): info-6.7-8.fc33.x86_64.rpm            3.2 MB/s | 228 kB     00:00    
-(71/106): less-551-4.fc33.x86_64.rpm            3.9 MB/s | 154 kB     00:00    
-(72/106): libcbor-0.5.0-7.fc33.x86_64.rpm       1.2 MB/s |  46 kB     00:00    
-(73/106): libedit-3.1-33.20191231cvs.fc33.x86_6 2.8 MB/s | 106 kB     00:00    
-(74/106): isl-0.16.1-12.fc33.x86_64.rpm         5.9 MB/s | 876 kB     00:00    
-(75/106): libfido2-1.4.0-3.fc33.x86_64.rpm      1.3 MB/s |  66 kB     00:00    
-(76/106): libmpc-1.1.0-9.fc33.x86_64.rpm        1.3 MB/s |  59 kB     00:00    
-(77/106): libtool-ltdl-2.4.6-36.fc33.x86_64.rpm 955 kB/s |  36 kB     00:00    
-(78/106): make-4.3-2.fc33.x86_64.rpm            7.1 MB/s | 539 kB     00:00    
-(79/106): ncurses-6.2-3.20200222.fc33.x86_64.rp 4.9 MB/s | 395 kB     00:00    
-(80/106): patch-2.7.6-13.fc33.x86_64.rpm        2.2 MB/s | 129 kB     00:00    
-(81/106): perl-Carp-1.50-457.fc33.noarch.rpm    833 kB/s |  29 kB     00:00    
-(82/106): perl-Data-Dumper-2.174-459.fc33.x86_6 1.4 MB/s |  56 kB     00:00    
-(83/106): perl-Error-0.17029-4.fc33.noarch.rpm  1.1 MB/s |  42 kB     00:00    
-(84/106): perl-Exporter-5.74-458.fc33.noarch.rp 881 kB/s |  32 kB     00:00    
-(85/106): perl-Getopt-Long-2.52-1.fc33.noarch.r 1.5 MB/s |  60 kB     00:00    
-(86/106): perl-HTTP-Tiny-0.076-457.fc33.noarch. 1.4 MB/s |  55 kB     00:00    
-(87/106): perl-IO-Socket-IP-0.41-2.fc33.noarch. 1.2 MB/s |  43 kB     00:00    
-(88/106): perl-IO-Socket-SSL-2.068-3.fc33.noarc 4.9 MB/s | 216 kB     00:00    
-(89/106): perl-MIME-Base64-3.16-1.fc33.x86_64.r 710 kB/s |  30 kB     00:00    
-(90/106): perl-Mozilla-CA-20200520-3.fc33.noarc 336 kB/s |  12 kB     00:00    
-(91/106): perl-Net-SSLeay-1.88-9.fc33.x86_64.rp 7.3 MB/s | 352 kB     00:00    
-(92/106): perl-Pod-Escapes-1.07-457.fc33.noarch 429 kB/s |  20 kB     00:00    
-(93/106): perl-Pod-Perldoc-3.28.01-458.fc33.noa 1.8 MB/s |  84 kB     00:00    
-(94/106): perl-Scalar-List-Utils-1.55-457.fc33. 1.7 MB/s |  70 kB     00:00    
-(95/106): perl-Term-ANSIColor-5.01-458.fc33.noa 1.2 MB/s |  49 kB     00:00    
-(96/106): perl-Storable-3.21-457.fc33.x86_64.rp 1.8 MB/s |  97 kB     00:00    
-(97/106): perl-Term-Cap-1.17-457.fc33.noarch.rp 582 kB/s |  22 kB     00:00    
-(98/106): perl-TermReadKey-2.38-8.fc33.x86_64.r 970 kB/s |  36 kB     00:00    
-(99/106): perl-Text-ParseWords-3.30-457.fc33.no 413 kB/s |  16 kB     00:00    
-(100/106): perl-Text-Tabs+Wrap-2013.0523-457.fc 644 kB/s |  23 kB     00:00    
-(101/106): perl-Time-Local-1.300-4.fc33.noarch. 892 kB/s |  34 kB     00:00    
-(102/106): perl-URI-1.76-9.fc33.noarch.rpm      2.8 MB/s | 108 kB     00:00    
-(103/106): perl-constant-1.33-458.fc33.noarch.r 646 kB/s |  23 kB     00:00    
-(104/106): perl-parent-0.238-457.fc33.noarch.rp 407 kB/s |  14 kB     00:00    
-(105/106): perl-podlators-4.14-457.fc33.noarch. 2.8 MB/s | 113 kB     00:00    
-(106/106): libxcrypt-4.4.19-1.fc33.x86_64.rpm   3.3 MB/s | 118 kB     00:00    
+(1/111): binutils-gold-2.35-18.fc33.x86_64.rpm  1.3 MB/s | 774 kB     00:00    
+(2/111): elfutils-debuginfod-client-0.183-1.fc3 399 kB/s |  34 kB     00:00    
+(3/111): emacs-filesystem-27.2-2.fc33.noarch.rp  98 kB/s | 8.1 kB     00:00    
+(4/111): binutils-2.35-18.fc33.x86_64.rpm       4.2 MB/s | 5.4 MB     00:01    
+(5/111): git-2.31.1-3.fc33.x86_64.rpm           1.4 MB/s | 122 kB     00:00    
+(6/111): git-core-2.31.1-3.fc33.x86_64.rpm      5.0 MB/s | 3.6 MB     00:00    
+(7/111): git-core-doc-2.31.1-3.fc33.noarch.rpm  4.7 MB/s | 2.3 MB     00:00    
+(8/111): glibc-devel-2.32-6.fc33.x86_64.rpm     3.2 MB/s | 1.0 MB     00:00    
+(9/111): glibc-headers-x86-2.32-6.fc33.noarch.r 2.9 MB/s | 483 kB     00:00    
+(10/111): groff-base-1.22.4-4.fc33.x86_64.rpm   3.2 MB/s | 1.1 MB     00:00    
+(11/111): cpp-10.3.1-1.fc33.x86_64.rpm          2.7 MB/s | 9.4 MB     00:03    
+(12/111): kernel-headers-5.12.5-200.fc33.x86_64 1.3 MB/s | 1.2 MB     00:00    
+(13/111): libpkgconf-1.7.3-5.fc33.x86_64.rpm    419 kB/s |  36 kB     00:00    
+(14/111): libxcrypt-devel-4.4.20-2.fc33.x86_64. 332 kB/s |  29 kB     00:00    
+(15/111): mkpasswd-5.5.9-1.fc33.x86_64.rpm      488 kB/s |  41 kB     00:00    
+(16/111): openssh-8.4p1-5.fc33.x86_64.rpm       1.3 MB/s | 419 kB     00:00    
+(17/111): gcc-10.3.1-1.fc33.x86_64.rpm          6.1 MB/s |  30 MB     00:04    
+(18/111): openssh-clients-8.4p1-5.fc33.x86_64.r 1.0 MB/s | 611 kB     00:00    
+(19/111): guile22-2.2.7-1.fc33.x86_64.rpm       2.9 MB/s | 6.5 MB     00:02    
+(20/111): perl-Class-Struct-0.66-469.fc33.noarc 390 kB/s |  33 kB     00:00    
+(21/111): perl-AutoLoader-5.74-469.fc33.noarch. 209 kB/s |  32 kB     00:00    
+(22/111): perl-B-1.80-469.fc33.x86_64.rpm       1.1 MB/s | 192 kB     00:00    
+(23/111): perl-Digest-1.19-1.fc33.noarch.rpm    321 kB/s |  26 kB     00:00    
+(24/111): perl-Digest-MD5-2.58-1.fc33.x86_64.rp 445 kB/s |  36 kB     00:00    
+(25/111): perl-DynaLoader-1.47-469.fc33.x86_64. 485 kB/s |  40 kB     00:00    
+(26/111): perl-Errno-1.30-469.fc33.x86_64.rpm   322 kB/s |  26 kB     00:00    
+(27/111): perl-Fcntl-1.13-469.fc33.x86_64.rpm   380 kB/s |  32 kB     00:00    
+(28/111): perl-File-Basename-2.85-469.fc33.noar 336 kB/s |  28 kB     00:00    
+(29/111): perl-File-Find-1.37-469.fc33.noarch.r 435 kB/s |  36 kB     00:00    
+(30/111): perl-File-Path-2.18-1.fc33.noarch.rpm 429 kB/s |  36 kB     00:00    
+(31/111): perl-File-Temp-0.231.100-1.fc33.noarc 719 kB/s |  60 kB     00:00    
+(32/111): perl-File-stat-1.09-469.fc33.noarch.r 337 kB/s |  28 kB     00:00    
+(33/111): perl-FileHandle-2.03-469.fc33.noarch. 320 kB/s |  26 kB     00:00    
+(34/111): perl-Getopt-Std-1.12-469.fc33.noarch. 318 kB/s |  26 kB     00:00    
+(35/111): perl-Git-2.31.1-3.fc33.noarch.rpm     525 kB/s |  44 kB     00:00    
+(36/111): perl-IO-1.43-469.fc33.x86_64.rpm      1.1 MB/s |  98 kB     00:00    
+(37/111): perl-Encode-3.08-458.fc33.x86_64.rpm  3.2 MB/s | 1.7 MB     00:00    
+(38/111): perl-IPC-Open3-1.21-469.fc33.noarch.r 323 kB/s |  34 kB     00:00    
+(39/111): perl-NDBM_File-1.15-469.fc33.x86_64.r 409 kB/s |  33 kB     00:00    
+(40/111): perl-POSIX-1.94-469.fc33.x86_64.rpm   1.3 MB/s | 110 kB     00:00    
+(41/111): perl-PathTools-3.78-458.fc33.x86_64.r 1.0 MB/s |  85 kB     00:00    
+(42/111): perl-Pod-Simple-3.42-1.fc33.noarch.rp 2.5 MB/s | 216 kB     00:00    
+(43/111): perl-Pod-Usage-2.01-1.fc33.noarch.rpm 505 kB/s |  41 kB     00:00    
+(44/111): perl-SelectSaver-1.02-469.fc33.noarch 269 kB/s |  23 kB     00:00    
+(45/111): perl-Socket-2.031-1.fc33.x86_64.rpm   695 kB/s |  56 kB     00:00    
+(46/111): perl-Symbol-1.08-469.fc33.noarch.rpm  317 kB/s |  25 kB     00:00    
+(47/111): perl-base-2.27-469.fc33.noarch.rpm    326 kB/s |  27 kB     00:00    
+(48/111): perl-if-0.60.800-469.fc33.noarch.rpm  317 kB/s |  25 kB     00:00    
+(49/111): perl-interpreter-5.32.1-469.fc33.x86_ 1.0 MB/s |  83 kB     00:00    
+(50/111): perl-lib-0.65-469.fc33.x86_64.rpm     313 kB/s |  26 kB     00:00    
+(51/111): perl-libnet-3.13-1.fc33.noarch.rpm    1.5 MB/s | 126 kB     00:00    
+(52/111): perl-macros-5.32.1-469.fc33.noarch.rp 256 kB/s |  22 kB     00:00    
+(53/111): perl-mro-1.23-469.fc33.x86_64.rpm     483 kB/s |  39 kB     00:00    
+(54/111): perl-overload-1.31-469.fc33.noarch.rp 675 kB/s |  57 kB     00:00    
+(55/111): perl-overloading-0.02-469.fc33.noarch 300 kB/s |  24 kB     00:00    
+(56/111): perl-subs-1.03-469.fc33.noarch.rpm    273 kB/s |  23 kB     00:00    
+(57/111): perl-vars-1.05-469.fc33.noarch.rpm    302 kB/s |  24 kB     00:00    
+(58/111): pkgconf-1.7.3-5.fc33.x86_64.rpm       487 kB/s |  41 kB     00:00    
+(59/111): pkgconf-m4-1.7.3-5.fc33.noarch.rpm    182 kB/s |  14 kB     00:00    
+(60/111): pkgconf-pkg-config-1.7.3-5.fc33.x86_6 122 kB/s |  10 kB     00:00    
+(61/111): whois-nls-5.5.9-1.fc33.noarch.rpm     387 kB/s |  33 kB     00:00    
+(62/111): wget-1.21.1-2.fc33.x86_64.rpm         3.3 MB/s | 819 kB     00:00    
+(63/111): perl-libs-5.32.1-469.fc33.x86_64.rpm  2.9 MB/s | 2.1 MB     00:00    
+(64/111): bzip2-1.0.8-4.fc33.x86_64.rpm         106 kB/s |  52 kB     00:00    
+(65/111): ed-1.14.2-9.fc33.x86_64.rpm           160 kB/s |  75 kB     00:00    
+(66/111): gnu-efi-compat-3.0.11-5.fc33.x86_64.r 141 kB/s |  10 kB     00:00    
+(67/111): gnu-efi-3.0.11-5.fc33.x86_64.rpm      408 kB/s |  69 kB     00:00    
+(68/111): gc-8.0.4-4.fc33.x86_64.rpm            209 kB/s | 104 kB     00:00    
+(69/111): gnu-efi-devel-3.0.11-5.fc33.noarch.rp 862 kB/s | 130 kB     00:00    
+(70/111): info-6.7-8.fc33.x86_64.rpm            1.5 MB/s | 228 kB     00:00    
+(71/111): libcbor-0.5.0-7.fc33.x86_64.rpm       582 kB/s |  46 kB     00:00    
+(72/111): less-551-4.fc33.x86_64.rpm            1.0 MB/s | 154 kB     00:00    
+(73/111): libedit-3.1-33.20191231cvs.fc33.x86_6 1.3 MB/s | 106 kB     00:00    
+(74/111): isl-0.16.1-12.fc33.x86_64.rpm         3.0 MB/s | 876 kB     00:00    
+(75/111): libfido2-1.4.0-3.fc33.x86_64.rpm      885 kB/s |  66 kB     00:00    
+(76/111): libmpc-1.1.0-9.fc33.x86_64.rpm        789 kB/s |  59 kB     00:00    
+(77/111): libtool-ltdl-2.4.6-36.fc33.x86_64.rpm 484 kB/s |  36 kB     00:00    
+(78/111): patch-2.7.6-13.fc33.x86_64.rpm        1.7 MB/s | 129 kB     00:00    
+(79/111): make-4.3-2.fc33.x86_64.rpm            3.4 MB/s | 539 kB     00:00    
+(80/111): ncurses-6.2-3.20200222.fc33.x86_64.rp 2.6 MB/s | 395 kB     00:00    
+(81/111): perl-Carp-1.50-457.fc33.noarch.rpm    402 kB/s |  29 kB     00:00    
+(82/111): perl-Data-Dumper-2.174-459.fc33.x86_6 725 kB/s |  56 kB     00:00    
+(83/111): perl-Error-0.17029-4.fc33.noarch.rpm  560 kB/s |  42 kB     00:00    
+(84/111): perl-Exporter-5.74-458.fc33.noarch.rp 444 kB/s |  32 kB     00:00    
+(85/111): perl-Getopt-Long-2.52-1.fc33.noarch.r 799 kB/s |  60 kB     00:00    
+(86/111): perl-HTTP-Tiny-0.076-457.fc33.noarch. 724 kB/s |  55 kB     00:00    
+(87/111): perl-IO-Socket-IP-0.41-2.fc33.noarch. 594 kB/s |  43 kB     00:00    
+(88/111): perl-IO-Socket-SSL-2.068-3.fc33.noarc 2.6 MB/s | 216 kB     00:00    
+(89/111): perl-MIME-Base64-3.16-1.fc33.x86_64.r 403 kB/s |  30 kB     00:00    
+(90/111): perl-Mozilla-CA-20200520-3.fc33.noarc 163 kB/s |  12 kB     00:00    
+(91/111): perl-Net-SSLeay-1.88-9.fc33.x86_64.rp 4.2 MB/s | 352 kB     00:00    
+(92/111): perl-Pod-Escapes-1.07-457.fc33.noarch 266 kB/s |  20 kB     00:00    
+(93/111): perl-Pod-Perldoc-3.28.01-458.fc33.noa 1.1 MB/s |  84 kB     00:00    
+(94/111): perl-Scalar-List-Utils-1.55-457.fc33. 911 kB/s |  70 kB     00:00    
+(95/111): perl-Storable-3.21-457.fc33.x86_64.rp 1.2 MB/s |  97 kB     00:00    
+(96/111): perl-Term-ANSIColor-5.01-458.fc33.noa 652 kB/s |  49 kB     00:00    
+(97/111): perl-Term-Cap-1.17-457.fc33.noarch.rp 295 kB/s |  22 kB     00:00    
+(98/111): perl-TermReadKey-2.38-8.fc33.x86_64.r 487 kB/s |  36 kB     00:00    
+(99/111): perl-Text-ParseWords-3.30-457.fc33.no 213 kB/s |  16 kB     00:00    
+(100/111): perl-Text-Tabs+Wrap-2013.0523-457.fc 303 kB/s |  23 kB     00:00    
+(101/111): perl-Time-Local-1.300-4.fc33.noarch. 452 kB/s |  34 kB     00:00    
+(102/111): perl-URI-1.76-9.fc33.noarch.rpm      1.4 MB/s | 108 kB     00:00    
+(103/111): perl-constant-1.33-458.fc33.noarch.r 300 kB/s |  23 kB     00:00    
+(104/111): perl-parent-0.238-457.fc33.noarch.rp 188 kB/s |  14 kB     00:00    
+(105/111): perl-podlators-4.14-457.fc33.noarch. 1.5 MB/s | 113 kB     00:00    
+(106/111): glibc-minimal-langpack-2.32-6.fc33.x 349 kB/s |  83 kB     00:00    
+(107/111): libgcc-10.3.1-1.fc33.x86_64.rpm      659 kB/s | 106 kB     00:00    
+(108/111): libgomp-10.3.1-1.fc33.x86_64.rpm     1.1 MB/s | 267 kB     00:00    
+(109/111): glibc-common-2.32-6.fc33.x86_64.rpm  2.4 MB/s | 1.8 MB     00:00    
+(110/111): libxcrypt-4.4.20-2.fc33.x86_64.rpm   652 kB/s | 119 kB     00:00    
+(111/111): glibc-2.32-6.fc33.x86_64.rpm         2.5 MB/s | 3.6 MB     00:01    
 --------------------------------------------------------------------------------
-Total                                            23 MB/s |  74 MB     00:03     
+Total                                           7.5 MB/s |  80 MB     00:10     
 Running transaction check
 Transaction check succeeded.
 Running transaction test
 Transaction test succeeded.
 Running transaction
   Preparing        :                                                        1/1 
-  Installing       : libmpc-1.1.0-9.fc33.x86_64                           1/107 
-  Installing       : cpp-10.2.1-9.fc33.x86_64                             2/107 
-  Installing       : ncurses-6.2-3.20200222.fc33.x86_64                   3/107 
-  Installing       : libtool-ltdl-2.4.6-36.fc33.x86_64                    4/107 
-  Installing       : libedit-3.1-33.20191231cvs.fc33.x86_64               5/107 
-  Installing       : libcbor-0.5.0-7.fc33.x86_64                          6/107 
-  Installing       : libfido2-1.4.0-3.fc33.x86_64                         7/107 
-  Installing       : less-551-4.fc33.x86_64                               8/107 
-  Installing       : isl-0.16.1-12.fc33.x86_64                            9/107 
-  Installing       : info-6.7-8.fc33.x86_64                              10/107 
-  Installing       : ed-1.14.2-9.fc33.x86_64                             11/107 
-  Installing       : gnu-efi-compat-1:3.0.11-5.fc33.x86_64               12/107 
-  Installing       : gnu-efi-1:3.0.11-5.fc33.x86_64                      13/107 
-  Installing       : gc-8.0.4-4.fc33.x86_64                              14/107 
-  Installing       : whois-nls-5.5.9-1.fc33.noarch                       15/107 
-  Upgrading        : libxcrypt-4.4.19-1.fc33.x86_64                      16/107 
-  Installing       : mkpasswd-5.5.9-1.fc33.x86_64                        17/107 
-  Installing       : guile22-2.2.7-1.fc33.x86_64                         18/107 
-  Installing       : make-1:4.3-2.fc33.x86_64                            19/107 
-  Running scriptlet: openssh-8.4p1-5.fc33.x86_64                         20/107 
-  Installing       : openssh-8.4p1-5.fc33.x86_64                         20/107 
-  Installing       : openssh-clients-8.4p1-5.fc33.x86_64                 21/107 
-  Installing       : git-core-2.30.2-1.fc33.x86_64                       22/107 
-  Installing       : git-core-doc-2.30.2-1.fc33.noarch                   23/107 
-  Installing       : pkgconf-m4-1.7.3-5.fc33.noarch                      24/107 
-  Installing       : libpkgconf-1.7.3-5.fc33.x86_64                      25/107 
-  Installing       : pkgconf-1.7.3-5.fc33.x86_64                         26/107 
-  Installing       : pkgconf-pkg-config-1.7.3-5.fc33.x86_64              27/107 
-  Installing       : kernel-headers-5.11.14-200.fc33.x86_64              28/107 
-  Running scriptlet: groff-base-1.22.4-4.fc33.x86_64                     29/107 
-  Installing       : groff-base-1.22.4-4.fc33.x86_64                     29/107 
-  Running scriptlet: groff-base-1.22.4-4.fc33.x86_64                     29/107 
-  Installing       : perl-Digest-1.19-1.fc33.noarch                      30/107 
-  Installing       : perl-Digest-MD5-2.58-1.fc33.x86_64                  31/107 
-  Installing       : perl-FileHandle-2.03-469.fc33.noarch                32/107 
-  Installing       : perl-B-1.80-469.fc33.x86_64                         33/107 
-  Installing       : perl-AutoLoader-5.74-469.fc33.noarch                34/107 
-  Installing       : perl-Data-Dumper-2.174-459.fc33.x86_64              35/107 
-  Installing       : perl-libnet-3.13-1.fc33.noarch                      36/107 
-  Installing       : perl-base-2.27-469.fc33.noarch                      37/107 
-  Installing       : perl-Net-SSLeay-1.88-9.fc33.x86_64                  38/107 
-  Installing       : perl-URI-1.76-9.fc33.noarch                         39/107 
-  Installing       : perl-if-0.60.800-469.fc33.noarch                    40/107 
-  Installing       : perl-Pod-Escapes-1:1.07-457.fc33.noarch             41/107 
-  Installing       : perl-Text-Tabs+Wrap-2013.0523-457.fc33.noarch       42/107 
-  Installing       : perl-File-Path-2.18-1.fc33.noarch                   43/107 
-  Installing       : perl-Mozilla-CA-20200520-3.fc33.noarch              44/107 
-  Installing       : perl-IO-Socket-IP-0.41-2.fc33.noarch                45/107 
-  Installing       : perl-Time-Local-2:1.300-4.fc33.noarch               46/107 
-  Installing       : perl-IO-Socket-SSL-2.068-3.fc33.noarch              47/107 
-  Installing       : perl-subs-1.03-469.fc33.noarch                      48/107 
-  Installing       : perl-Class-Struct-0.66-469.fc33.noarch              49/107 
-  Installing       : perl-POSIX-1.94-469.fc33.x86_64                     50/107 
-  Installing       : perl-Term-ANSIColor-5.01-458.fc33.noarch            51/107 
-  Installing       : perl-Term-Cap-1.17-457.fc33.noarch                  52/107 
-  Installing       : perl-IPC-Open3-1.21-469.fc33.noarch                 53/107 
-  Installing       : perl-File-Temp-1:0.231.100-1.fc33.noarch            54/107 
-  Installing       : perl-HTTP-Tiny-0.076-457.fc33.noarch                55/107 
-  Installing       : perl-Pod-Simple-1:3.42-1.fc33.noarch                56/107 
-  Installing       : perl-Symbol-1.08-469.fc33.noarch                    57/107 
-  Installing       : perl-SelectSaver-1.02-469.fc33.noarch               58/107 
-  Installing       : perl-Socket-4:2.031-1.fc33.x86_64                   59/107 
-  Installing       : perl-File-stat-1.09-469.fc33.noarch                 60/107 
-  Installing       : perl-podlators-1:4.14-457.fc33.noarch               61/107 
-  Installing       : perl-Pod-Perldoc-3.28.01-458.fc33.noarch            62/107 
-  Installing       : perl-mro-1.23-469.fc33.x86_64                       63/107 
-  Installing       : perl-Fcntl-1.13-469.fc33.x86_64                     64/107 
-  Installing       : perl-overloading-0.02-469.fc33.noarch               65/107 
-  Installing       : perl-Text-ParseWords-3.30-457.fc33.noarch           66/107 
-  Installing       : perl-IO-1.43-469.fc33.x86_64                        67/107 
-  Installing       : perl-Pod-Usage-4:2.01-1.fc33.noarch                 68/107 
-  Installing       : perl-Getopt-Std-1.12-469.fc33.noarch                69/107 
-  Installing       : perl-Errno-1.30-469.fc33.x86_64                     70/107 
-  Installing       : perl-File-Basename-2.85-469.fc33.noarch             71/107 
-  Installing       : perl-vars-1.05-469.fc33.noarch                      72/107 
-  Installing       : perl-MIME-Base64-3.16-1.fc33.x86_64                 73/107 
-  Installing       : perl-overload-1.31-469.fc33.noarch                  74/107 
-  Installing       : perl-Scalar-List-Utils-4:1.55-457.fc33.x86_64       75/107 
-  Installing       : perl-Storable-1:3.21-457.fc33.x86_64                76/107 
-  Installing       : perl-constant-1.33-458.fc33.noarch                  77/107 
-  Installing       : perl-parent-1:0.238-457.fc33.noarch                 78/107 
-  Installing       : perl-Getopt-Long-1:2.52-1.fc33.noarch               79/107 
-  Installing       : perl-NDBM_File-1.15-469.fc33.x86_64                 80/107 
-  Installing       : perl-Carp-1.50-457.fc33.noarch                      81/107 
-  Installing       : perl-Exporter-5.74-458.fc33.noarch                  82/107 
-  Installing       : perl-PathTools-3.78-458.fc33.x86_64                 83/107 
-  Installing       : perl-Encode-4:3.08-458.fc33.x86_64                  84/107 
-  Installing       : perl-libs-4:5.32.1-469.fc33.x86_64                  85/107 
-  Installing       : perl-macros-4:5.32.1-469.fc33.noarch                86/107 
-  Installing       : perl-interpreter-4:5.32.1-469.fc33.x86_64           87/107 
-  Installing       : perl-DynaLoader-1.47-469.fc33.x86_64                88/107 
-  Installing       : perl-TermReadKey-2.38-8.fc33.x86_64                 89/107 
-  Installing       : perl-File-Find-1.37-469.fc33.noarch                 90/107 
-  Installing       : perl-lib-0.65-469.fc33.x86_64                       91/107 
-  Installing       : perl-Error-1:0.17029-4.fc33.noarch                  92/107 
-  Installing       : glibc-headers-x86-2.32-4.fc33.noarch                93/107 
-  Installing       : libxcrypt-devel-4.4.19-1.fc33.x86_64                94/107 
-  Installing       : glibc-devel-2.32-4.fc33.x86_64                      95/107 
-  Installing       : emacs-filesystem-1:27.2-1.fc33.noarch               96/107 
-  Installing       : perl-Git-2.30.2-1.fc33.noarch                       97/107 
-  Installing       : git-2.30.2-1.fc33.x86_64                            98/107 
-  Installing       : elfutils-debuginfod-client-0.183-1.fc33.x86_64      99/107 
-  Installing       : binutils-gold-2.35-18.fc33.x86_64                  100/107 
-  Installing       : binutils-2.35-18.fc33.x86_64                       101/107 
-  Running scriptlet: binutils-2.35-18.fc33.x86_64                       101/107 
-  Installing       : gcc-10.2.1-9.fc33.x86_64                           102/107 
-  Installing       : gnu-efi-devel-1:3.0.11-5.fc33.noarch               103/107 
-  Installing       : patch-2.7.6-13.fc33.x86_64                         104/107 
-  Installing       : bzip2-1.0.8-4.fc33.x86_64                          105/107 
-  Installing       : wget-1.21.1-2.fc33.x86_64                          106/107 
-  Cleanup          : libxcrypt-4.4.18-1.fc33.x86_64                     107/107 
-  Running scriptlet: libxcrypt-4.4.18-1.fc33.x86_64                     107/107 
-  Verifying        : binutils-2.35-18.fc33.x86_64                         1/107 
-  Verifying        : binutils-gold-2.35-18.fc33.x86_64                    2/107 
-  Verifying        : cpp-10.2.1-9.fc33.x86_64                             3/107 
-  Verifying        : elfutils-debuginfod-client-0.183-1.fc33.x86_64       4/107 
-  Verifying        : emacs-filesystem-1:27.2-1.fc33.noarch                5/107 
-  Verifying        : gcc-10.2.1-9.fc33.x86_64                             6/107 
-  Verifying        : git-2.30.2-1.fc33.x86_64                             7/107 
-  Verifying        : git-core-2.30.2-1.fc33.x86_64                        8/107 
-  Verifying        : git-core-doc-2.30.2-1.fc33.noarch                    9/107 
-  Verifying        : glibc-devel-2.32-4.fc33.x86_64                      10/107 
-  Verifying        : glibc-headers-x86-2.32-4.fc33.noarch                11/107 
-  Verifying        : groff-base-1.22.4-4.fc33.x86_64                     12/107 
-  Verifying        : guile22-2.2.7-1.fc33.x86_64                         13/107 
-  Verifying        : kernel-headers-5.11.14-200.fc33.x86_64              14/107 
-  Verifying        : libpkgconf-1.7.3-5.fc33.x86_64                      15/107 
-  Verifying        : libxcrypt-devel-4.4.19-1.fc33.x86_64                16/107 
-  Verifying        : mkpasswd-5.5.9-1.fc33.x86_64                        17/107 
-  Verifying        : openssh-8.4p1-5.fc33.x86_64                         18/107 
-  Verifying        : openssh-clients-8.4p1-5.fc33.x86_64                 19/107 
-  Verifying        : perl-AutoLoader-5.74-469.fc33.noarch                20/107 
-  Verifying        : perl-B-1.80-469.fc33.x86_64                         21/107 
-  Verifying        : perl-Class-Struct-0.66-469.fc33.noarch              22/107 
-  Verifying        : perl-Digest-1.19-1.fc33.noarch                      23/107 
-  Verifying        : perl-Digest-MD5-2.58-1.fc33.x86_64                  24/107 
-  Verifying        : perl-DynaLoader-1.47-469.fc33.x86_64                25/107 
-  Verifying        : perl-Encode-4:3.08-458.fc33.x86_64                  26/107 
-  Verifying        : perl-Errno-1.30-469.fc33.x86_64                     27/107 
-  Verifying        : perl-Fcntl-1.13-469.fc33.x86_64                     28/107 
-  Verifying        : perl-File-Basename-2.85-469.fc33.noarch             29/107 
-  Verifying        : perl-File-Find-1.37-469.fc33.noarch                 30/107 
-  Verifying        : perl-File-Path-2.18-1.fc33.noarch                   31/107 
-  Verifying        : perl-File-Temp-1:0.231.100-1.fc33.noarch            32/107 
-  Verifying        : perl-File-stat-1.09-469.fc33.noarch                 33/107 
-  Verifying        : perl-FileHandle-2.03-469.fc33.noarch                34/107 
-  Verifying        : perl-Getopt-Std-1.12-469.fc33.noarch                35/107 
-  Verifying        : perl-Git-2.30.2-1.fc33.noarch                       36/107 
-  Verifying        : perl-IO-1.43-469.fc33.x86_64                        37/107 
-  Verifying        : perl-IPC-Open3-1.21-469.fc33.noarch                 38/107 
-  Verifying        : perl-NDBM_File-1.15-469.fc33.x86_64                 39/107 
-  Verifying        : perl-POSIX-1.94-469.fc33.x86_64                     40/107 
-  Verifying        : perl-PathTools-3.78-458.fc33.x86_64                 41/107 
-  Verifying        : perl-Pod-Simple-1:3.42-1.fc33.noarch                42/107 
-  Verifying        : perl-Pod-Usage-4:2.01-1.fc33.noarch                 43/107 
-  Verifying        : perl-SelectSaver-1.02-469.fc33.noarch               44/107 
-  Verifying        : perl-Socket-4:2.031-1.fc33.x86_64                   45/107 
-  Verifying        : perl-Symbol-1.08-469.fc33.noarch                    46/107 
-  Verifying        : perl-base-2.27-469.fc33.noarch                      47/107 
-  Verifying        : perl-if-0.60.800-469.fc33.noarch                    48/107 
-  Verifying        : perl-interpreter-4:5.32.1-469.fc33.x86_64           49/107 
-  Verifying        : perl-lib-0.65-469.fc33.x86_64                       50/107 
-  Verifying        : perl-libnet-3.13-1.fc33.noarch                      51/107 
-  Verifying        : perl-libs-4:5.32.1-469.fc33.x86_64                  52/107 
-  Verifying        : perl-macros-4:5.32.1-469.fc33.noarch                53/107 
-  Verifying        : perl-mro-1.23-469.fc33.x86_64                       54/107 
-  Verifying        : perl-overload-1.31-469.fc33.noarch                  55/107 
-  Verifying        : perl-overloading-0.02-469.fc33.noarch               56/107 
-  Verifying        : perl-subs-1.03-469.fc33.noarch                      57/107 
-  Verifying        : perl-vars-1.05-469.fc33.noarch                      58/107 
-  Verifying        : pkgconf-1.7.3-5.fc33.x86_64                         59/107 
-  Verifying        : pkgconf-m4-1.7.3-5.fc33.noarch                      60/107 
-  Verifying        : pkgconf-pkg-config-1.7.3-5.fc33.x86_64              61/107 
-  Verifying        : wget-1.21.1-2.fc33.x86_64                           62/107 
-  Verifying        : whois-nls-5.5.9-1.fc33.noarch                       63/107 
-  Verifying        : bzip2-1.0.8-4.fc33.x86_64                           64/107 
-  Verifying        : ed-1.14.2-9.fc33.x86_64                             65/107 
-  Verifying        : gc-8.0.4-4.fc33.x86_64                              66/107 
-  Verifying        : gnu-efi-1:3.0.11-5.fc33.x86_64                      67/107 
-  Verifying        : gnu-efi-compat-1:3.0.11-5.fc33.x86_64               68/107 
-  Verifying        : gnu-efi-devel-1:3.0.11-5.fc33.noarch                69/107 
-  Verifying        : info-6.7-8.fc33.x86_64                              70/107 
-  Verifying        : isl-0.16.1-12.fc33.x86_64                           71/107 
-  Verifying        : less-551-4.fc33.x86_64                              72/107 
-  Verifying        : libcbor-0.5.0-7.fc33.x86_64                         73/107 
-  Verifying        : libedit-3.1-33.20191231cvs.fc33.x86_64              74/107 
-  Verifying        : libfido2-1.4.0-3.fc33.x86_64                        75/107 
-  Verifying        : libmpc-1.1.0-9.fc33.x86_64                          76/107 
-  Verifying        : libtool-ltdl-2.4.6-36.fc33.x86_64                   77/107 
-  Verifying        : make-1:4.3-2.fc33.x86_64                            78/107 
-  Verifying        : ncurses-6.2-3.20200222.fc33.x86_64                  79/107 
-  Verifying        : patch-2.7.6-13.fc33.x86_64                          80/107 
-  Verifying        : perl-Carp-1.50-457.fc33.noarch                      81/107 
-  Verifying        : perl-Data-Dumper-2.174-459.fc33.x86_64              82/107 
-  Verifying        : perl-Error-1:0.17029-4.fc33.noarch                  83/107 
-  Verifying        : perl-Exporter-5.74-458.fc33.noarch                  84/107 
-  Verifying        : perl-Getopt-Long-1:2.52-1.fc33.noarch               85/107 
-  Verifying        : perl-HTTP-Tiny-0.076-457.fc33.noarch                86/107 
-  Verifying        : perl-IO-Socket-IP-0.41-2.fc33.noarch                87/107 
-  Verifying        : perl-IO-Socket-SSL-2.068-3.fc33.noarch              88/107 
-  Verifying        : perl-MIME-Base64-3.16-1.fc33.x86_64                 89/107 
-  Verifying        : perl-Mozilla-CA-20200520-3.fc33.noarch              90/107 
-  Verifying        : perl-Net-SSLeay-1.88-9.fc33.x86_64                  91/107 
-  Verifying        : perl-Pod-Escapes-1:1.07-457.fc33.noarch             92/107 
-  Verifying        : perl-Pod-Perldoc-3.28.01-458.fc33.noarch            93/107 
-  Verifying        : perl-Scalar-List-Utils-4:1.55-457.fc33.x86_64       94/107 
-  Verifying        : perl-Storable-1:3.21-457.fc33.x86_64                95/107 
-  Verifying        : perl-Term-ANSIColor-5.01-458.fc33.noarch            96/107 
-  Verifying        : perl-Term-Cap-1.17-457.fc33.noarch                  97/107 
-  Verifying        : perl-TermReadKey-2.38-8.fc33.x86_64                 98/107 
-  Verifying        : perl-Text-ParseWords-3.30-457.fc33.noarch           99/107 
-  Verifying        : perl-Text-Tabs+Wrap-2013.0523-457.fc33.noarch      100/107 
-  Verifying        : perl-Time-Local-2:1.300-4.fc33.noarch              101/107 
-  Verifying        : perl-URI-1.76-9.fc33.noarch                        102/107 
-  Verifying        : perl-constant-1.33-458.fc33.noarch                 103/107 
-  Verifying        : perl-parent-1:0.238-457.fc33.noarch                104/107 
-  Verifying        : perl-podlators-1:4.14-457.fc33.noarch              105/107 
-  Verifying        : libxcrypt-4.4.19-1.fc33.x86_64                     106/107 
-  Verifying        : libxcrypt-4.4.18-1.fc33.x86_64                     107/107 
+  Upgrading        : libgcc-10.3.1-1.fc33.x86_64                          1/117 
+  Running scriptlet: libgcc-10.3.1-1.fc33.x86_64                          1/117 
+  Upgrading        : glibc-common-2.32-6.fc33.x86_64                      2/117 
+  Upgrading        : glibc-minimal-langpack-2.32-6.fc33.x86_64            3/117 
+  Running scriptlet: glibc-2.32-6.fc33.x86_64                             4/117 
+  Upgrading        : glibc-2.32-6.fc33.x86_64                             4/117 
+  Running scriptlet: glibc-2.32-6.fc33.x86_64                             4/117 
+  Installing       : libmpc-1.1.0-9.fc33.x86_64                           5/117 
+  Installing       : cpp-10.3.1-1.fc33.x86_64                             6/117 
+  Installing       : elfutils-debuginfod-client-0.183-1.fc33.x86_64       7/117 
+  Installing       : binutils-gold-2.35-18.fc33.x86_64                    8/117 
+  Installing       : binutils-2.35-18.fc33.x86_64                         9/117 
+  Running scriptlet: binutils-2.35-18.fc33.x86_64                         9/117 
+  Installing       : glibc-headers-x86-2.32-6.fc33.noarch                10/117 
+  Running scriptlet: groff-base-1.22.4-4.fc33.x86_64                     11/117 
+  Installing       : groff-base-1.22.4-4.fc33.x86_64                     11/117 
+  Running scriptlet: groff-base-1.22.4-4.fc33.x86_64                     11/117 
+  Installing       : libpkgconf-1.7.3-5.fc33.x86_64                      12/117 
+  Installing       : pkgconf-1.7.3-5.fc33.x86_64                         13/117 
+  Installing       : gc-8.0.4-4.fc33.x86_64                              14/117 
+  Installing       : info-6.7-8.fc33.x86_64                              15/117 
+  Installing       : ed-1.14.2-9.fc33.x86_64                             16/117 
+  Installing       : isl-0.16.1-12.fc33.x86_64                           17/117 
+  Installing       : less-551-4.fc33.x86_64                              18/117 
+  Installing       : libcbor-0.5.0-7.fc33.x86_64                         19/117 
+  Installing       : libfido2-1.4.0-3.fc33.x86_64                        20/117 
+  Installing       : libedit-3.1-33.20191231cvs.fc33.x86_64              21/117 
+  Installing       : libtool-ltdl-2.4.6-36.fc33.x86_64                   22/117 
+  Installing       : ncurses-6.2-3.20200222.fc33.x86_64                  23/117 
+  Upgrading        : libgomp-10.3.1-1.fc33.x86_64                        24/117 
+  Installing       : gnu-efi-compat-1:3.0.11-5.fc33.x86_64               25/117 
+  Installing       : gnu-efi-1:3.0.11-5.fc33.x86_64                      26/117 
+  Installing       : whois-nls-5.5.9-1.fc33.noarch                       27/117 
+  Upgrading        : libxcrypt-4.4.20-2.fc33.x86_64                      28/117 
+  Installing       : mkpasswd-5.5.9-1.fc33.x86_64                        29/117 
+  Installing       : perl-Digest-1.19-1.fc33.noarch                      30/117 
+  Installing       : perl-Digest-MD5-2.58-1.fc33.x86_64                  31/117 
+  Installing       : perl-FileHandle-2.03-469.fc33.noarch                32/117 
+  Installing       : perl-B-1.80-469.fc33.x86_64                         33/117 
+  Installing       : perl-AutoLoader-5.74-469.fc33.noarch                34/117 
+  Installing       : perl-Data-Dumper-2.174-459.fc33.x86_64              35/117 
+  Installing       : perl-libnet-3.13-1.fc33.noarch                      36/117 
+  Installing       : perl-base-2.27-469.fc33.noarch                      37/117 
+  Installing       : perl-Net-SSLeay-1.88-9.fc33.x86_64                  38/117 
+  Installing       : perl-URI-1.76-9.fc33.noarch                         39/117 
+  Installing       : perl-if-0.60.800-469.fc33.noarch                    40/117 
+  Installing       : perl-Pod-Escapes-1:1.07-457.fc33.noarch             41/117 
+  Installing       : perl-Text-Tabs+Wrap-2013.0523-457.fc33.noarch       42/117 
+  Installing       : perl-File-Path-2.18-1.fc33.noarch                   43/117 
+  Installing       : perl-Mozilla-CA-20200520-3.fc33.noarch              44/117 
+  Installing       : perl-IO-Socket-IP-0.41-2.fc33.noarch                45/117 
+  Installing       : perl-Time-Local-2:1.300-4.fc33.noarch               46/117 
+  Installing       : perl-IO-Socket-SSL-2.068-3.fc33.noarch              47/117 
+  Installing       : perl-subs-1.03-469.fc33.noarch                      48/117 
+  Installing       : perl-Class-Struct-0.66-469.fc33.noarch              49/117 
+  Installing       : perl-POSIX-1.94-469.fc33.x86_64                     50/117 
+  Installing       : perl-Term-ANSIColor-5.01-458.fc33.noarch            51/117 
+  Installing       : perl-Term-Cap-1.17-457.fc33.noarch                  52/117 
+  Installing       : perl-IPC-Open3-1.21-469.fc33.noarch                 53/117 
+  Installing       : perl-File-Temp-1:0.231.100-1.fc33.noarch            54/117 
+  Installing       : perl-HTTP-Tiny-0.076-457.fc33.noarch                55/117 
+  Installing       : perl-Pod-Simple-1:3.42-1.fc33.noarch                56/117 
+  Installing       : perl-Symbol-1.08-469.fc33.noarch                    57/117 
+  Installing       : perl-SelectSaver-1.02-469.fc33.noarch               58/117 
+  Installing       : perl-Socket-4:2.031-1.fc33.x86_64                   59/117 
+  Installing       : perl-File-stat-1.09-469.fc33.noarch                 60/117 
+  Installing       : perl-podlators-1:4.14-457.fc33.noarch               61/117 
+  Installing       : perl-Pod-Perldoc-3.28.01-458.fc33.noarch            62/117 
+  Installing       : perl-mro-1.23-469.fc33.x86_64                       63/117 
+  Installing       : perl-Fcntl-1.13-469.fc33.x86_64                     64/117 
+  Installing       : perl-overloading-0.02-469.fc33.noarch               65/117 
+  Installing       : perl-Text-ParseWords-3.30-457.fc33.noarch           66/117 
+  Installing       : perl-IO-1.43-469.fc33.x86_64                        67/117 
+  Installing       : perl-Pod-Usage-4:2.01-1.fc33.noarch                 68/117 
+  Installing       : perl-Getopt-Std-1.12-469.fc33.noarch                69/117 
+  Installing       : perl-Errno-1.30-469.fc33.x86_64                     70/117 
+  Installing       : perl-File-Basename-2.85-469.fc33.noarch             71/117 
+  Installing       : perl-vars-1.05-469.fc33.noarch                      72/117 
+  Installing       : perl-MIME-Base64-3.16-1.fc33.x86_64                 73/117 
+  Installing       : perl-overload-1.31-469.fc33.noarch                  74/117 
+  Installing       : perl-Scalar-List-Utils-4:1.55-457.fc33.x86_64       75/117 
+  Installing       : perl-Storable-1:3.21-457.fc33.x86_64                76/117 
+  Installing       : perl-constant-1.33-458.fc33.noarch                  77/117 
+  Installing       : perl-parent-1:0.238-457.fc33.noarch                 78/117 
+  Installing       : perl-Getopt-Long-1:2.52-1.fc33.noarch               79/117 
+  Installing       : perl-NDBM_File-1.15-469.fc33.x86_64                 80/117 
+  Installing       : perl-Carp-1.50-457.fc33.noarch                      81/117 
+  Installing       : perl-Exporter-5.74-458.fc33.noarch                  82/117 
+  Installing       : perl-PathTools-3.78-458.fc33.x86_64                 83/117 
+  Installing       : perl-Encode-4:3.08-458.fc33.x86_64                  84/117 
+  Installing       : perl-libs-4:5.32.1-469.fc33.x86_64                  85/117 
+  Installing       : perl-macros-4:5.32.1-469.fc33.noarch                86/117 
+  Installing       : perl-interpreter-4:5.32.1-469.fc33.x86_64           87/117 
+  Installing       : perl-DynaLoader-1.47-469.fc33.x86_64                88/117 
+  Installing       : perl-TermReadKey-2.38-8.fc33.x86_64                 89/117 
+  Installing       : perl-File-Find-1.37-469.fc33.noarch                 90/117 
+  Installing       : perl-lib-0.65-469.fc33.x86_64                       91/117 
+  Installing       : perl-Error-1:0.17029-4.fc33.noarch                  92/117 
+  Installing       : guile22-2.2.7-1.fc33.x86_64                         93/117 
+  Installing       : make-1:4.3-2.fc33.x86_64                            94/117 
+  Running scriptlet: openssh-8.4p1-5.fc33.x86_64                         95/117 
+  Installing       : openssh-8.4p1-5.fc33.x86_64                         95/117 
+  Installing       : openssh-clients-8.4p1-5.fc33.x86_64                 96/117 
+  Installing       : git-core-2.31.1-3.fc33.x86_64                       97/117 
+  Installing       : git-core-doc-2.31.1-3.fc33.noarch                   98/117 
+  Installing       : pkgconf-m4-1.7.3-5.fc33.noarch                      99/117 
+  Installing       : pkgconf-pkg-config-1.7.3-5.fc33.x86_64             100/117 
+  Installing       : kernel-headers-5.12.5-200.fc33.x86_64              101/117 
+  Installing       : libxcrypt-devel-4.4.20-2.fc33.x86_64               102/117 
+  Installing       : glibc-devel-2.32-6.fc33.x86_64                     103/117 
+  Installing       : emacs-filesystem-1:27.2-2.fc33.noarch              104/117 
+  Installing       : perl-Git-2.31.1-3.fc33.noarch                      105/117 
+  Installing       : git-2.31.1-3.fc33.x86_64                           106/117 
+  Installing       : gcc-10.3.1-1.fc33.x86_64                           107/117 
+  Installing       : gnu-efi-devel-1:3.0.11-5.fc33.noarch               108/117 
+  Installing       : patch-2.7.6-13.fc33.x86_64                         109/117 
+  Installing       : wget-1.21.1-2.fc33.x86_64                          110/117 
+  Installing       : bzip2-1.0.8-4.fc33.x86_64                          111/117 
+  Cleanup          : libgomp-10.2.1-9.fc33.x86_64                       112/117 
+  Cleanup          : libxcrypt-4.4.18-1.fc33.x86_64                     113/117 
+  Cleanup          : glibc-2.32-4.fc33.x86_64                           114/117 
+  Cleanup          : glibc-minimal-langpack-2.32-4.fc33.x86_64          115/117 
+  Cleanup          : glibc-common-2.32-4.fc33.x86_64                    116/117 
+  Cleanup          : libgcc-10.2.1-9.fc33.x86_64                        117/117 
+  Running scriptlet: libgcc-10.2.1-9.fc33.x86_64                        117/117 
+  Verifying        : binutils-2.35-18.fc33.x86_64                         1/117 
+  Verifying        : binutils-gold-2.35-18.fc33.x86_64                    2/117 
+  Verifying        : cpp-10.3.1-1.fc33.x86_64                             3/117 
+  Verifying        : elfutils-debuginfod-client-0.183-1.fc33.x86_64       4/117 
+  Verifying        : emacs-filesystem-1:27.2-2.fc33.noarch                5/117 
+  Verifying        : gcc-10.3.1-1.fc33.x86_64                             6/117 
+  Verifying        : git-2.31.1-3.fc33.x86_64                             7/117 
+  Verifying        : git-core-2.31.1-3.fc33.x86_64                        8/117 
+  Verifying        : git-core-doc-2.31.1-3.fc33.noarch                    9/117 
+  Verifying        : glibc-devel-2.32-6.fc33.x86_64                      10/117 
+  Verifying        : glibc-headers-x86-2.32-6.fc33.noarch                11/117 
+  Verifying        : groff-base-1.22.4-4.fc33.x86_64                     12/117 
+  Verifying        : guile22-2.2.7-1.fc33.x86_64                         13/117 
+  Verifying        : kernel-headers-5.12.5-200.fc33.x86_64               14/117 
+  Verifying        : libpkgconf-1.7.3-5.fc33.x86_64                      15/117 
+  Verifying        : libxcrypt-devel-4.4.20-2.fc33.x86_64                16/117 
+  Verifying        : mkpasswd-5.5.9-1.fc33.x86_64                        17/117 
+  Verifying        : openssh-8.4p1-5.fc33.x86_64                         18/117 
+  Verifying        : openssh-clients-8.4p1-5.fc33.x86_64                 19/117 
+  Verifying        : perl-AutoLoader-5.74-469.fc33.noarch                20/117 
+  Verifying        : perl-B-1.80-469.fc33.x86_64                         21/117 
+  Verifying        : perl-Class-Struct-0.66-469.fc33.noarch              22/117 
+  Verifying        : perl-Digest-1.19-1.fc33.noarch                      23/117 
+  Verifying        : perl-Digest-MD5-2.58-1.fc33.x86_64                  24/117 
+  Verifying        : perl-DynaLoader-1.47-469.fc33.x86_64                25/117 
+  Verifying        : perl-Encode-4:3.08-458.fc33.x86_64                  26/117 
+  Verifying        : perl-Errno-1.30-469.fc33.x86_64                     27/117 
+  Verifying        : perl-Fcntl-1.13-469.fc33.x86_64                     28/117 
+  Verifying        : perl-File-Basename-2.85-469.fc33.noarch             29/117 
+  Verifying        : perl-File-Find-1.37-469.fc33.noarch                 30/117 
+  Verifying        : perl-File-Path-2.18-1.fc33.noarch                   31/117 
+  Verifying        : perl-File-Temp-1:0.231.100-1.fc33.noarch            32/117 
+  Verifying        : perl-File-stat-1.09-469.fc33.noarch                 33/117 
+  Verifying        : perl-FileHandle-2.03-469.fc33.noarch                34/117 
+  Verifying        : perl-Getopt-Std-1.12-469.fc33.noarch                35/117 
+  Verifying        : perl-Git-2.31.1-3.fc33.noarch                       36/117 
+  Verifying        : perl-IO-1.43-469.fc33.x86_64                        37/117 
+  Verifying        : perl-IPC-Open3-1.21-469.fc33.noarch                 38/117 
+  Verifying        : perl-NDBM_File-1.15-469.fc33.x86_64                 39/117 
+  Verifying        : perl-POSIX-1.94-469.fc33.x86_64                     40/117 
+  Verifying        : perl-PathTools-3.78-458.fc33.x86_64                 41/117 
+  Verifying        : perl-Pod-Simple-1:3.42-1.fc33.noarch                42/117 
+  Verifying        : perl-Pod-Usage-4:2.01-1.fc33.noarch                 43/117 
+  Verifying        : perl-SelectSaver-1.02-469.fc33.noarch               44/117 
+  Verifying        : perl-Socket-4:2.031-1.fc33.x86_64                   45/117 
+  Verifying        : perl-Symbol-1.08-469.fc33.noarch                    46/117 
+  Verifying        : perl-base-2.27-469.fc33.noarch                      47/117 
+  Verifying        : perl-if-0.60.800-469.fc33.noarch                    48/117 
+  Verifying        : perl-interpreter-4:5.32.1-469.fc33.x86_64           49/117 
+  Verifying        : perl-lib-0.65-469.fc33.x86_64                       50/117 
+  Verifying        : perl-libnet-3.13-1.fc33.noarch                      51/117 
+  Verifying        : perl-libs-4:5.32.1-469.fc33.x86_64                  52/117 
+  Verifying        : perl-macros-4:5.32.1-469.fc33.noarch                53/117 
+  Verifying        : perl-mro-1.23-469.fc33.x86_64                       54/117 
+  Verifying        : perl-overload-1.31-469.fc33.noarch                  55/117 
+  Verifying        : perl-overloading-0.02-469.fc33.noarch               56/117 
+  Verifying        : perl-subs-1.03-469.fc33.noarch                      57/117 
+  Verifying        : perl-vars-1.05-469.fc33.noarch                      58/117 
+  Verifying        : pkgconf-1.7.3-5.fc33.x86_64                         59/117 
+  Verifying        : pkgconf-m4-1.7.3-5.fc33.noarch                      60/117 
+  Verifying        : pkgconf-pkg-config-1.7.3-5.fc33.x86_64              61/117 
+  Verifying        : wget-1.21.1-2.fc33.x86_64                           62/117 
+  Verifying        : whois-nls-5.5.9-1.fc33.noarch                       63/117 
+  Verifying        : bzip2-1.0.8-4.fc33.x86_64                           64/117 
+  Verifying        : ed-1.14.2-9.fc33.x86_64                             65/117 
+  Verifying        : gc-8.0.4-4.fc33.x86_64                              66/117 
+  Verifying        : gnu-efi-1:3.0.11-5.fc33.x86_64                      67/117 
+  Verifying        : gnu-efi-compat-1:3.0.11-5.fc33.x86_64               68/117 
+  Verifying        : gnu-efi-devel-1:3.0.11-5.fc33.noarch                69/117 
+  Verifying        : info-6.7-8.fc33.x86_64                              70/117 
+  Verifying        : isl-0.16.1-12.fc33.x86_64                           71/117 
+  Verifying        : less-551-4.fc33.x86_64                              72/117 
+  Verifying        : libcbor-0.5.0-7.fc33.x86_64                         73/117 
+  Verifying        : libedit-3.1-33.20191231cvs.fc33.x86_64              74/117 
+  Verifying        : libfido2-1.4.0-3.fc33.x86_64                        75/117 
+  Verifying        : libmpc-1.1.0-9.fc33.x86_64                          76/117 
+  Verifying        : libtool-ltdl-2.4.6-36.fc33.x86_64                   77/117 
+  Verifying        : make-1:4.3-2.fc33.x86_64                            78/117 
+  Verifying        : ncurses-6.2-3.20200222.fc33.x86_64                  79/117 
+  Verifying        : patch-2.7.6-13.fc33.x86_64                          80/117 
+  Verifying        : perl-Carp-1.50-457.fc33.noarch                      81/117 
+  Verifying        : perl-Data-Dumper-2.174-459.fc33.x86_64              82/117 
+  Verifying        : perl-Error-1:0.17029-4.fc33.noarch                  83/117 
+  Verifying        : perl-Exporter-5.74-458.fc33.noarch                  84/117 
+  Verifying        : perl-Getopt-Long-1:2.52-1.fc33.noarch               85/117 
+  Verifying        : perl-HTTP-Tiny-0.076-457.fc33.noarch                86/117 
+  Verifying        : perl-IO-Socket-IP-0.41-2.fc33.noarch                87/117 
+  Verifying        : perl-IO-Socket-SSL-2.068-3.fc33.noarch              88/117 
+  Verifying        : perl-MIME-Base64-3.16-1.fc33.x86_64                 89/117 
+  Verifying        : perl-Mozilla-CA-20200520-3.fc33.noarch              90/117 
+  Verifying        : perl-Net-SSLeay-1.88-9.fc33.x86_64                  91/117 
+  Verifying        : perl-Pod-Escapes-1:1.07-457.fc33.noarch             92/117 
+  Verifying        : perl-Pod-Perldoc-3.28.01-458.fc33.noarch            93/117 
+  Verifying        : perl-Scalar-List-Utils-4:1.55-457.fc33.x86_64       94/117 
+  Verifying        : perl-Storable-1:3.21-457.fc33.x86_64                95/117 
+  Verifying        : perl-Term-ANSIColor-5.01-458.fc33.noarch            96/117 
+  Verifying        : perl-Term-Cap-1.17-457.fc33.noarch                  97/117 
+  Verifying        : perl-TermReadKey-2.38-8.fc33.x86_64                 98/117 
+  Verifying        : perl-Text-ParseWords-3.30-457.fc33.noarch           99/117 
+  Verifying        : perl-Text-Tabs+Wrap-2013.0523-457.fc33.noarch      100/117 
+  Verifying        : perl-Time-Local-2:1.300-4.fc33.noarch              101/117 
+  Verifying        : perl-URI-1.76-9.fc33.noarch                        102/117 
+  Verifying        : perl-constant-1.33-458.fc33.noarch                 103/117 
+  Verifying        : perl-parent-1:0.238-457.fc33.noarch                104/117 
+  Verifying        : perl-podlators-1:4.14-457.fc33.noarch              105/117 
+  Verifying        : glibc-2.32-6.fc33.x86_64                           106/117 
+  Verifying        : glibc-2.32-4.fc33.x86_64                           107/117 
+  Verifying        : glibc-common-2.32-6.fc33.x86_64                    108/117 
+  Verifying        : glibc-common-2.32-4.fc33.x86_64                    109/117 
+  Verifying        : glibc-minimal-langpack-2.32-6.fc33.x86_64          110/117 
+  Verifying        : glibc-minimal-langpack-2.32-4.fc33.x86_64          111/117 
+  Verifying        : libgcc-10.3.1-1.fc33.x86_64                        112/117 
+  Verifying        : libgcc-10.2.1-9.fc33.x86_64                        113/117 
+  Verifying        : libgomp-10.3.1-1.fc33.x86_64                       114/117 
+  Verifying        : libgomp-10.2.1-9.fc33.x86_64                       115/117 
+  Verifying        : libxcrypt-4.4.20-2.fc33.x86_64                     116/117 
+  Verifying        : libxcrypt-4.4.18-1.fc33.x86_64                     117/117 
 
 Upgraded:
-  libxcrypt-4.4.19-1.fc33.x86_64                                                
+  glibc-2.32-6.fc33.x86_64                    glibc-common-2.32-6.fc33.x86_64  
+  glibc-minimal-langpack-2.32-6.fc33.x86_64   libgcc-10.3.1-1.fc33.x86_64      
+  libgomp-10.3.1-1.fc33.x86_64                libxcrypt-4.4.20-2.fc33.x86_64   
 Installed:
   binutils-2.35-18.fc33.x86_64                                                  
   binutils-gold-2.35-18.fc33.x86_64                                             
   bzip2-1.0.8-4.fc33.x86_64                                                     
-  cpp-10.2.1-9.fc33.x86_64                                                      
+  cpp-10.3.1-1.fc33.x86_64                                                      
   ed-1.14.2-9.fc33.x86_64                                                       
   elfutils-debuginfod-client-0.183-1.fc33.x86_64                                
-  emacs-filesystem-1:27.2-1.fc33.noarch                                         
+  emacs-filesystem-1:27.2-2.fc33.noarch                                         
   gc-8.0.4-4.fc33.x86_64                                                        
-  gcc-10.2.1-9.fc33.x86_64                                                      
-  git-2.30.2-1.fc33.x86_64                                                      
-  git-core-2.30.2-1.fc33.x86_64                                                 
-  git-core-doc-2.30.2-1.fc33.noarch                                             
-  glibc-devel-2.32-4.fc33.x86_64                                                
-  glibc-headers-x86-2.32-4.fc33.noarch                                          
+  gcc-10.3.1-1.fc33.x86_64                                                      
+  git-2.31.1-3.fc33.x86_64                                                      
+  git-core-2.31.1-3.fc33.x86_64                                                 
+  git-core-doc-2.31.1-3.fc33.noarch                                             
+  glibc-devel-2.32-6.fc33.x86_64                                                
+  glibc-headers-x86-2.32-6.fc33.noarch                                          
   gnu-efi-1:3.0.11-5.fc33.x86_64                                                
   gnu-efi-compat-1:3.0.11-5.fc33.x86_64                                         
   gnu-efi-devel-1:3.0.11-5.fc33.noarch                                          
@@ -497,7 +525,7 @@ Installed:
   guile22-2.2.7-1.fc33.x86_64                                                   
   info-6.7-8.fc33.x86_64                                                        
   isl-0.16.1-12.fc33.x86_64                                                     
-  kernel-headers-5.11.14-200.fc33.x86_64                                        
+  kernel-headers-5.12.5-200.fc33.x86_64                                         
   less-551-4.fc33.x86_64                                                        
   libcbor-0.5.0-7.fc33.x86_64                                                   
   libedit-3.1-33.20191231cvs.fc33.x86_64                                        
@@ -505,7 +533,7 @@ Installed:
   libmpc-1.1.0-9.fc33.x86_64                                                    
   libpkgconf-1.7.3-5.fc33.x86_64                                                
   libtool-ltdl-2.4.6-36.fc33.x86_64                                             
-  libxcrypt-devel-4.4.19-1.fc33.x86_64                                          
+  libxcrypt-devel-4.4.20-2.fc33.x86_64                                          
   make-1:4.3-2.fc33.x86_64                                                      
   mkpasswd-5.5.9-1.fc33.x86_64                                                  
   ncurses-6.2-3.20200222.fc33.x86_64                                            
@@ -533,7 +561,7 @@ Installed:
   perl-FileHandle-2.03-469.fc33.noarch                                          
   perl-Getopt-Long-1:2.52-1.fc33.noarch                                         
   perl-Getopt-Std-1.12-469.fc33.noarch                                          
-  perl-Git-2.30.2-1.fc33.noarch                                                 
+  perl-Git-2.31.1-3.fc33.noarch                                                 
   perl-HTTP-Tiny-0.076-457.fc33.noarch                                          
   perl-IO-1.43-469.fc33.x86_64                                                  
   perl-IO-Socket-IP-0.41-2.fc33.noarch                                          
@@ -583,62 +611,62 @@ Installed:
   whois-nls-5.5.9-1.fc33.noarch                                                 
 
 Complete!
-Removing intermediate container d0ce019ed35d
- ---> a86c298ecdb1
-Step 3/15 : RUN mkdir -p /build/shim
- ---> Running in b37b4b51531f
-Removing intermediate container b37b4b51531f
- ---> 4126c7253202
-Step 4/15 : WORKDIR /build/shim
- ---> Running in 07a30664f638
-Removing intermediate container 07a30664f638
- ---> 92b6c7507cfc
-Step 5/15 : RUN wget https://github.com/rhboot/shim/releases/download/15.4/shim-15.4.tar.bz2
- ---> Running in 8b1696293f43
-[91m--2021-04-16 20:58:04--  https://github.com/rhboot/shim/releases/download/15.4/shim-15.4.tar.bz2
-[0m[91mResolving github.com (github.com)... [0m[91m140.82.114.3
-Connecting to github.com (github.com)|140.82.114.3|:443... [0m[91mconnected.
+Removing intermediate container 4862b63b46c0
+ ---> 8f326a59993b
+Step 3/23 : RUN mkdir -p /build/shim
+ ---> Running in 08db0215d398
+Removing intermediate container 08db0215d398
+ ---> f4031eece6e6
+Step 4/23 : WORKDIR /build/shim
+ ---> Running in 8deb857e08e3
+Removing intermediate container 8deb857e08e3
+ ---> 33983be3eba6
+Step 5/23 : RUN wget https://github.com/rhboot/shim/releases/download/15.4/shim-15.4.tar.bz2
+ ---> Running in fa111f3fd8e5
+[91m--2021-06-04 17:44:21--  https://github.com/rhboot/shim/releases/download/15.4/shim-15.4.tar.bz2
+[0m[91mResolving github.com (github.com)... [0m[91m140.82.112.3
+Connecting to github.com (github.com)|140.82.112.3|:443... [0m[91mconnected.
 [0m[91mHTTP request sent, awaiting response... [0m[91m302 Found
-Location: https://github-releases.githubusercontent.com/3996476/6dda6900-917a-11eb-956e-a746627a51ec?X-Amz-Algorithm=AWS4-HMAC-SHA256&<redacted>&X-Amz-Date=20210416T205805Z&X-Amz-Expires=300&X-Amz-Signature=7079fb5bca82727385fe921fa9eefed257c8e92de18eaf8b187ba3e7aeecbb00&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=3996476&response-content-disposition=attachment%3B%20filename%3Dshim-15.4.tar.bz2&response-content-type=application%2Foctet-stream [following]
-[0m[91m--2021-04-16 20:58:05--  https://github-releases.githubusercontent.com/3996476/6dda6900-917a-11eb-956e-a746627a51ec?X-Amz-Algorithm=AWS4-HMAC-SHA256&<redacted>&X-Amz-Date=20210416T205805Z&X-Amz-Expires=300&X-Amz-Signature=7079fb5bca82727385fe921fa9eefed257c8e92de18eaf8b187ba3e7aeecbb00&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=3996476&response-content-disposition=attachment%3B%20filename%3Dshim-15.4.tar.bz2&response-content-type=application%2Foctet-stream
-Resolving github-releases.githubusercontent.com (github-releases.githubusercontent.com)... [0m[91m185.199.111.154, 185.199.110.154, 185.199.109.154, ...
-Connecting to github-releases.githubusercontent.com (github-releases.githubusercontent.com)|185.199.111.154|:443... [0m[91mconnected.
+Location: https://github-releases.githubusercontent.com/3996476/6dda6900-917a-11eb-956e-a746627a51ec?X-Amz-Algorithm=AWS4-HMAC-SHA256&<redacted>&X-Amz-Date=20210604T174422Z&X-Amz-Expires=300&X-Amz-Signature=cb303a8531cf31d1f1786ed54ebf87f1dd2e4115aad1d9366adf8f7c8585c736&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=3996476&response-content-disposition=attachment%3B%20filename%3Dshim-15.4.tar.bz2&response-content-type=application%2Foctet-stream [following]
+[0m[91m--2021-06-04 17:44:22--  https://github-releases.githubusercontent.com/3996476/6dda6900-917a-11eb-956e-a746627a51ec?X-Amz-Algorithm=AWS4-HMAC-SHA256&<redacted>&X-Amz-Date=20210604T174422Z&X-Amz-Expires=300&<redacted>&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=3996476&response-content-disposition=attachment%3B%20filename%3Dshim-15.4.tar.bz2&response-content-type=application%2Foctet-stream
+Resolving github-releases.githubusercontent.com (github-releases.githubusercontent.com)... [0m[91m185.199.108.154, 185.199.109.154, 185.199.110.154, ...
+Connecting to github-releases.githubusercontent.com (github-releases.githubusercontent.com)|185.199.108.154|:443... [0m[91mconnected.
 [0m[91mHTTP request sent, awaiting response... [0m[91m200 OK
 Length: 1260475 (1.2M) [application/octet-stream]
 [0m[91mSaving to: 'shim-15.4.tar.bz2'
-[0m[91m
-     0K ......[0m[91m..[0m[91m.[0m[91m.[0m[91m ..[0m[91m.[0m[91m.[0m[91m..[0m[91m..[0m[91m.. .[0m[91m...[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m ..[0m[91m..[0m[91m..[0m[91m.[0m[91m..[0m[91m.[0m[91m .[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.  4% 7.66M 0s
-    50K .[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m ...[0m[91m..[0m[91m..[0m[91m..[0m[91m. .[0m[91m.[0m[91m..[0m[91m.[0m[91m...[0m[91m.[0m[91m.[0m[91m ..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m .[0m[91m...[0m[91m.[0m[91m...[0m[91m.[0m[91m.  8% 10.4M 0s[0m[91m
-   100K ..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m..[0m[91m.[0m[91m .[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m. .[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m .[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m. .[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m..[0m[91m.[0m[91m. 12% 11.9M 0s[0m[91m
-   150K ..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.. .[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m ..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m .[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m..[0m[91m. .[0m[91m..[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m. 16% 33.6M 0s[0m[91m
-   200K ...[0m[91m.[0m[91m.[0m[91m..[0m[91m..[0m[91m. .[0m[91m.[0m[91m.[0m[91m.[0m[91m...... ..[0m[91m.......[0m[91m.[0m[91m ........[0m[91m.. ......[0m[91m.... 20% 37.3M 0s
-   250K ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... 24% 97.1M 0s
-   300K ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........ 28%  107M 0s[0m[91m
-   350K ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. 32% 89.9M 0s
-   400K ......[0m[91m.... ....[0m[91m...... ..[0m[91m......[0m[91m.. ......[0m[91m.... ....[0m[91m...... 36%  102M 0s
-   450K ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........ 40%  105M 0s[0m[91m
-   500K ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m .......... 44% 29.7M 0s
-   550K ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... 48% 86.6M 0s
-   600K [0m[91m...[0m[91m.[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ..[0m[91m........ 52%  102M 0s[0m[91m
-   650K ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. 56% 93.4M 0s
-   700K ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... 60%  109M 0s
-   750K ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... 64%  102M[0m[91m 0s
-   800K ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m.......[0m[91m. 69%  107M 0s[0m[91m
-   850K ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... 73% 91.4M 0s[0m[91m
-   900K ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... 77% 68.9M 0s[0m[91m
-   950K .[0m[91m.[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........ 81% 90.0M[0m[91m 0s[0m[91m
-  1000K ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. 85% 81.5M 0s
-  1050K ......[0m[91m.... ....[0m[91m......[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... 89%  108M 0s
-  1100K ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........ 93% 99.5M 0s[0m[91m
-  1150K ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.[0m[91m. 97% 88.7M 0s
-  1200K ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m                 [0m[91m     100%[0m[91m 72.3M=0.03s[0m[91m
 
-[0m[91m2021-04-16 20:58:05 (41.1 MB/s) - 'shim-15.4.tar.bz2' saved [1260475/1260475]
+     0K ..[0m[91m...[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m ..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m .[0m[91m.[0m[91m..[0m[91m.[0m[91m...[0m[91m.. ..[0m[91m..[0m[91m...[0m[91m..[0m[91m. .[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m..[0m[91m.  4% 9.84M[0m[91m 0s
+    50K .[0m[91m.[0m[91m.[0m[91m...[0m[91m.[0m[91m..[0m[91m.[0m[91m .[0m[91m..[0m[91m..[0m[91m..[0m[91m.[0m[91m.[0m[91m. .[0m[91m...[0m[91m..[0m[91m..[0m[91m.[0m[91m.[0m[91m ..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m .[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.  8% 13.1M 0s[0m[91m
+   100K [0m[91m..[0m[91m.....[0m[91m..[0m[91m.[0m[91m .[0m[91m..[0m[91m..[0m[91m..[0m[91m.[0m[91m.[0m[91m. .[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m .[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m. .[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m..[0m[91m.. 12% 14.8M 0s[0m[91m
+   150K ..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.. .[0m[91m.[0m[91m...[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m ..[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m .[0m[91m..[0m[91m..[0m[91m..[0m[91m.[0m[91m.[0m[91m. .[0m[91m..[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m. 16% 29.2M 0s[0m[91m
+   200K .[0m[91m..[0m[91m..[0m[91m..[0m[91m..[0m[91m.[0m[91m ........[0m[91m.. ....[0m[91m..[0m[91m.... ....[0m[91m...... ..[0m[91m........ 20% 78.7M 0s[0m[91m
+   250K ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. 24% 22.2M 0s
+   300K .[0m[91m.....[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... 28% 68.5M 0s
+   350K[0m[91m ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... 32% 78.9M 0s
+   400K ..[0m[91m........[0m[91m .......[0m[91m.[0m[91m.. ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. 36% 70.4M 0s
+   450K ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... 40%  110M 0s
+   500K ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... 44%[0m[91m 38.7M 0s
+   550K ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.[0m[91m... ....[0m[91m...... ..[0m[91m........ 48% 86.2M 0s[0m[91m
+   600K ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m......[0m[91m.. ......[0m[91m.... 52% 70.0M 0s
+   650K ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... 56% 90.5M 0s
+   700K ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........ 60% 88.4M 0s[0m[91m
+   750K ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. 64% 64.1M 0s
+   800K ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ....[0m[91m..[0m[91m.... 69% 93.4M 0s[0m[91m
+   850K ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m.[0m[91m....... 73% 92.0M 0s[0m[91m
+   900K ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. 77% 95.6M 0s
+   950K ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m.[0m[91m... 81% 97.9M 0s
+  1000K ....[0m[91m...... ..[0m[91m........[0m[91m [0m[91m........[0m[91m.. ......[0m[91m.... ....[0m[91m...... 85%  100M 0s
+  1050K ..[0m[91m........[0m[91m ......[0m[91m.... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. 89%  128M 0s
+  1100K ......[0m[91m.... ....[0m[91m...... .......... ........[0m[91m.. ......[0m[91m.... 93% 2.25M 0s
+  1150K .......... ..[0m[91m........ ........[0m[91m.. .......... ....[0m[91m...... 97%  112M 0s
+  1200K ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m....            [0m[91m        [0m[91m  100%  115M=0.05s
 
-[0mRemoving intermediate container 8b1696293f43
- ---> dd38c355b12f
-Step 6/15 : RUN tar -jxvpf shim-15.4.tar.bz2 && rm shim-15.4.tar.bz2
- ---> Running in f5f3b4046308
+[0m[91m2021-06-04 17:44:22 (24.7 MB/s) - 'shim-15.4.tar.bz2' saved [1260475/1260475]
+
+[0mRemoving intermediate container fa111f3fd8e5
+ ---> d735de704ee5
+Step 6/23 : RUN tar -jxvpf shim-15.4.tar.bz2 && rm shim-15.4.tar.bz2
+ ---> Running in f639ee23eaf7
 shim-15.4/
 shim-15.4/commit
 shim-15.4/version.h
@@ -1582,22 +1610,52 @@ shim-15.4/gnu-efi/Make.defaults
 shim-15.4/gnu-efi/ChangeLog
 shim-15.4/gnu-efi/.gitignore
 shim-15.4/gnu-efi/.gitattributes
-Removing intermediate container f5f3b4046308
- ---> 7787e8d4e93d
-Step 7/15 : WORKDIR /build/shim/shim-15.4
- ---> Running in da3e2527a764
-Removing intermediate container da3e2527a764
- ---> 9a30d90e0469
-Step 8/15 : ADD neverware.cer .
- ---> ddf6ae9373d3
-Step 9/15 : ADD sbat.csv data/sbat.csv
- ---> 09d6b89b823b
-Step 10/15 : RUN mkdir build-x64 build-ia32
- ---> Running in 451ab1c0c1b5
-Removing intermediate container 451ab1c0c1b5
- ---> e26c020f65b7
-Step 11/15 : RUN make -C build-x64 ARCH=x86_64 VENDOR_CERT_FILE=../neverware.cer     TOPDIR=.. -f ../Makefile
- ---> Running in 0048efaccbc5
+Removing intermediate container f639ee23eaf7
+ ---> f1ec4cd694cd
+Step 7/23 : WORKDIR /build/shim/shim-15.4
+ ---> Running in 83f95c0c2a37
+Removing intermediate container 83f95c0c2a37
+ ---> afd91572babf
+Step 8/23 : ADD shim_15.4_8b59591_364.patch .
+ ---> 918ef12dfc61
+Step 9/23 : RUN patch -p1 -i shim_15.4_8b59591_364.patch
+ ---> Running in 0e91d8ef8fc8
+patching file mok.c
+Removing intermediate container 0e91d8ef8fc8
+ ---> 9e91e6761f5a
+Step 10/23 : ADD shim_15.4_975c2fe_362.patch .
+ ---> c92cb4c4d7b8
+Step 11/23 : RUN patch -p1 -i shim_15.4_975c2fe_362.patch
+ ---> Running in 95e2a2d21bb1
+patching file mok.c
+Hunk #1 succeeded at 901 (offset 13 lines).
+Removing intermediate container 95e2a2d21bb1
+ ---> f831b0dbb76b
+Step 12/23 : ADD shim_15.4_1bea91b_357.patch .
+ ---> 1fc4a53f626e
+Step 13/23 : RUN patch -p1 -i shim_15.4_1bea91b_357.patch
+ ---> Running in f4cf2533b3f1
+patching file elf_ia32_efi.lds
+Removing intermediate container f4cf2533b3f1
+ ---> 9ee5ed7879c9
+Step 14/23 : ADD shim_15.4_33ca950_361.patch .
+ ---> f4f7520ac9f8
+Step 15/23 : RUN patch -p1 -i shim_15.4_33ca950_361.patch
+ ---> Running in 189466c9d2a8
+patching file mok.c
+Hunk #1 succeeded at 1012 (offset 10 lines).
+Removing intermediate container 189466c9d2a8
+ ---> 1802e66c5818
+Step 16/23 : ADD neverware.cer .
+ ---> 8a47d7b8d576
+Step 17/23 : ADD sbat.csv data/sbat.csv
+ ---> c5869b92d6d6
+Step 18/23 : RUN mkdir build-x64 build-ia32
+ ---> Running in 3857b8ab984c
+Removing intermediate container 3857b8ab984c
+ ---> 1ef3dd4e023f
+Step 19/23 : RUN make -C build-x64 ARCH=x86_64 VENDOR_CERT_FILE=../neverware.cer     TOPDIR=.. -f ../Makefile
+ ---> Running in ebd266bda088
 make: Entering directory '/build/shim/shim-15.4/build-x64'
 sed	-e "s,@@VERSION@@,15.4," \
 	-e "s,@@UNAME@@,Linux x86_64 x86_64 x86_64 GNU/Linux," \
@@ -2175,7 +2233,7 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=shimx64.efi
 [91m4+0 records in
 4+0 records out
-4 bytes copied, 9.4415e-05 s, 42.4 kB/s
+4 bytes copied, 8.518e-05 s, 47.0 kB/s
 [0mobjcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .rodata -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame -j .sbat \
@@ -2212,7 +2270,7 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=mmx64.efi
 [91m4+0 records in
 4+0 records out
-4 bytes copied, 3.465e-05 s, 115 kB/s
+4 bytes copied, 8.6931e-05 s, 46.0 kB/s
 [0mobjcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .rodata -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
@@ -2220,14 +2278,14 @@ dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=mmx64.efi
 	--target efi-app-x86_64 fbx64.so fbx64.efi
 # I am tired of wasting my time fighting binutils timestamp code.
 dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=fbx64.efi
+make: Leaving directory '/build/shim/shim-15.4/build-x64'
 [91m4+0 records in
 4+0 records out
-4 bytes copied, 4.5632e-05 s, 87.7 kB/s
-[0mmake: Leaving directory '/build/shim/shim-15.4/build-x64'
-Removing intermediate container 0048efaccbc5
- ---> 79e533b83d57
-Step 12/15 : RUN make -C build-ia32 ARCH=ia32 VENDOR_CERT_FILE=../neverware.cer     TOPDIR=.. -f ../Makefile
- ---> Running in 82b67ba9d6ec
+4 bytes copied, 4.1728e-05 s, 95.9 kB/s
+[0mRemoving intermediate container ebd266bda088
+ ---> 715f555f2e96
+Step 20/23 : RUN make -C build-ia32 ARCH=ia32 VENDOR_CERT_FILE=../neverware.cer     TOPDIR=.. -f ../Makefile
+ ---> Running in 8e6c0cac6f91
 make: Entering directory '/build/shim/shim-15.4/build-ia32'
 sed	-e "s,@@VERSION@@,15.4," \
 	-e "s,@@UNAME@@,Linux x86_64 x86_64 x86_64 GNU/Linux," \
@@ -2803,7 +2861,7 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=shimia32.efi
 [91m4+0 records in
 4+0 records out
-4 bytes copied, 3.6939e-05 s, 108 kB/s
+4 bytes copied, 9.0482e-05 s, 44.2 kB/s
 [0mobjcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .rodata -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame -j .sbat \
@@ -2843,7 +2901,7 @@ objcopy -D -j .text -j .sdata -j .data \
 dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=mmia32.efi
 [91m4+0 records in
 4+0 records out
-4 bytes copied, 9.5025e-05 s, 42.1 kB/s
+4 bytes copied, 9.2811e-05 s, 43.1 kB/s
 [0mobjcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .rodata -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
@@ -2853,21 +2911,21 @@ dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=mmia32.efi
 dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=fbia32.efi
 [91m4+0 records in
 4+0 records out
-4 bytes copied, 7.3145e-05 s, 54.7 kB/s
+4 bytes copied, 8.531e-05 s, 46.9 kB/s
 [0mmake: Leaving directory '/build/shim/shim-15.4/build-ia32'
-Removing intermediate container 82b67ba9d6ec
- ---> 86e2aeb11792
-Step 13/15 : RUN mkdir /build/install
- ---> Running in 362b69a4ab4e
-Removing intermediate container 362b69a4ab4e
- ---> 9da658d282ab
-Step 14/15 : RUN cp build-x64/shimx64.efi /build/install
- ---> Running in 9228ac075f10
-Removing intermediate container 9228ac075f10
- ---> 40c206c1109c
-Step 15/15 : RUN cp build-ia32/shimia32.efi /build/install
- ---> Running in d23f4ca9a4ce
-Removing intermediate container d23f4ca9a4ce
- ---> 9463c4e2e935
-Successfully built 9463c4e2e935
+Removing intermediate container 8e6c0cac6f91
+ ---> add39d01329c
+Step 21/23 : RUN mkdir /build/install
+ ---> Running in 628fe4a4a1dc
+Removing intermediate container 628fe4a4a1dc
+ ---> 409146117ae2
+Step 22/23 : RUN cp build-x64/shimx64.efi /build/install
+ ---> Running in 578363c6c9e7
+Removing intermediate container 578363c6c9e7
+ ---> 1f9be1d1c99c
+Step 23/23 : RUN cp build-ia32/shimia32.efi /build/install
+ ---> Running in faa7d486d893
+Removing intermediate container faa7d486d893
+ ---> 011ed82fa7db
+Successfully built 011ed82fa7db
 Successfully tagged shim-build:latest
